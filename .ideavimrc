@@ -1,0 +1,96 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=8
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+Plug 'preservim/nerdtree'
+
+let mapleader = " "
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap <leader>n :action NextTab<CR>
+nnoremap <leader>p :action PreviousTab<CR>
+nnoremap <leader>x :action CloseContent<CR>
+
+nmap <leader>rn :action RenameElement<CR>
+
+" Go to Definition with g + d
+nnoremap gd :action GotoDeclaration<CR>
+
+" Find files with leader + ff
+nnoremap <leader>ff :action GotoFile<CR>
+
+" Live grep (find in files) with leader + fg
+nnoremap <leader>fg :action FindInPath<CR>
+
+" Format code with leader + gf
+nnoremap <leader>gf :action ReformatCode<CR>
+
+" Run closest test with leader + t
+nnoremap <leader>t :action RunContextTest<CR>
+
+" Run the current test file with leader + T
+nnoremap <leader>T :action RunClass<CR>
+
+" Run the last test with leader + l
+nnoremap <leader>l :action Rerun<CR>
+
+" Shortcut to debug the current test
+nnoremap <leader>dt :action DebugTest<CR>
+
+" Shortcut to toggle a breakpoint at the current line
+nnoremap <leader>bp :action ToggleLineBreakpoint<CR>
+
+" Go to Implementation with g + i
+nnoremap gi :action GotoImplementation<CR>
+
+" Show function info (Quick Documentation) with leader + i
+nnoremap <leader>i :action QuickJavaDoc<CR>
+
+" Find usages of the function with leader + u
+nnoremap <leader>u :action FindUsages<CR>
+
+" Show error description with leader + e + r
+nnoremap <leader>er :action ShowErrorDescription<CR>
+
+" Remap ø and Ø to [ and { in visual mode
+vnoremap ø [
+vnoremap Ø {
+
+" Remap æ and Æ to ] and } in visual mode
+vnoremap æ ]
+vnoremap Æ }
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
