@@ -5,11 +5,12 @@ For å lage symlinks for alle configs
 ```
 stow . 
 ```
-For å adoptere en config folder så kopierer man filen inn i dette repoet og kjøre
+For å adoptere en config så kopierer man filen inn i dette repoet og kjøre
 
 ```
 stow --adopt .
 ```
+Viktig å passe på at filstrukturen i dotfiles må være likt, relativt til home folder, slik at når man stower, så ble de plassert riktig.
 ## MacOS stuff
 ```
 brew install tmux 
