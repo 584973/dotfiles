@@ -243,10 +243,6 @@ if.app-id = 'org.godothengine.godot'
 run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'move-node-to-workspace F'
-
-[[on-window-detected]]
 if.app-id = 'com.mongodb.compass'
 run = 'move-node-to-workspace D'
 
