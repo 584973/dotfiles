@@ -187,10 +187,6 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'org.alacritty' 
-run = 'move-node-to-workspace T'
-
-[[on-window-detected]]
 if.app-id = 'md.obsidian' 
 run = 'move-node-to-workspace O'
 
@@ -204,8 +200,57 @@ run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij' 
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace Q'
+
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+run = 'move-node-to-workspace A'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace I'
+
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = 'move-node-to-workspace P'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+if.app-id = 'com.cisco.anyconnect.gui'
+run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+if.app-id = 'org.godothengine.godot'
+run = 'move-node-to-workspace G'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+if.app-id = 'com.mongodb.compass'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace N'
+
