@@ -1,9 +1,15 @@
 # dotfiles
 
-For å hente alle configs, bare kjør
+For å lage symlinks for alle configs
 
-```stow . ```
+```
+stow . 
+```
+For å adoptere en config folder så kopierer man filen inn i dette repoet og kjøre
 
+```
+stow --adopt .
+```
 ## MacOS stuff
 ```
 brew install tmux 
