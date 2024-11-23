@@ -19,7 +19,6 @@ brew install starship
 brew install neovim
 brew install aerospace
 ```
-
 ## Arch Linux stuff
 ```
 sudo pacman -S starship
@@ -29,7 +28,9 @@ sudo pacman -S alacritty
 ```
 ## Annet
 
-JetBrains Vim konfigurasjon
+JetBrains Vim konfigurasjonen ligger i ```.ideavimrc```. 
+
+Tmux konfigurasjonen ligger i ```.tmux.conf```. Ikke alt vil fungere out of the box medmindre man har TPM ([Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)). Følgende kommando vil installere det. 
 ```
-.ideavimrc
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
