@@ -27,6 +27,10 @@ sudo pacman -S neovim
 sudo pacman -S alacritty
 ```
 ## Annet
+Homebrew brukes som package manager på MacOS. Det kan installeres ved å kjøre denne kommandoen.
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
 JetBrains Vim konfigurasjonen ligger i ```.ideavimrc```. 
 
@@ -34,3 +38,5 @@ Tmux konfigurasjonen ligger i ```.tmux.conf```. Ikke alt vil fungere out of the 
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
+```starship``` og ```nvim``` er tilgjengelig i alle operativsystemer og terminaler, men er avhengig av å ha en nerdfont installert. Nerdfonts kan man finne [her](https://www.nerdfonts.com/). Installasjonsprosessen kan variere fra platform til platform.
