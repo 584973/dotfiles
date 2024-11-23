@@ -1,1 +1,35 @@
 .DS_Store
+
+# Ignore Neovim swap, backup, and undo files
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.temp
+*.log
+
+# Ignore session files
+Session.vim
+
+# Ignore undo files (if you're using persistent undo)
+**/undodir/*
+
+# Ignore backup files (if you're using Neovim's built-in backup system)
+**/backup/*
+
+# Ignore directory specific to plugin managers like packer, lazy, etc.
+**/packer_compiled.lua
+**/lazy-lock.json
+
+# Ignore files from plugin installations or external packages
+site/pack/*/start/*
+site/pack/*/opt/*
+
+# Ignore log files
+**/nvim.log
+
+# Ignore Lua language server related files
+.nvimspector/
+.cache/nvim/
+
