@@ -20,7 +20,7 @@ vim.keymap.set("n", "<c-l>",":wincmd l<CR>")
 
 vim.cmd[[
 " when not in insert mode, remap some non-US keys
-map , /
+"map , /
 " noremap M ,
 map ´ \
 " map ; ?
