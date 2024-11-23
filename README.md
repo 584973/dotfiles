@@ -41,4 +41,4 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ```starship``` og ```nvim``` er tilgjengelig i alle operativsystemer og terminaler, men er avhengig av å ha en nerdfont installert. Nerdfonts kan man finne [her](https://www.nerdfonts.com/). Installasjonsprosessen kan variere fra platform til platform.
 ## Theme
-Brukt [catppuccin](https://github.com/catppuccin) som theme på så og si alt.
+Brukt [catppuccin](https://github.com/catppuccin/catppuccin) som theme på så og si alt.
