@@ -13,6 +13,7 @@ stow --adopt .
 Viktig å passe på at filstrukturen i dotfiles må være likt, relativt til home folder, slik at når man stower, så ble de plassert riktig.
 ## MacOS stuff
 ```
+brew install iterm2
 brew install tmux 
 brew install borders
 brew install starship
