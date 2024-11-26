@@ -58,6 +58,9 @@ outer.right =      15
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
