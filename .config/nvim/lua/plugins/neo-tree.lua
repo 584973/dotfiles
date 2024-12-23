@@ -24,7 +24,7 @@ return {
 		vim.api.nvim_set_keymap(
 			"n",
 			"<leader>e",
-			":Neotree source=filesystem reveal=true position=left toggle=true<CR> ",
+			":Neotree source=filesystem reveal=true position=float toggle=true<CR> ",
 			{ noremap = true, silent = true }
 		)
 	end,
