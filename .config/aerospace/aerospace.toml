@@ -45,12 +45,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 15
-inner.vertical =   15
-outer.left =       15
-outer.bottom =     10
-outer.top =        10 
-outer.right =      15
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       5
+outer.bottom =     0
+outer.top =        2 
+outer.right =      5 
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -195,6 +195,10 @@ run = 'move-node-to-workspace 2'
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
