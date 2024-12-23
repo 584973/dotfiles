@@ -16,12 +16,12 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
 
-vim.keymap.set("n", "<c-k>",":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>",":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>",":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>",":wincmd l<CR>")
+vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
+vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
+vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
+vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
-vim.cmd[[
+vim.cmd([[
 " when not in insert mode, remap some non-US keys
 "map , /
 " noremap M ,
@@ -129,4 +129,4 @@ augroup Norway
   au!
   au VimEnter * nnoremap <silent> yon :call ToggleNorway()<CR>
 augroup end
-]]
+]])
