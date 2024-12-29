@@ -23,6 +23,7 @@ brew install neovim
 brew install aerospace
 ```
 ## Arch Linux stuff
+Det er mulig enkelte hyprland ting må hentes via Yay package manageren https://github.com/Jguer/yay 
 ```
 sudo pacman -S starship
 sudo pacman -S tmux 
