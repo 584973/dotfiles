@@ -28,6 +28,11 @@ sudo pacman -S starship
 sudo pacman -S tmux 
 sudo pacman -S neovim
 sudo pacman -S alacritty
+sudo pacman -S hyprland
+sudo pacman -S hyprlock
+sudo pacman -S hypridle
+sudo pacman -S waybar
+sudo pacman -S kitty
 ```
 ## Annet
 Homebrew brukes som package manager på MacOS. Det kan installeres ved å kjøre denne kommandoen.
