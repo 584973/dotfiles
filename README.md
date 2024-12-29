@@ -1,16 +1,18 @@
 # dotfiles
 
-For å lage symlinks for alle configs
+For å lage symlinks for det du trenger, så skriver man: 
 
 ```
-stow . 
+stow <mappenavn>
 ```
+For neovim så vil det da være ```stow nvim```. Da lages det symlinks for det som ligger i nvim mappen.
+
 For å adoptere en config så kopierer man filen inn i dette repoet og kjøre
 
 ```
 stow --adopt .
 ```
-Viktig å passe på at filstrukturen i dotfiles må være likt, relativt til home folder, slik at når man stower, så ble de plassert riktig.
+Viktig å passe på at filstrukturen i dotfiles må være likt, relativt til home folder, slik at når man stower, så ble de plassert riktig. Det er derfor nvim feks. har strukturen ```nvim -> .config -> nvim -> ...``` For det er slik det vil ligge relativt til home folder.
 ## MacOS stuff
 ```
 brew install iterm2
