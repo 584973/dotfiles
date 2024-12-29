@@ -34,6 +34,7 @@ sudo pacman -S hyprlock
 sudo pacman -S hypridle
 sudo pacman -S waybar
 sudo pacman -S kitty
+sudo pacman -S hyprpaper
 ```
 ## Annet
 Homebrew brukes som package manager på MacOS. Det kan installeres ved å kjøre denne kommandoen.
