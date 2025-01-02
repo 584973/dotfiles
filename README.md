@@ -21,6 +21,8 @@ brew install borders
 brew install starship
 brew install neovim
 brew install aerospace
+brew install ghostty
+brew install kitty
 ```
 ## Arch Linux stuff
 Det er mulig enkelte hyprland ting må hentes via Yay package manageren https://github.com/Jguer/yay 
@@ -34,6 +36,7 @@ sudo pacman -S hyprlock
 sudo pacman -S hypridle
 sudo pacman -S waybar
 sudo pacman -S kitty
+sudo pacman -S ghostty
 sudo pacman -S hyprpaper
 ```
 ## Annet
