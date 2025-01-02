@@ -76,12 +76,15 @@ cmd-alt-h = [] # Disable "hide others"
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-alt-enter = '''exec-and-forget osascript -e '
-tell application "iTerm"
-    create window with default profile
-    activate
-end tell'
-'''
+#alt-enter = '''exec-and-forget osascript -e '
+#tell application "iTerm"
+#    create window with default profile
+#    activate
+#end tell'
+#'''
+
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
