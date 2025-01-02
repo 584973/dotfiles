@@ -189,6 +189,10 @@ if.app-id = 'com.googlecode.iterm2'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij' 
 run = 'move-node-to-workspace 2'
 
