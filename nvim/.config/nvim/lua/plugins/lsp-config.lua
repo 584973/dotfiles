@@ -50,6 +50,13 @@ return {
       lspconfig.gdscript.setup({
         capabilities = capabilities,
       })
+      lspconfig.tailwindcss.setup({
+        capabilities = capabilities
+      })
+      lspconfig.jsonls.setup({
+        capabilities = capabilities
+      })
+
 
       vim.keymap.set("n", "<leader>i", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

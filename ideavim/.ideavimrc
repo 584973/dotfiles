@@ -36,56 +36,23 @@ nnoremap <leader>p :action PreviousTab<CR>
 nnoremap <leader>x :action CloseContent<CR>
 
 nmap <leader>rn :action RenameElement<CR>
-
-" Go to Definition with g + d
-nnoremap gd :action GotoDeclaration<CR>
-
-" Find files with leader + ff
-nnoremap <leader>ff :action GotoFile<CR>
-
-" Live grep (find in files) with leader + fg
-nnoremap <leader>fg :action FindInPath<CR>
-
-" Format code with leader + gf
-nnoremap <leader>gf :action ReformatCode<CR>
-
-" Run closest test with leader + t
-nnoremap <leader>t :action RunContextTest<CR>
-
-" Run the current test file with leader + T
-nnoremap <leader>T :action RunClass<CR>
-
-" Run the last test with leader + l
-nnoremap <leader>l :action Rerun<CR>
-
-" Shortcut to debug the current test
-nnoremap <leader>dt :action DebugTest<CR>
-
-" Shortcut to toggle a breakpoint at the current line
-nnoremap <leader>bp :action ToggleLineBreakpoint<CR>
-
-" Go to Implementation with g + i
-nnoremap gi :action GotoImplementation<CR>
-
-" Show function info (Quick Documentation) with leader + i
-nnoremap <leader>i :action QuickJavaDoc<CR>
-
-" Find usages of the function with leader + u
-nnoremap <leader>u :action FindUsages<CR>
-
-" Show error description with leader + e + r
-nnoremap <leader>er :action ShowErrorDescription<CR>
-
-" Remap ø and Ø to [ and { in visual mode
-vnoremap ø [
-vnoremap Ø {
-
-" Remap æ and Æ to ] and } in visual mode
-vnoremap æ ]
-vnoremap Æ }
-
-" Map Leader + ca to IntelliJ's Code Actions (Alt+Enter)
 map <Leader>ca :action ShowIntentionActions<CR>
+nmap <leader>o <Action>(FileStructurePopup)
+map <S-Space> <Action>(GotoNextError)
+map <leader>d <Action>(Debug)
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <leader>gf :action ReformatCode<CR>
+nnoremap <leader>t :action RunClass<CR>
+nnoremap <leader>l :action Rerun<CR>
+nnoremap <leader>dt :action DebugTest<CR>
+nnoremap <leader>bp :action ToggleLineBreakpoint<CR>
+nnoremap <leader>i :action QuickJavaDoc<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>er :action ShowErrorDescription<CR>
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
@@ -97,12 +64,10 @@ map <Leader>ca :action ShowIntentionActions<CR>
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
 
-nmap <leader><C-h> :action SetHarpoon1<cr>
 nmap <leader><C-t> :action SetHarpoon2<cr>
 nmap <leader><C-n> :action SetHarpoon3<cr>
 nmap <leader><C-s> :action SetHarpoon4<cr>
 
-nmap <C-h> :action GotoHarpoon1<cr>
 nmap <C-t> :action GotoHarpoon2<cr>
 nmap <C-n> :action GotoHarpoon3<cr>
 nmap <C-s> :action GotoHarpoon4<cr>
