@@ -14,9 +14,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      local util = require("lspconfig.util")
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
@@ -28,6 +30,8 @@ return {
       })
       lspconfig.angularls.setup({
         capabilities = capabilities,
+        filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+        root_dir = util.root_pattern("angular.json", "project.json"),
       })
       lspconfig.java_language_server.setup({
         capabilities = capabilities,

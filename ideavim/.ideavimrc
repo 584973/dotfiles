@@ -54,6 +54,8 @@ nnoremap <leader>i :action QuickJavaDoc<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>er :action ShowErrorDescription<CR>
 
+nnoremap <leader>qn :action QuickNoteOpen<CR>
+
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
 "map \r <Action>(ReformatCode)
