@@ -28,18 +28,6 @@ return {
         ":Neotree source=filesystem reveal=true position=float toggle=true<CR> ",
         { noremap = true, silent = true }
       )
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>eb",
-        ":Neotree buffers position=float toggle=true<CR> ",
-        { noremap = true, silent = true }
-      )
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>eg",
-        ":Neotree git_status position=float toggle=true<CR> ",
-        { noremap = true, silent = true }
-      )
     end,
   },
   {

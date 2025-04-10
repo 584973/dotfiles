@@ -85,8 +85,8 @@ return {
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 
-      vim.keymap.set("n", "<leader>er", vim.diagnostic.open_float, bufopts)
-      vim.keymap.set("n", "<leader>ne", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, bufopts)
+      vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
     end,
   },
 }
