@@ -8,4 +8,5 @@ return {
 	vim.keymap.set("n", "<leader>l", ":TestLast<CR>"),
 	vim.keymap.set("n", "<leader>g", ":TestVisit<CR>"),
   vim.cmd("let test#strategy = 'vimux'"),
+  vim.cmd("let g:test#javascript#runner = 'jest'"),
 }
