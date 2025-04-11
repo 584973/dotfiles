@@ -17,13 +17,9 @@ return {
           "jdtls",
           "gopls",
           "lua_ls",
-          "dockerls",
           "ts_ls",
-          "angularls",
           "tailwindcss",
           "jsonls",
-          "java_language_server",
-          "kotlin_language_server",
         },
       })
     end,
