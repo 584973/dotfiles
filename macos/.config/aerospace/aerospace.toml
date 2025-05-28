@@ -45,11 +45,11 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
+inner.horizontal = 15
+inner.vertical =   15
 outer.left =       5
-outer.bottom =     0
-outer.top =        2 
+outer.bottom =     5
+outer.top =        5 
 outer.right =      5 
 
 # 'main' binding mode declaration
@@ -108,8 +108,6 @@ alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
-alt-d = 'workspace D'
-alt-g = 'workspace G'
 alt-m = 'workspace Music'
 alt-s = 'workspace Slack'
 
@@ -125,8 +123,6 @@ alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-d = 'move-node-to-workspace D'
-alt-shift-g = 'move-node-to-workspace G'
 alt-shift-m = 'move-node-to-workspace Music'
 alt-shift-s = 'move-node-to-workspace Slack'
 
@@ -154,24 +150,16 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'com.googlecode.iterm2'
-run = 'move-node-to-workspace Q'
-
-[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace Q'
 
 [[on-window-detected]]
-if.app-id = 'com.jetbrains.intellij' 
+if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace W'
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
+if.app-id = 'com.jetbrains.intellij' 
 run = 'move-node-to-workspace E'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace R'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
@@ -182,22 +170,9 @@ if.app-id = 'com.microsoft.Outlook'
 run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
-if.app-id = 'com.cisco.anyconnect.gui'
-run = 'move-node-to-workspace G'
-
-[[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop'
-run = 'move-node-to-workspace G'
-
-[[on-window-detected]]
 if.app-id = 'md.obsidian' 
 run = 'move-node-to-workspace Slack'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap' 
 run = 'move-node-to-workspace Slack'
-
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace Music'
-
