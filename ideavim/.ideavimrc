@@ -35,8 +35,14 @@ nnoremap <leader>n :action NextTab<CR>
 nnoremap <leader>p :action PreviousTab<CR>
 nnoremap <leader>x :action CloseContent<CR>
 
+map <leader>t :action ActivateTerminalToolWindow<CR>
+map <leader>e :action ActivateProjectToolWindow<CR>
+
 nmap <leader>rn :action RenameElement<CR>
-map <Leader>ca :action ShowIntentionActions<CR>
+map <leader>ca :action ShowIntentionActions<CR>
+map <leader>re <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>rn :action RenameElement<CR>
+map <leader>ca :action ShowIntentionActions<CR>
 nmap <leader>o <Action>(FileStructurePopup)
 map <S-Space> <Action>(GotoNextError)
 map <leader>d <Action>(Debug)
@@ -46,13 +52,13 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap <leader>ff :action GotoFile<CR>
 nnoremap <leader>fg :action FindInPath<CR>
 nnoremap <leader>gf :action ReformatCode<CR>
-nnoremap <leader>t :action RunClass<CR>
+nnoremap <leader>T :action RunClass<CR>
 nnoremap <leader>l :action Rerun<CR>
 nnoremap <leader>dt :action DebugTest<CR>
 nnoremap <leader>bp :action ToggleLineBreakpoint<CR>
 nnoremap <leader>i :action QuickJavaDoc<CR>
 nnoremap <leader>u :action FindUsages<CR>
-nnoremap <leader>er :action ShowErrorDescription<CR>
+nnoremap <leader>de :action ShowErrorDescription<CR>
 
 nnoremap <leader>qn :action QuickNoteOpen<CR>
 
