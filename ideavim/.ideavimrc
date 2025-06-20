@@ -37,6 +37,7 @@ nnoremap <leader>x :action CloseContent<CR>
 
 map <leader>t :action ActivateTerminalToolWindow<CR>
 map <leader>e :action ActivateProjectToolWindow<CR>
+map <leader>fb :action RecentFiles<CR>
 
 nmap <leader>rn :action RenameElement<CR>
 map <leader>ca :action ShowIntentionActions<CR>
