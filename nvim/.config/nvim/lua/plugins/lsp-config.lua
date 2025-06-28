@@ -36,8 +36,16 @@ return {
       lspconfig.ts_ls.setup({
         capabilities = capabilities,
       })
-      lspconfig.kotlin_language_server.setup({
+      lspconfig.kotlin_lsp.setup({
         capabilities = capabilities,
+        root_dir = util.root_pattern(
+          "settings.gradle",
+          "settings.gradle.kts",
+          "pom.xml",
+          "build.gradle",
+          "build.gradle.kts",
+          "workspace.json"
+        ),
       })
       lspconfig.angularls.setup({
         capabilities = capabilities,
