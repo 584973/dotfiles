@@ -20,7 +20,7 @@ Session.vim
 
 # Ignore directory specific to plugin managers like packer, lazy, etc.
 **/packer_compiled.lua
-**/lazy-lock.json
+# **/lazy-lock.json
 
 # Ignore files from plugin installations or external packages
 site/pack/*/start/*
