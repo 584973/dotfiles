@@ -13,7 +13,5 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {}
 
-vim.lsp.enable("kotlin_lsp")
-
 require("vim-options")
 require("lazy").setup("plugins")

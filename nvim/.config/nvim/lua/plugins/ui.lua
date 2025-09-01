@@ -1,13 +1,16 @@
 return {
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
 		priority = 1000,
 		config = function()
-			require("catppuccin").setup({
-				custom_highlights = {},
+			require("cyberdream").setup({
+				variant = "dark",
+				transparent = true,
+				saturation = 1,
+				terminal_colors = true,
 			})
-			vim.cmd("colorscheme catppuccin-mocha")
+			vim.cmd("colorscheme cyberdream")
 		end,
 	},
 	{
@@ -36,10 +39,6 @@ return {
 					},
 				},
 			})
-
-			-- Optional: integrate with LazyVim keymaps
-			vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
-			vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 		end,
 	},
 	{
@@ -56,10 +55,8 @@ return {
 	{
 		"rachartier/tiny-glimmer.nvim",
 		event = "VeryLazy",
-		priority = 10, -- Needs to be a really low priority, to catch others plugins keybindings.
-		opts = {
-			-- your configuration
-		},
+		priority = 10,
+		opts = {},
 	},
 	{
 		{
@@ -76,6 +73,7 @@ return {
 	{
 		"goolord/alpha-nvim",
 		dependencies = { "echasnovski/mini.icons" },
+		enabled = false,
 		config = function()
 			local theme = require("alpha.themes.theta")
 			theme.file_icons.provider = "devicons"

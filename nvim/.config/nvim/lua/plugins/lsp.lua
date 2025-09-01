@@ -29,18 +29,22 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
 			local util = require("lspconfig.util")
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
+			vim.lsp.enable({
+				"ts_ls",
+				"gopls",
+				"lua_ls",
+				"java_language_server",
+				"pylsp",
+				"marksman",
+				"jdtls",
+				"yamlls",
+				"tailwindcss",
+				"jsonls",
+				"dockerls",
+				"kotlin_lsp",
 			})
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.eslint.setup({
-				capabilities = capabilities,
+			vim.lsp.config("eslint", {
 				on_attach = function(_, bufnr)
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
@@ -49,8 +53,7 @@ return {
 				end,
 				root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "package.json", ".git"),
 			})
-			lspconfig.angularls.setup({
-				capabilities = capabilities,
+			vim.lsp.config("angularls", {
 				on_attach = function(client)
 					client.server_capabilities.diagnosticProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
@@ -58,45 +61,6 @@ return {
 				filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
 				root_dir = util.root_pattern("angular.json", "project.json"),
 			})
-			lspconfig.java_language_server.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.pylsp.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.marksman.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.yamlls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gdscript.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tailwindcss.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.jsonls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.dockerls.setup({
-				capabilities = capabilities,
-			})
-
-			vim.keymap.set("n", "<leader>i", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-
-			vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, {})
-			vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {})
 		end,
 	},
 	-- Formatting
@@ -133,7 +97,7 @@ return {
 
 			lint.linters_by_ft = {
 				python = { "flake8" },
-				go = { "golangci_lint" },
+				go = { "golangcilint" },
 			}
 
 			-- Auto-lint on save
