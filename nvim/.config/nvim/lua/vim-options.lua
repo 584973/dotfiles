@@ -21,18 +21,6 @@ vim.diagnostic.config({
 	},
 })
 
--- Terminal
-vim.api.nvim_create_autocmd("TermOpen", {
-	pattern = "*",
-	callback = function()
-		vim.cmd("startinsert")
-		vim.api.nvim_buf_set_name(0, "termy")
-	end,
-})
-vim.keymap.set("n", "<leader>tt", function()
-	vim.cmd.term()
-end)
-
 -- Save and quit
 vim.keymap.set("n", "<leader>q", ":q<cr>")
 vim.keymap.set("n", "<leader>w", ":w<cr>")
