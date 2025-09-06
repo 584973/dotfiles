@@ -30,6 +30,17 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local util = require("lspconfig.util")
+
+			vim.lsp.config("eslint", {
+				on_attach = function(_, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll",
+					})
+				end,
+				root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "package.json", ".git"),
+			})
+
 			vim.lsp.enable({
 				"ts_ls",
 				"gopls",
@@ -43,23 +54,8 @@ return {
 				"jsonls",
 				"dockerls",
 				"kotlin_lsp",
-			})
-			vim.lsp.config("eslint", {
-				on_attach = function(_, bufnr)
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						buffer = bufnr,
-						command = "EslintFixAll",
-					})
-				end,
-				root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "package.json", ".git"),
-			})
-			vim.lsp.config("angularls", {
-				on_attach = function(client)
-					client.server_capabilities.diagnosticProvider = nil
-					client.server_capabilities.documentFormattingProvider = false
-				end,
-				filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
-				root_dir = util.root_pattern("angular.json", "project.json"),
+				"angularls",
+				"eslint",
 			})
 		end,
 	},

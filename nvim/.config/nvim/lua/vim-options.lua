@@ -1,16 +1,14 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set number relativenumber")
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.scrolloff = 8
+vim.opt.conceallevel = 2
+vim.g.mapleader = " "
 
 vim.cmd("set clipboard=unnamedplus")
-
-vim.opt.cursorline = true
-vim.g.mapleader = " "
-vim.opt.scrolloff = 8
-
-vim.opt.conceallevel = 2
 
 vim.diagnostic.enable()
 
@@ -23,6 +21,7 @@ vim.diagnostic.config({
 	},
 })
 
+-- Save and quit
 vim.keymap.set("n", "<leader>q", ":q<cr>")
 vim.keymap.set("n", "<leader>w", ":w<cr>")
 

@@ -1,9 +1,6 @@
 return {
   "yetone/avante.nvim",
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  -- ⚠️ must add this setting! ! !
   build = function()
-    -- conditionally use the correct build system for the current OS
     if vim.fn.has("win32") == 1 then
       return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
     else
@@ -15,8 +12,6 @@ return {
   ---@module 'avante'
   ---@type avante.Config
   opts = {
-    -- add any opts here
-    -- for example
     provider = "openai",
     providers = {
       claude = {
@@ -60,7 +55,6 @@ return {
       },
     },
     {
-      -- Make sure to set this up properly if you have lazy=true
       'MeanderingProgrammer/render-markdown.nvim',
       opts = {
         file_types = { "markdown", "Avante" },
