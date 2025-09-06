@@ -44,6 +44,7 @@
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
   "tiny-glimmer.nvim": { "branch": "main", "commit": "84f6b0d8d83b098141e67072ef8f2606820a4454" },
   "tree-sitter-angular": { "branch": "main", "commit": "d1f24a8890462cb740909ff62a3a079cded288bc" },
+  "vague.nvim": { "branch": "main", "commit": "e3d316dc1b84bc759b4cf31619595a9ed7b3ee19" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "vim-test": { "branch": "master", "commit": "5d6ca4be679d7679265e83a8c3ee1f3ab97af9f0" },
   "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },

@@ -3,6 +3,7 @@ return {
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
 		priority = 1000,
+		enabled = false,
 		config = function()
 			require("cyberdream").setup({
 				variant = "dark",
@@ -11,6 +12,17 @@ return {
 				terminal_colors = true,
 			})
 			vim.cmd("colorscheme cyberdream")
+		end,
+	},
+	{
+		"vague2k/vague.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("vague").setup({
+				transparent = false,
+			})
+			vim.cmd("colorscheme vague")
 		end,
 	},
 	{
