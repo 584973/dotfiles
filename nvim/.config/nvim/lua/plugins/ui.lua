@@ -1,28 +1,11 @@
 return {
 	{
-		"scottmckendry/cyberdream.nvim",
-		lazy = false,
-		priority = 1000,
-		enabled = false,
-		config = function()
-			require("cyberdream").setup({
-				variant = "dark",
-				transparent = true,
-				saturation = 1,
-				terminal_colors = true,
-			})
-			vim.cmd("colorscheme cyberdream")
-		end,
-	},
-	{
 		"vague2k/vague.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("vague").setup({
-				transparent = false,
-			})
-			vim.cmd("colorscheme vague")
+			require("vague").setup({ transparent = false })
+			vim.cmd.colorscheme("vague")
 		end,
 	},
 	{
@@ -51,7 +34,7 @@ return {
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>e",
-				":Neotree source=filesystem reveal=true position=float toggle=true<CR> ",
+				":Neotree source=filesystem reveal=true toggle=true<CR> ",
 				{ noremap = true, silent = true }
 			)
 		end,

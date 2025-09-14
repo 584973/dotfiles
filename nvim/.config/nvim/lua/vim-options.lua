@@ -13,7 +13,7 @@ vim.cmd("set clipboard=unnamedplus")
 vim.diagnostic.enable()
 
 vim.diagnostic.config({
-	viritual_text = true,
+	virtual_text = true,
 	underline = true,
 	float = {
 		border = "rounded",
