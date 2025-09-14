@@ -6,6 +6,7 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.conceallevel = 2
+vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
 vim.cmd("set clipboard=unnamedplus")
