@@ -35,6 +35,8 @@ nnoremap <leader>n :action NextTab<CR>
 nnoremap <leader>p :action PreviousTab<CR>
 nnoremap <leader>x :action CloseContent<CR>
 
+nnoremap <leader>w :action HideAllWindows<CR>
+
 map <leader>t :action ActivateTerminalToolWindow<CR>
 map <leader>e :action ActivateProjectToolWindow<CR>
 map <leader>fb :action RecentFiles<CR>
