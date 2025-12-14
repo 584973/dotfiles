@@ -1,6 +1,6 @@
 # Dotfiles
 
-Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Starship, Kitty/Ghostty/Alacritty, Hyprland + Waybar/Rofi (Wofi configs are kept for reference), and more. Theme: Catppuccin. Requires a Nerd Font.
+Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Starship, Kitty/Ghostty, Hyprland + Waybar/Rofi (Wofi configs are kept for reference), and more. Theme: Catppuccin. Requires a Nerd Font.
 
 ---
 
@@ -13,13 +13,13 @@ macOS (Homebrew):
 ```sh
 # Install Homebrew if needed (see https://brew.sh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install stow neovim tmux starship kitty ghostty iterm2 aerospace borders alacritty
+brew install stow neovim tmux starship kitty ghostty iterm2 aerospace borders
 ```
 
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux starship kitty ghostty alacritty hyprland hyprlock hypridle hyprpaper waybar rofi
+sudo pacman -S --needed stow neovim tmux starship kitty ghostty hyprland hyprlock hypridle hyprpaper waybar rofi
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 
@@ -58,7 +58,6 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
 - Terminals
   - `kitty/.config/kitty` — Kitty config.
   - `ghostty/.config/ghostty` — Ghostty config.
-  - `alacritty/.config/alacritty` — Alacritty config (Catppuccin Mocha).
 - macOS
   - `macos/.config/aerospace` — Aerospace tiling window manager.
   - `macos/.config/borders` — Window borders.
@@ -131,13 +130,13 @@ Notes:
 macOS (Homebrew):
 
 ```sh
-brew install iterm2 tmux borders starship neovim aerospace ghostty kitty alacritty
+brew install iterm2 tmux borders starship neovim aerospace ghostty kitty
 ```
 
 Arch Linux (pacman):
 
 ```sh
-sudo pacman -S starship tmux neovim alacritty hyprland hyprlock hypridle waybar kitty ghostty hyprpaper rofi
+sudo pacman -S starship tmux neovim hyprland hyprlock hypridle waybar kitty ghostty hyprpaper rofi
 ```
 
 Some Hyprland or community packages may be available via `yay`.
