@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 32,
+  "height": 42,
   "spacing": 0,
   "modules-left": [
     "hyprland/workspaces",
@@ -10,13 +10,11 @@
     "custom/reboot",
     "custom/power"
   ],
-  "modules-center": ["hyprland/window"],
   "modules-right": [
     "network",
     "battery",
     "bluetooth",
     "pulseaudio",
-    "backlight",
     "custom/temperature",
     "memory",
     "cpu",
@@ -28,18 +26,15 @@
     "format": "{icon}",
     "on-click": "activate",
     "persistent-workspaces": {
-    "*":[1,2,3,4,5,6,7,8,9]
+    "*":[1,2,3,4,5,6]
     },
     "format-icons": {
       "1": "󰣇",
-      "2": "󰈹",
+      "2": "2",
       "3": "3",
       "4": "4",
       "5": "5",
       "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
       "default": ""
     }
   },
@@ -62,11 +57,11 @@
     "tooltip-format": "关机"
   },
   "network": {
-    "format-wifi": "<span color='#00FFFF'> 󰤨 </span>{essid} ",
+    "format-wifi": "<span color='#00FFFF'> 󰤨 </span> ",
     "format-ethernet": "<span color='#7FFF00'> </span>Wired ",
     "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
     "format-linked": "<span color='#FFA500'> 󱘖 </span>{ifname} (No IP) ",
-    "format-disconnected": "<span color='#FF4040'>  </span>Disconnected ",
+    "format-disconnected": "<span color='#FF4040'>  </span>",
     "format-alt": "<span color='#00FFFF'> 󰤨 </span>{signalStrength}% ",
     "interval": 1
   },
@@ -120,7 +115,6 @@
   },
   "clock": {
     "interval": 1,
-    "timezone": "Asia/Chengdu",
     "format": "<span color='#BF00FF'>  </span>{:%H:%M} ",
     "tooltip": true,
     "tooltip-format": "{:L%Y 年 %m 月 %d 日, %A}"
