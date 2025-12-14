@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 - Top-level folders map directly to `$HOME`; stow only the pieces you need.
 - Cross-platform: `nvim/.config/nvim`, `tmux/.tmux.conf`, `starship/.config/starship.toml`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminals: `kitty/.config/kitty`, `ghostty/.config/ghostty`, `alacritty/.config/alacritty`.
-- Platform targets: `archlinux/.config/{hypr,waybar,wofi}` for Hyprland/Wayland; `macos/.config/{aerospace,borders}` for macOS; wallpapers in `backgrounds/.config/backgrounds`.
+- Platform targets: `archlinux/.config/{hypr,waybar,rofi}` for Hyprland/Wayland (legacy Wofi configs are kept in `archlinux/.config/wofi`); `macos/.config/{aerospace,borders}` for macOS; wallpapers in `backgrounds/.config/backgrounds`.
 - Keep trees matching real install paths so `stow <module>` places files correctly.
 
 ## Build, Test, and Development Commands

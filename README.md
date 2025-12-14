@@ -1,6 +1,6 @@
 # Dotfiles
 
-Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Starship, Kitty/Ghostty/Alacritty, Hyprland + Waybar/Wofi, and more. Theme: Catppuccin. Requires a Nerd Font.
+Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Starship, Kitty/Ghostty/Alacritty, Hyprland + Waybar/Rofi (Wofi configs are kept for reference), and more. Theme: Catppuccin. Requires a Nerd Font.
 
 ---
 
@@ -19,7 +19,7 @@ brew install stow neovim tmux starship kitty ghostty iterm2 aerospace borders al
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux starship kitty ghostty alacritty hyprland hyprlock hypridle hyprpaper waybar wofi
+sudo pacman -S --needed stow neovim tmux starship kitty ghostty alacritty hyprland hyprlock hypridle hyprpaper waybar rofi
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 
@@ -65,7 +65,8 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
 - Arch Linux / Wayland
   - `archlinux/.config/hypr` — Hyprland, Hyprlock, Hypridle, Hyprpaper.
   - `archlinux/.config/waybar` — Waybar config + Catppuccin theme.
-  - `archlinux/.config/wofi` — Wofi launcher.
+  - `archlinux/.config/rofi` — Rofi launcher.
+  - `archlinux/.config/wofi` — Legacy Wofi launcher configs (kept for fallback).
 - Backgrounds
   - `backgrounds/.config/backgrounds` — Wallpapers used by Hyprpaper.
 - Editors
@@ -136,7 +137,7 @@ brew install iterm2 tmux borders starship neovim aerospace ghostty kitty alacrit
 Arch Linux (pacman):
 
 ```sh
-sudo pacman -S starship tmux neovim alacritty hyprland hyprlock hypridle waybar kitty ghostty hyprpaper wofi
+sudo pacman -S starship tmux neovim alacritty hyprland hyprlock hypridle waybar kitty ghostty hyprpaper rofi
 ```
 
 Some Hyprland or community packages may be available via `yay`.
