@@ -2,12 +2,12 @@
 
 ## Project Structure & Module Organization
 - Top-level folders map directly to `$HOME`; stow only the pieces you need.
-- Cross-platform: `nvim/.config/nvim`, `tmux/.tmux.conf`, `starship/.config/starship.toml`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminals: `kitty/.config/kitty`, `ghostty/.config/ghostty`.
+- Cross-platform: `nvim/.config/nvim`, `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminals: `kitty/.config/kitty`, `ghostty/.config/ghostty`.
 - Platform targets: `archlinux/.config/{hypr,waybar,rofi}` for Hyprland/Wayland (legacy Wofi configs are kept in `archlinux/.config/wofi`); `macos/.config/{aerospace,borders}` for macOS; wallpapers in `backgrounds/.config/backgrounds`.
 - Keep trees matching real install paths so `stow <module>` places files correctly.
 
 ## Build, Test, and Development Commands
-- Preview stow actions: `stow -nvt ~ nvim tmux starship` (dry-run into `$HOME`).
+- Preview stow actions: `stow -nvt ~ nvim tmux` (dry-run into `$HOME`).
 - Apply configs: `stow -vt ~ <module>`; undo with `stow -D <module>`; restow after edits via `stow -R <module>`.
 - Neovim plugins: `nvim --headless "+Lazy sync" +qa` to install/sync; `nvim --headless "+checkhealth" +qa` to sanity-check.
 - Tmux: `tmux source-file ~/.tmux.conf` after changes; TPM users press prefix + I to reinstall plugins.

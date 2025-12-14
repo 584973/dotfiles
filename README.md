@@ -1,6 +1,6 @@
 # Dotfiles
 
-Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Starship, Kitty/Ghostty, Hyprland + Waybar/Rofi (Wofi configs are kept for reference), and more. Theme: Catppuccin. Requires a Nerd Font.
+Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Kitty/Ghostty, Hyprland + Waybar/Rofi (Wofi configs are kept for reference), and more. Theme: Catppuccin. Requires a Nerd Font.
 
 ---
 
@@ -13,13 +13,13 @@ macOS (Homebrew):
 ```sh
 # Install Homebrew if needed (see https://brew.sh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install stow neovim tmux starship kitty ghostty iterm2 aerospace borders
+brew install stow neovim tmux kitty ghostty iterm2 aerospace borders
 ```
 
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux starship kitty ghostty hyprland hyprlock hypridle hyprpaper waybar rofi
+sudo pacman -S --needed stow neovim tmux kitty ghostty hyprland hyprlock hypridle hyprpaper waybar rofi
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 
@@ -30,10 +30,10 @@ git clone git@github.com:584973/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 # Dry-run to preview changes
-stow -nvt ~ nvim tmux starship
+stow -nvt ~ nvim tmux
 
 # Apply symlinks into $HOME
-stow nvim tmux starship
+stow nvim tmux
 ```
 
 Tip: Run `stow -D <module>` to remove symlinks and `stow -R <module>` to restow after changes.
@@ -52,9 +52,6 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   # Then press prefix + I inside tmux to install plugins
   ```
-- `starship/.config/starship.toml` — Starship prompt. Enable in your shell init, e.g.:
-  - bash: `eval "$(starship init bash)"`
-  - zsh: `eval "$(starship init zsh)"`
 - Terminals
   - `kitty/.config/kitty` — Kitty config.
   - `ghostty/.config/ghostty` — Ghostty config.
@@ -130,13 +127,13 @@ Notes:
 macOS (Homebrew):
 
 ```sh
-brew install iterm2 tmux borders starship neovim aerospace ghostty kitty
+brew install iterm2 tmux borders neovim aerospace ghostty kitty
 ```
 
 Arch Linux (pacman):
 
 ```sh
-sudo pacman -S starship tmux neovim hyprland hyprlock hypridle waybar kitty ghostty hyprpaper rofi
+sudo pacman -S tmux neovim hyprland hyprlock hypridle waybar kitty ghostty hyprpaper rofi
 ```
 
 Some Hyprland or community packages may be available via `yay`.
