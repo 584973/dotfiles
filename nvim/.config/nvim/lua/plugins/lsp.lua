@@ -56,6 +56,7 @@ return {
 				"kotlin_lsp",
 				"angularls",
 				"eslint",
+				"html",
 			})
 		end,
 	},

@@ -1,6 +1,7 @@
 let mapleader=" "
 
 nnoremap <leader>e :Explore<CR>
+nnoremap <leader>t :terminal<CR>
 nnoremap <leader>v :Vexplore<CR>
 nnoremap <leader>s :Sexplore<CR>
 nnoremap <leader>n :bnext<CR>
