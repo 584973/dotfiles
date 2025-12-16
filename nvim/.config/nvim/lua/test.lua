@@ -123,7 +123,9 @@ local function run_nx_target(opts)
 		prompt = opts.prompt or "Select project name:",
 		empty_message = opts.empty_message or "No project.json files with a name field found",
 		on_choice = function(choice)
-			floating_term(string.format("pnpm nx run %s:%s", choice.name, opts.target))
+			local args = opts.args or ""
+			local suffix = args ~= "" and (" " .. args) or ""
+			floating_term(string.format("pnpm nx run %s:%s%s", choice.name, opts.target, suffix))
 		end,
 	})
 end
@@ -140,6 +142,17 @@ end
 local function runPlaywrightTest()
 	run_nx_target({
 		target = "e2e",
+		filter = function(name)
+			return name:match("%-e2e$")
+		end,
+		prompt = "Select Playwright project name:",
+	})
+end
+
+local function runPlaywrightUI()
+	run_nx_target({
+		target = "e2e",
+		args = "--ui",
 		filter = function(name)
 			return name:match("%-e2e$")
 		end,
@@ -164,6 +177,11 @@ vim.api.nvim_create_user_command("RunPlaywrightTest", function()
 	vim.notify("Running playwright tests", vim.log.levels.INFO)
 end, {})
 
+vim.api.nvim_create_user_command("RunPlaywrightUI", function()
+	runPlaywrightUI()
+	vim.notify("Opening Playwright UI", vim.log.levels.INFO)
+end, {})
+
 vim.api.nvim_create_user_command("ProjectCacheClear", function()
 	invalidate_project_cache()
 	vim.notify("Cleared cached projects", vim.log.levels.INFO)
@@ -171,3 +189,4 @@ end, {})
 
 vim.keymap.set("n", "<leader>t", runTest, { desc = "run tests on given project" })
 vim.keymap.set("n", "<leader>tp", runPlaywrightTest, { desc = "run playwright tests on given project" })
+vim.keymap.set("n", "<leader>tu", runPlaywrightUI, { desc = "open playwright ui for a project" })
