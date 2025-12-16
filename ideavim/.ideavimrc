@@ -65,6 +65,8 @@ nnoremap <leader>de :action ShowErrorDescription<CR>
 
 nnoremap <leader>qn :action QuickNoteOpen<CR>
 
+nmap <leader>ma :action Maven.Reimport<CR>
+
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
 "map \r <Action>(ReformatCode)
