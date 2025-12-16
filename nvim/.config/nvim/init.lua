@@ -15,4 +15,5 @@ local opts = {}
 
 require("vim-options")
 require("terminal")
+require("test")
 require("lazy").setup("plugins")
