@@ -48,7 +48,7 @@ local function floating_term(cmd)
 	vim.cmd("startinsert")
 end
 
-local function runTest()
+local function select_project(opts)
 	local root = workspace_root()
 	local files = find_project_json_files(root)
 
@@ -56,7 +56,8 @@ local function runTest()
 	for _, path in ipairs(files) do
 		local obj = read_json(path)
 		local name = obj and obj.name
-		if type(name) == "string" and name ~= "" then
+
+		if type(name) == "string" and name ~= "" and (not opts.filter or opts.filter(name)) then
 			table.insert(items, {
 				label = string.format("%s  (%s)", name, vim.fn.fnamemodify(path, ":~:.")),
 				name = name,
@@ -66,12 +67,12 @@ local function runTest()
 	end
 
 	if #items == 0 then
-		vim.notify("No project.json files with a name field found", vim.log.levels.WARN)
+		vim.notify(opts.empty_message, vim.log.levels.WARN)
 		return
 	end
 
 	vim.ui.select(items, {
-		prompt = "Select project name:",
+		prompt = opts.prompt,
 		format_item = function(item)
 			return item.label
 		end,
@@ -79,12 +80,42 @@ local function runTest()
 		if not choice then
 			return
 		end
-		local project_name = choice.name
-
-		floating_term(string.format("pnpm nx run %s:test", project_name))
+		opts.on_choice(choice)
 	end)
 end
 
+local function run_nx_target(opts)
+	select_project({
+		filter = opts.filter,
+		prompt = opts.prompt or "Select project name:",
+		empty_message = opts.empty_message or "No project.json files with a name field found",
+		on_choice = function(choice)
+			floating_term(string.format("pnpm nx run %s:%s", choice.name, opts.target))
+		end,
+	})
+end
+
+local function runTest()
+	run_nx_target({
+		target = "test",
+		filter = function(name)
+			return not name:match("%-e2e$")
+		end,
+	})
+end
+
+local function runPlaywrightTest()
+	run_nx_target({
+		target = "e2e",
+		filter = function(name)
+			return name:match("%-e2e$")
+		end,
+		prompt = "Select Playwright project name:",
+	})
+end
+
 vim.api.nvim_create_user_command("RunTest", runTest, {})
+vim.api.nvim_create_user_command("RunPlaywrightTest", runPlaywrightTest, {})
 
 vim.keymap.set("n", "<leader>t", runTest, { desc = "run tests on given project" })
+vim.keymap.set("n", "<leader>tp", runPlaywrightTest, { desc = "run playwright tests on given project" })
