@@ -1,14 +1,18 @@
-local function workspace_root()
-	return vim.fs.root(0, {
-		"pnpm-workspace.yaml",
-		"yarn.lock",
-		"package-lock.json",
-		"pnpm-lock.yaml",
-		"turbo.json",
-		"nx.json",
-		"lerna.json",
-		".git",
-	}) or vim.loop.cwd()
+local root_markers = {
+	"pnpm-workspace.yaml",
+	"yarn.lock",
+	"package-lock.json",
+	"pnpm-lock.yaml",
+	"turbo.json",
+	"nx.json",
+	"lerna.json",
+	".git",
+}
+
+local project_cache = {}
+
+local function workspace_root(path)
+	return vim.fs.root(path or 0, root_markers) or vim.loop.cwd()
 end
 
 local function read_json(path)
@@ -26,6 +30,37 @@ end
 
 local function find_project_json_files(root)
 	return vim.fs.find("project.json", { path = root, type = "file", limit = math.huge })
+end
+
+local function invalidate_project_cache(root)
+	if root then
+		project_cache[root] = nil
+	else
+		project_cache = {}
+	end
+end
+
+local function get_projects(root)
+	if project_cache[root] then
+		return project_cache[root]
+	end
+
+	local projects = {}
+
+	for _, path in ipairs(find_project_json_files(root)) do
+		local obj = read_json(path)
+		local name = obj and obj.name
+
+		if type(name) == "string" and name ~= "" then
+			table.insert(projects, {
+				name = name,
+				path = path,
+			})
+		end
+	end
+
+	project_cache[root] = projects
+	return projects
 end
 
 local function floating_term(cmd)
@@ -50,17 +85,15 @@ end
 
 local function select_project(opts)
 	local root = workspace_root()
-	local files = find_project_json_files(root)
+	local projects = get_projects(root)
 
 	local items = {}
-	for _, path in ipairs(files) do
-		local obj = read_json(path)
-		local name = obj and obj.name
-
-		if type(name) == "string" and name ~= "" and (not opts.filter or opts.filter(name)) then
+	for _, project in ipairs(projects) do
+		if not opts.filter or opts.filter(project.name) then
+			local path = project.path
 			table.insert(items, {
-				label = string.format("%s  (%s)", name, vim.fn.fnamemodify(path, ":~:.")),
-				name = name,
+				label = string.format("%s  (%s)", project.name, vim.fn.fnamemodify(path, ":~:.")),
+				name = project.name,
 				path = path,
 			})
 		end
@@ -114,8 +147,27 @@ local function runPlaywrightTest()
 	})
 end
 
-vim.api.nvim_create_user_command("RunTest", runTest, {})
-vim.api.nvim_create_user_command("RunPlaywrightTest", runPlaywrightTest, {})
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufDelete" }, {
+	pattern = "project.json",
+	callback = function(event)
+		invalidate_project_cache(workspace_root(event.file))
+	end,
+})
+
+vim.api.nvim_create_user_command("RunTest", function()
+	runTest()
+	vim.notify("Running tests", vim.log.levels.INFO)
+end, {})
+
+vim.api.nvim_create_user_command("RunPlaywrightTest", function()
+	runPlaywrightTest()
+	vim.notify("Running playwright tests", vim.log.levels.INFO)
+end, {})
+
+vim.api.nvim_create_user_command("ProjectCacheClear", function()
+	invalidate_project_cache()
+	vim.notify("Cleared cached projects", vim.log.levels.INFO)
+end, {})
 
 vim.keymap.set("n", "<leader>t", runTest, { desc = "run tests on given project" })
 vim.keymap.set("n", "<leader>tp", runPlaywrightTest, { desc = "run playwright tests on given project" })
