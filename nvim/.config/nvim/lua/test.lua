@@ -1,4 +1,4 @@
-local root_markers = {
+local monorepo_root_markers = {
 	"pnpm-workspace.yaml",
 	"yarn.lock",
 	"package-lock.json",
@@ -12,7 +12,7 @@ local root_markers = {
 local project_cache = {}
 
 local function workspace_root(path)
-	return vim.fs.root(path or 0, root_markers) or vim.loop.cwd()
+	return vim.fs.root(path or 0, monorepo_root_markers) or vim.loop.cwd()
 end
 
 local function read_json(path)
@@ -130,34 +130,80 @@ local function run_nx_target(opts)
 	})
 end
 
-local function runMonorepoTest()
-	run_nx_target({
-		target = "test",
-		filter = function(name)
-			return not name:match("%-e2e$")
-		end,
-	})
-end
+local function register_commands()
+	local commands = {
+		{
+			name = "RunMonorepoTest",
+			callback = function()
+				run_nx_target({
+					target = "test",
+					filter = function(name)
+						return not name:match("%-e2e$")
+					end,
+				})
+				vim.notify("Running tests", vim.log.levels.INFO)
+			end,
+		},
+		{
+			name = "RunMonorepoPlaywrightTest",
+			callback = function()
+				run_nx_target({
+					target = "e2e",
+					filter = function(name)
+						return name:match("%-e2e$")
+					end,
+					prompt = "Select Playwright project name:",
+				})
+				vim.notify("Running playwright tests", vim.log.levels.INFO)
+			end,
+		},
+		{
+			name = "RunMonorepoPlaywrightUI",
+			callback = function()
+				run_nx_target({
+					target = "e2e",
+					args = "--ui",
+					filter = function(name)
+						return name:match("%-e2e$")
+					end,
+					prompt = "Select Playwright project name:",
+				})
+				vim.notify("Opening playwright UI", vim.log.levels.INFO)
+			end,
+		},
+		{
+			name = "ProjectCacheClear",
+			callback = function()
+				invalidate_project_cache()
+				vim.notify("Cleared cached projects", vim.log.levels.INFO)
+			end,
+		},
+		{
+			name = "RunTest",
+			callback = function()
+				floating_term("pnpm test")
+				vim.notify("Running tests", vim.log.levels.INFO)
+			end,
+		},
+		{
+			name = "RunPlaywrightTest",
+			callback = function()
+				floating_term("pnpm e2e")
+				vim.notify("Running playwright tests", vim.log.levels.INFO)
+			end,
+		},
+		{
+			name = "RunPlaywrightUI",
+			callback = function()
+				floating_term("pnpm e2e:ui")
+				vim.notify("Opening playwright UI", vim.log.levels.INFO)
+			end,
+		},
+	}
 
-local function runMonorepoPlaywrightTest()
-	run_nx_target({
-		target = "e2e",
-		filter = function(name)
-			return name:match("%-e2e$")
-		end,
-		prompt = "Select Playwright project name:",
-	})
-end
-
-local function runMonorepoPlaywrightUI()
-	run_nx_target({
-		target = "e2e",
-		args = "--ui",
-		filter = function(name)
-			return name:match("%-e2e$")
-		end,
-		prompt = "Select Playwright project name:",
-	})
+	for _, command in ipairs(commands) do
+		vim.api.nvim_create_user_command(command.name, command.callback, {})
+	end
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufDelete" }, {
@@ -167,42 +213,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufDelete" }, {
 	end,
 })
 
--- WHEN IN A MONOREPO
-vim.api.nvim_create_user_command("RunMonorepoTest", function()
-	runMonorepoTest()
-	vim.notify("Running tests", vim.log.levels.INFO)
-end, {})
-
-vim.api.nvim_create_user_command("RunMonorepoPlaywrightTest", function()
-	runMonorepoPlaywrightTest()
-	vim.notify("Running playwright tests", vim.log.levels.INFO)
-end, {})
-
-vim.api.nvim_create_user_command("RunMonorepoPlaywrightUI", function()
-	runMonorepoPlaywrightUI()
-	vim.notify("Opening playwright UI", vim.log.levels.INFO)
-end, {})
-
-vim.api.nvim_create_user_command("ProjectCacheClear", function()
-	invalidate_project_cache()
-	vim.notify("Cleared cached projects", vim.log.levels.INFO)
-end, {})
-
--- WHEN NOT IN A MONOREPO
-vim.api.nvim_create_user_command("RunTest", function()
-	floating_term("pnpm test")
-	vim.notify("Running tests", vim.log.levels.INFO)
-end, {})
-
-vim.api.nvim_create_user_command("RunPlaywrightTest", function()
-	floating_term("pnpm e2e")
-	vim.notify("Running playwright tests", vim.log.levels.INFO)
-end, {})
-
-vim.api.nvim_create_user_command("RunPlaywrightUI", function()
-	floating_term("pnpm e2e:ui")
-	vim.notify("Opening playwright UI", vim.log.levels.INFO)
-end, {})
+register_commands()
 
 vim.keymap.set("n", "<leader>t", "<cmd>RunMonorepoTest<cr>", { desc = "run tests on given project" })
 vim.keymap.set(
