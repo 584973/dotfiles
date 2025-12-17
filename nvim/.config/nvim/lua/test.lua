@@ -1,91 +1,13 @@
-local monorepo_root_markers = {
-	"pnpm-workspace.yaml",
-	"yarn.lock",
-	"package-lock.json",
-	"pnpm-lock.yaml",
-	"turbo.json",
-	"nx.json",
-	"lerna.json",
-	".git",
-}
-
-local project_cache = {}
-
-local function workspace_root(path)
-	return vim.fs.root(path or 0, monorepo_root_markers) or vim.loop.cwd()
-end
-
-local function read_json(path)
-	local ok, lines = pcall(vim.fn.readfile, path)
-	if not ok then
-		return nil
-	end
-	local text = table.concat(lines, "\n")
-	local ok2, obj = pcall(vim.json.decode, text)
-	if not ok2 then
-		return nil
-	end
-	return obj
-end
-
-local function find_project_json_files(root)
-	return vim.fs.find("project.json", { path = root, type = "file", limit = math.huge })
-end
+local monorepo = require("monorepo")
+local terminal = require("terminal")
 
 local function invalidate_project_cache(root)
-	if root then
-		project_cache[root] = nil
-	else
-		project_cache = {}
-	end
-end
-
-local function get_projects(root)
-	if project_cache[root] then
-		return project_cache[root]
-	end
-
-	local projects = {}
-
-	for _, path in ipairs(find_project_json_files(root)) do
-		local obj = read_json(path)
-		local name = obj and obj.name
-
-		if type(name) == "string" and name ~= "" then
-			table.insert(projects, {
-				name = name,
-				path = path,
-			})
-		end
-	end
-
-	project_cache[root] = projects
-	return projects
-end
-
-local function floating_term(cmd)
-	local buf = vim.api.nvim_create_buf(false, true)
-
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-
-	vim.api.nvim_open_win(buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
-		col = (vim.o.columns - width) / 2,
-		row = (vim.o.lines - height) / 2,
-		style = "minimal",
-		border = "rounded",
-	})
-
-	vim.fn.termopen(cmd)
-	vim.cmd("startinsert")
+	monorepo.clear_cache(root)
 end
 
 local function select_project(opts)
-	local root = workspace_root()
-	local projects = get_projects(root)
+	local root = monorepo.workspace_root()
+	local projects = monorepo.get_projects(root)
 
 	local items = {}
 	for _, project in ipairs(projects) do
@@ -125,7 +47,7 @@ local function run_nx_target(opts)
 		on_choice = function(choice)
 			local args = opts.args or ""
 			local suffix = args ~= "" and (" " .. args) or ""
-			floating_term(string.format("pnpm nx run %s:%s%s", choice.name, opts.target, suffix))
+			terminal.popup_terminal(string.format("pnpm nx run %s:%s%s", choice.name, opts.target, suffix))
 		end,
 	})
 end
@@ -181,21 +103,21 @@ local function register_commands()
 		{
 			name = "RunTest",
 			callback = function()
-				floating_term("pnpm test")
+				terminal.popup_terminal("pnpm test")
 				vim.notify("Running tests", vim.log.levels.INFO)
 			end,
 		},
 		{
 			name = "RunPlaywrightTest",
 			callback = function()
-				floating_term("pnpm e2e")
+				terminal.popup_terminal("pnpm e2e")
 				vim.notify("Running playwright tests", vim.log.levels.INFO)
 			end,
 		},
 		{
 			name = "RunPlaywrightUI",
 			callback = function()
-				floating_term("pnpm e2e:ui")
+				terminal.popup_terminal("pnpm e2e:ui")
 				vim.notify("Opening playwright UI", vim.log.levels.INFO)
 			end,
 		},
@@ -209,17 +131,8 @@ end
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufDelete" }, {
 	pattern = "project.json",
 	callback = function(event)
-		invalidate_project_cache(workspace_root(event.file))
+		invalidate_project_cache(monorepo.workspace_root(event.file))
 	end,
 })
 
 register_commands()
-
-vim.keymap.set("n", "<leader>t", "<cmd>RunMonorepoTest<cr>", { desc = "run tests on given project" })
-vim.keymap.set(
-	"n",
-	"<leader>tp",
-	"<cmd>RunMonorepoPlaywrightTest<cr>",
-	{ desc = "run playwright tests on given project" }
-)
-vim.keymap.set("n", "<leader>tP", "<cmd>RunMonorepoPlaywrightUI<cr>", { desc = "opening playwright ui" })
