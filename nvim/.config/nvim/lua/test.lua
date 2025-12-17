@@ -130,7 +130,7 @@ local function run_nx_target(opts)
 	})
 end
 
-local function runTest()
+local function runMonorepoTest()
 	run_nx_target({
 		target = "test",
 		filter = function(name)
@@ -139,7 +139,7 @@ local function runTest()
 	})
 end
 
-local function runPlaywrightTest()
+local function runMonorepoPlaywrightTest()
 	run_nx_target({
 		target = "e2e",
 		filter = function(name)
@@ -149,7 +149,7 @@ local function runPlaywrightTest()
 	})
 end
 
-local function runPlaywrightUI()
+local function runMonorepoPlaywrightUI()
 	run_nx_target({
 		target = "e2e",
 		args = "--ui",
@@ -167,19 +167,20 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufDelete" }, {
 	end,
 })
 
-vim.api.nvim_create_user_command("RunTest", function()
-	runTest()
+-- WHEN IN A MONOREPO
+vim.api.nvim_create_user_command("RunMonorepoTest", function()
+	runMonorepoTest()
 	vim.notify("Running tests", vim.log.levels.INFO)
 end, {})
 
-vim.api.nvim_create_user_command("RunPlaywrightTest", function()
-	runPlaywrightTest()
+vim.api.nvim_create_user_command("RunMonorepoPlaywrightTest", function()
+	runMonorepoPlaywrightTest()
 	vim.notify("Running playwright tests", vim.log.levels.INFO)
 end, {})
 
-vim.api.nvim_create_user_command("RunPlaywrightUI", function()
-	runPlaywrightUI()
-	vim.notify("Opening Playwright UI", vim.log.levels.INFO)
+vim.api.nvim_create_user_command("RunMonorepoPlaywrightUI", function()
+	runMonorepoPlaywrightUI()
+	vim.notify("Opening playwright UI", vim.log.levels.INFO)
 end, {})
 
 vim.api.nvim_create_user_command("ProjectCacheClear", function()
@@ -187,6 +188,24 @@ vim.api.nvim_create_user_command("ProjectCacheClear", function()
 	vim.notify("Cleared cached projects", vim.log.levels.INFO)
 end, {})
 
-vim.keymap.set("n", "<leader>t", runTest, { desc = "run tests on given project" })
-vim.keymap.set("n", "<leader>tp", runPlaywrightTest, { desc = "run playwright tests on given project" })
-vim.keymap.set("n", "<leader>tu", runPlaywrightUI, { desc = "open playwright ui for a project" })
+vim.keymap.set("n", "<leader>t", "<cmd>RunMonorepoTest<cr>", { desc = "run tests on given project" })
+vim.keymap.set("n", "<leader>tp", "<cmd>RunMonorepoPlaywrightTest<cr>", { desc = "run playwright tests on given project" })
+
+-- WHEN NOT IN A MONOREPO
+vim.api.nvim_create_user_command("RunTest", function()
+	floating_term("pnpm test")
+	vim.notify("Running tests", vim.log.levels.INFO)
+end, {})
+
+vim.api.nvim_create_user_command("RunPlaywrightTest", function()
+	floating_term("pnpm e2e")
+	vim.notify("Running playwright tests", vim.log.levels.INFO)
+end, {})
+
+vim.api.nvim_create_user_command("RunPlaywrightUI", function()
+	floating_term("pnpm e2e:ui")
+	vim.notify("Opening playwright UI", vim.log.levels.INFO)
+end, {})
+
+vim.keymap.set("n", "<leader>tu", "<cmd>RunTest<cr>", { desc = "run tests" })
+vim.keymap.set("n", "<leader>te", "<cmd>RunPlaywrightTest<cr>", { desc = "run playwright test" })
