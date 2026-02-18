@@ -3,9 +3,19 @@ return {
 		"vague2k/vague.nvim",
 		lazy = false,
 		priority = 1000,
+		-- config = function()
+		-- 	require("vague").setup({ transparent = false })
+		-- 	vim.cmd.colorscheme("vague")
+		-- end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
 		config = function()
-			require("vague").setup({ transparent = false })
-			vim.cmd.colorscheme("vague")
+			require("tokyonight")
+			vim.cmd.colorscheme("tokyonight")
 		end,
 	},
 	{
