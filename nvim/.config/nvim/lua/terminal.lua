@@ -26,8 +26,8 @@ end
 local function float_config()
 	local columns = vim.o.columns
 	local lines = vim.o.lines
-	local width = math.floor(columns * 0.9)
-	local height = math.floor(lines * 0.35)
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
 	local row = math.floor((lines - height) / 2)
 	local col = math.floor((columns - width) / 2)
 	return {
