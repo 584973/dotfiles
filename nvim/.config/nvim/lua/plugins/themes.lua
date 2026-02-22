@@ -5,7 +5,7 @@ return {
 		priority = 1000,
 		enabled = true,
 		config = function()
-			require("vague").setup({ transparent = false })
+			require("vague").setup({ transparent = true})
 			vim.cmd.colorscheme("vague")
 		end,
 	},
