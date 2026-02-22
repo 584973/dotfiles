@@ -1,24 +1,5 @@
 return {
 	{
-		"vague2k/vague.nvim",
-		lazy = false,
-		priority = 1000,
-		-- config = function()
-		-- 	require("vague").setup({ transparent = false })
-		-- 	vim.cmd.colorscheme("vague")
-		-- end,
-	},
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {},
-		config = function()
-			require("tokyonight")
-			vim.cmd.colorscheme("tokyonight")
-		end,
-	},
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
@@ -44,7 +25,7 @@ return {
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>e",
-				":Neotree source=filesystem reveal=true position=current toggle=true<CR> ",
+				":Neotree source=filesystem reveal=true position=float toggle=true<CR> ",
 				{ noremap = true, silent = true }
 			)
 		end,
