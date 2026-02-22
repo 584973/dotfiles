@@ -52,6 +52,11 @@ vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev bu
 vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", {})
 vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
 
+
+-- Random
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+
 -- Monorepo testing
 vim.keymap.set("n", "<leader>t", "<cmd>RunMonorepoTest<cr>", { desc = "run tests on given project" })
 vim.keymap.set(
