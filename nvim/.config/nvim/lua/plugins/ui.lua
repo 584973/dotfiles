@@ -9,36 +9,53 @@ return {
 		},
 		config = function()
 			require("neo-tree").setup({
-        close_if_last_window = true,
+				close_if_last_window = true,
+				popup_border_style = "rounded",
+				enable_git_status = true,
+				enable_diagnostics = true,
 				source_selector = {
 					winbar = true,
 				},
+				window = {
+					position = "left",
+					width = 30,
+				},
 				filesystem = {
+					hijack_netrw_behavior = "open_default",
 					follow_current_file = {
 						enabled = true,
+						leave_dirs_open = false,
 					},
+					use_libuv_file_watcher = true,
 					filtered_items = {
-						visible = true,
-						show_hidden_count = true,
+						visible = false,
 						hide_dotfiles = false,
 						hide_gitignore = false,
+						hide_hidden = true,
 					},
 				},
 			})
 
+			-- Explorer (smart toggle like LazyVim)
 			vim.keymap.set("n", "<leader>e", function()
+				if vim.bo.filetype == "neo-tree" then
+					vim.cmd("wincmd p")
+				else
+					require("neo-tree.command").execute({
+						toggle = true,
+						source = "filesystem",
+					})
+				end
+			end, { desc = "Explorer (Neo-tree)" })
+
+			-- Reveal current file
+			vim.keymap.set("n", "<leader>E", function()
 				require("neo-tree.command").execute({
 					action = "focus",
 					source = "filesystem",
 					reveal = true,
 				})
-			end, { desc = "Focus Neo-tree" })
-
-			vim.keymap.set("n", "<leader>E", function()
-				require("neo-tree.command").execute({
-					action = "close",
-				})
-			end, { desc = "Close Neo-tree" })
+			end, { desc = "Reveal file in Explorer" })
 		end,
 	},
 	{
