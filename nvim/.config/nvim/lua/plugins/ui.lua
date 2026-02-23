@@ -9,6 +9,10 @@ return {
 		},
 		config = function()
 			require("neo-tree").setup({
+        close_if_last_window = true,
+				source_selector = {
+					winbar = true,
+				},
 				filesystem = {
 					follow_current_file = {
 						enabled = true,
@@ -25,7 +29,7 @@ return {
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>e",
-				":Neotree source=filesystem reveal=true position=float toggle=true<CR> ",
+				":Neotree source=filesystem reveal=true toggle=true<CR> ",
 				{ noremap = true, silent = true }
 			)
 		end,
