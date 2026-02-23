@@ -26,12 +26,19 @@ return {
 				},
 			})
 
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>e",
-				":Neotree source=filesystem reveal=true toggle=true<CR> ",
-				{ noremap = true, silent = true }
-			)
+			vim.keymap.set("n", "<leader>e", function()
+				require("neo-tree.command").execute({
+					action = "focus",
+					source = "filesystem",
+					reveal = true,
+				})
+			end, { desc = "Focus Neo-tree" })
+
+			vim.keymap.set("n", "<leader>E", function()
+				require("neo-tree.command").execute({
+					action = "close",
+				})
+			end, { desc = "Close Neo-tree" })
 		end,
 	},
 	{
