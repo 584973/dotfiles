@@ -116,6 +116,11 @@ return {
 		},
 	},
 	{
+		"chentoast/marks.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
 		"goolord/alpha-nvim",
 		dependencies = { "echasnovski/mini.icons" },
 		config = function()
