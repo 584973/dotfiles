@@ -77,6 +77,9 @@ nmap <leader>ma :action Maven.Reimport<CR>
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
 
+nmap s <Action>(flash.search)
+xmap s <Action>(flash.search)
+
 nmap <leader><C-t> :action SetHarpoon2<cr>
 nmap <leader><C-n> :action SetHarpoon3<cr>
 nmap <leader><C-s> :action SetHarpoon4<cr>
