@@ -16,10 +16,16 @@ return {
 				source_selector = {
 					winbar = true,
 				},
-				window = {
-					position = "left",
-					width = 30,
-				},
+					window = {
+						position = "left",
+						width = 30,
+						mappings = {
+							["l"] = "open",
+							["<Right>"] = "open",
+							["h"] = "close_node",
+							["<Left>"] = "close_node",
+						},
+					},
 				filesystem = {
 					hijack_netrw_behavior = "open_default",
 					follow_current_file = {
