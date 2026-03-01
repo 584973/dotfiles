@@ -108,26 +108,6 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	"karb94/neoscroll.nvim",
-	-- 	opts = {},
-	-- },
-	-- {
-	-- 	"rachartier/tiny-glimmer.nvim",
-	-- 	event = "VeryLazy",
-	-- 	priority = 10,
-	-- 	opts = {},
-	-- },
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	main = "ibl",
-	-- 	---@module "ibl"
-	-- 	---@type ibl.config
-	-- 	opts = {},
-	-- 	config = function()
-	-- 		require("ibl").setup()
-	-- 	end,
-	-- },
 	-- 	{
 	-- 		"goolord/alpha-nvim",
 	-- 		dependencies = { "echasnovski/mini.icons" },
