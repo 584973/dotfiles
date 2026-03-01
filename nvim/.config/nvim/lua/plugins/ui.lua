@@ -31,7 +31,7 @@ return {
 						visible = false,
 						hide_dotfiles = false,
 						hide_gitignore = false,
-						hide_hidden = true,
+						hide_hidden = false,
 					},
 				},
 			})
@@ -44,6 +44,7 @@ return {
 					require("neo-tree.command").execute({
 						toggle = true,
 						source = "filesystem",
+            position="float"
 					})
 				end
 			end, { desc = "Explorer (Neo-tree)" })
