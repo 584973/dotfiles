@@ -1,5 +1,5 @@
-local monorepo = require("monorepo")
-local terminal = require("terminal")
+local monorepo = require("custom.monorepo")
+local terminal = require("custom.terminal")
 
 local function invalidate_project_cache(root)
 	monorepo.clear_cache(root)

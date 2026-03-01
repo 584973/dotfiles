@@ -14,8 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {}
 
 require("vim-options")
-require("marks").setup()
-require("yank_blink").setup()
-require("terminal")
-require("test-runner")
+require("custom.marks").setup()
+require("custom.yank_blink").setup()
+require("custom.terminal")
+require("custom.test-runner")
 require("lazy").setup("plugins")
