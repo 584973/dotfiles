@@ -108,11 +108,6 @@ return {
 			},
 		},
 	},
-	{
-		"chentoast/marks.nvim",
-		event = "VeryLazy",
-		opts = {},
-	},
 	-- {
 	-- 	"karb94/neoscroll.nvim",
 	-- 	opts = {},
