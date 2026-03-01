@@ -9,6 +9,13 @@ vim.opt.conceallevel = 2
 vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
+-- Indenting lines
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "| ",
+	leadmultispace = "|   ",
+}
+
 -- vim.cmd("set clipboard=unnamedplus")
 
 vim.diagnostic.enable()
