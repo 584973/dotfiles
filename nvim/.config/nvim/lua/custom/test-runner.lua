@@ -1,6 +1,85 @@
 local monorepo = require("custom.monorepo")
 local terminal = require("custom.terminal")
 
+local RECENT_PROJECTS_FILE = vim.fn.stdpath("state") .. "/monorepo_recent_projects.json"
+local RECENT_LIMIT = 25
+
+local recent_loaded = false
+local recent_projects = {}
+
+local function normalize_root(root)
+	return vim.fs.normalize(root or monorepo.workspace_root())
+end
+
+local function load_recent_projects()
+	if recent_loaded then
+		return
+	end
+
+	recent_loaded = true
+	local ok, lines = pcall(vim.fn.readfile, RECENT_PROJECTS_FILE)
+	if not ok then
+		return
+	end
+
+	local ok_decode, decoded = pcall(vim.json.decode, table.concat(lines, "\n"))
+	if ok_decode and type(decoded) == "table" then
+		recent_projects = decoded
+	end
+end
+
+local function persist_recent_projects()
+	local ok_encode, encoded = pcall(vim.json.encode, recent_projects)
+	if not ok_encode then
+		return
+	end
+
+	local dir = vim.fn.fnamemodify(RECENT_PROJECTS_FILE, ":h")
+	vim.fn.mkdir(dir, "p")
+	vim.fn.writefile({ encoded }, RECENT_PROJECTS_FILE)
+end
+
+local function truncate_recent_projects(root)
+	local by_root = recent_projects[root]
+	if type(by_root) ~= "table" then
+		return
+	end
+
+	local pairs_by_last_used = {}
+	for project, last_used in pairs(by_root) do
+		table.insert(pairs_by_last_used, { project = project, last_used = last_used })
+	end
+
+	table.sort(pairs_by_last_used, function(a, b)
+		return a.last_used > b.last_used
+	end)
+
+	for idx = RECENT_LIMIT + 1, #pairs_by_last_used do
+		by_root[pairs_by_last_used[idx].project] = nil
+	end
+end
+
+local function mark_project_used(root, project_name)
+	load_recent_projects()
+
+	local normalized_root = normalize_root(root)
+	recent_projects[normalized_root] = recent_projects[normalized_root] or {}
+	recent_projects[normalized_root][project_name] = os.time()
+
+	truncate_recent_projects(normalized_root)
+	persist_recent_projects()
+end
+
+local function project_last_used(root, project_name)
+	load_recent_projects()
+
+	local by_root = recent_projects[normalize_root(root)]
+	if type(by_root) ~= "table" then
+		return 0
+	end
+	return tonumber(by_root[project_name]) or 0
+end
+
 local function invalidate_project_cache(root)
 	monorepo.clear_cache(root)
 end
@@ -17,6 +96,7 @@ local function select_project(opts)
 				label = string.format("%s  (%s)", project.name, vim.fn.fnamemodify(path, ":~:.")),
 				name = project.name,
 				path = path,
+				last_used = project_last_used(root, project.name),
 			})
 		end
 	end
@@ -25,6 +105,13 @@ local function select_project(opts)
 		vim.notify(opts.empty_message, vim.log.levels.WARN)
 		return
 	end
+
+	table.sort(items, function(a, b)
+		if a.last_used ~= b.last_used then
+			return a.last_used > b.last_used
+		end
+		return a.name < b.name
+	end)
 
 	vim.ui.select(items, {
 		prompt = opts.prompt,
@@ -35,6 +122,7 @@ local function select_project(opts)
 		if not choice then
 			return
 		end
+		mark_project_used(root, choice.name)
 		opts.on_choice(choice)
 	end)
 end
@@ -97,7 +185,9 @@ local function register_commands()
 			name = "ProjectCacheClear",
 			callback = function()
 				invalidate_project_cache()
-				vim.notify("Cleared cached projects", vim.log.levels.INFO)
+				recent_projects = {}
+				persist_recent_projects()
+				vim.notify("Cleared cached projects and recent project history", vim.log.levels.INFO)
 			end,
 		},
 		{
