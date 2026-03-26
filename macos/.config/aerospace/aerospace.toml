@@ -165,7 +165,7 @@ run = 'move-node-to-workspace Slack'
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace Slack'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
