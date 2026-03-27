@@ -99,6 +99,20 @@ Notes:
 
 ---
 
+## Copying to a Remote Machine
+
+Use `scp` to copy individual configs over SSH without needing stow on the remote:
+
+```sh
+# Single files
+scp tmux/.tmux.conf vim/.vimrc user@host:~
+
+# Directory (e.g. Neovim)
+scp -r nvim/.config/nvim user@host:~/.config/
+```
+
+---
+
 ## Theme & Fonts
 
 - Theme: [Catppuccin](https://github.com/catppuccin/catppuccin) across terminals, Waybar, and Neovim.
