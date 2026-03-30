@@ -1,6 +1,6 @@
 # Dotfiles
 
-Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Kitty/Ghostty, Hyprland + Waybar/Rofi (Wofi configs are kept for reference), and more. Theme: Catppuccin. Requires a Nerd Font.
+Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Kitty/Ghostty, Hyprland + Waybar/Rofi, and more. Theme: Catppuccin. Requires a Nerd Font.
 
 ---
 
@@ -62,7 +62,6 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
   - `archlinux/.config/hypr` — Hyprland, Hyprlock, Hypridle, Hyprpaper.
   - `archlinux/.config/waybar` — Waybar config + Catppuccin theme.
   - `archlinux/.config/rofi` — Rofi launcher.
-  - `archlinux/.config/wofi` — Legacy Wofi launcher configs (kept for fallback).
 - Backgrounds
   - `backgrounds/.config/backgrounds` — Wallpapers used by Hyprpaper.
 - Editors
