@@ -79,7 +79,6 @@ return {
 		version = "*",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy", -- or "BufReadPre" if you want it early
-    enabled = false,
 		config = function()
 			require("bufferline").setup({
 				options = {

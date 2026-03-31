@@ -5,7 +5,17 @@ return {
 		config = function()
 			local fzf = require("fzf-lua")
 
-			fzf.setup({ "default" })
+			fzf.setup({
+				"default",
+				keymap = {
+					fzf = {
+						["ctrl-j"] = "down",
+						["ctrl-k"] = "up",
+						["down"] = "down",
+						["up"] = "up",
+					},
+				},
+			})
 
 			-- Override vim.ui.select (replaces telescope-ui-select)
 			fzf.register_ui_select()
