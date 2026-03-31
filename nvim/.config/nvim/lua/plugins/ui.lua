@@ -1,5 +1,16 @@
 return {
 	{
+		"vague2k/vague.nvim",
+		lazy = false,
+		priority = 1000,
+		enabled = true,
+
+		config = function()
+			require("vague").setup({ transparent = true })
+			vim.cmd.colorscheme("vague")
+		end,
+	},
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
@@ -16,16 +27,16 @@ return {
 				source_selector = {
 					winbar = true,
 				},
-					window = {
-						position = "left",
-						width = 30,
-						mappings = {
-							["l"] = "open",
-							["<Right>"] = "open",
-							["h"] = "close_node",
-							["<Left>"] = "close_node",
-						},
+				window = {
+					position = "left",
+					width = 30,
+					mappings = {
+						["l"] = "open",
+						["<Right>"] = "open",
+						["h"] = "close_node",
+						["<Left>"] = "close_node",
 					},
+				},
 				filesystem = {
 					hijack_netrw_behavior = "open_default",
 					follow_current_file = {
