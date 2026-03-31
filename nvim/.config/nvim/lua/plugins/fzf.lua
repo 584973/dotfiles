@@ -13,6 +13,8 @@ return {
 						["ctrl-k"] = "up",
 						["down"] = "down",
 						["up"] = "up",
+						["right"] = "accept",
+						["ctrl-l"] = "accept",
 					},
 				},
 			})
