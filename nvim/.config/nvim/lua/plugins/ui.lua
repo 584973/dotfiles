@@ -79,6 +79,7 @@ return {
 		version = "*",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy", -- or "BufReadPre" if you want it early
+    enabled = false,
 		config = function()
 			require("bufferline").setup({
 				options = {
@@ -106,7 +107,16 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("lualine").setup({})
+			require("lualine").setup({
+				sections = {
+					lualine_c = {
+						{
+							"filename",
+							symbols = { modified = " ●", readonly = " ", unnamed = "[No Name]" },
+						},
+					},
+				},
+			})
 		end,
 	},
 	{
