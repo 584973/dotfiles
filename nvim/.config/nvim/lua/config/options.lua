@@ -17,6 +17,8 @@ vim.opt.listchars = {
 	leadmultispace = "|   ",
 }
 
+vim.opt.undofile = true
+
 vim.diagnostic.enable()
 
 vim.diagnostic.config({
