@@ -28,6 +28,7 @@ site/pack/*/opt/*
 
 # Ignore log files
 **/nvim.log
+erl_crash.dump
 
 # Ignore Lua language server related files
 .nvimspector/
