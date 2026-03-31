@@ -13,7 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {}
 
-require("vim-options")
+require("config.options")
+require("config.keymaps")
 require("custom.marks").setup()
 require("custom.yank_blink").setup()
 require("custom.terminal")

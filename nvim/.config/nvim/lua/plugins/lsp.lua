@@ -44,7 +44,6 @@ return {
 				"ts_ls",
 				"gopls",
 				"lua_ls",
-				"java_language_server",
 				"pylsp",
 				"marksman",
 				"yamlls",
