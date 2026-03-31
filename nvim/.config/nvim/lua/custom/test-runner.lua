@@ -226,3 +226,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufDelete" }, {
 })
 
 register_commands()
+
+vim.keymap.set("n", "<leader>t", "<cmd>RunMonorepoTest<cr>", { desc = "run tests on given project" })
+vim.keymap.set("n", "<leader>tp", "<cmd>RunMonorepoPlaywrightTest<cr>", { desc = "run playwright tests on given project" })
+vim.keymap.set("n", "<leader>tP", "<cmd>RunMonorepoPlaywrightUI<cr>", { desc = "opening playwright ui" })
