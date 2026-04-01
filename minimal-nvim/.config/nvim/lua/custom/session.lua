@@ -41,4 +41,3 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		vim.cmd("mksession! " .. vim.fn.fnameescape(session_file()))
 	end,
 })
-

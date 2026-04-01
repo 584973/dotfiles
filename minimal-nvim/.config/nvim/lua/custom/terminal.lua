@@ -23,12 +23,10 @@ local function term_running()
 end
 
 local function float_config()
-	local columns = vim.o.columns
-	local lines = vim.o.lines
 	local width = math.floor(vim.o.columns * 0.8)
 	local height = math.floor(vim.o.lines * 0.8)
-	local row = math.floor((lines - height) / 2)
-	local col = math.floor((columns - width) / 2)
+	local row = math.floor((vim.o.lines - height) / 2)
+	local col = math.floor((vim.o.columns - width) / 2)
 	return {
 		relative = "editor",
 		style = "minimal",
@@ -90,20 +88,7 @@ end
 
 function M.popup_terminal(cmd)
 	local buf = vim.api.nvim_create_buf(false, true)
-
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-
-	vim.api.nvim_open_win(buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
-		col = (vim.o.columns - width) / 2,
-		row = (vim.o.lines - height) / 2,
-		style = "minimal",
-		border = "rounded",
-	})
-
+	vim.api.nvim_open_win(buf, true, float_config())
 	vim.fn.termopen(cmd)
 	vim.cmd("startinsert")
 end
@@ -120,4 +105,3 @@ vim.api.nvim_create_autocmd("VimResized", {
 })
 
 return M
-
