@@ -10,6 +10,6 @@ vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = "| ",
-  leadmultispace = "|   ",
+	tab = "| ",
+	leadmultispace = "|   ",
 }
