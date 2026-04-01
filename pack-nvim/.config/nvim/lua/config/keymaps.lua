@@ -24,3 +24,11 @@ vim.keymap.set("n", "<leader>lg", ":LazyGit<cr>", { silent = true })
 -- Move lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+
+-- Lsp
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, {})
+vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {})

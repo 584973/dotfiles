@@ -1,1 +1,5 @@
-vim.lsp.enable({ "lua_ls", "gopls" })
+vim.lsp.enable({
+	"lua_ls",
+	"gopls",
+	"pyright",
+})
