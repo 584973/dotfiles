@@ -4,8 +4,6 @@ require("fzf-lua").setup({
 		fzf = {
 			["ctrl-j"] = "down",
 			["ctrl-k"] = "up",
-			["down"] = "down",
-			["up"] = "up",
 			["right"] = "accept",
 			["ctrl-l"] = "accept",
 		},
