@@ -8,6 +8,7 @@ vim.pack.add({
 	"https://github.com/stevearc/conform.nvim",
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.1" },
 	"https://github.com/kdheepak/lazygit.nvim",
+	"https://github.com/rafamadriz/friendly-snippets",
 })
 
 require("plugins.ui")
