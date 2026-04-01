@@ -19,19 +19,23 @@ require("custom.marks").setup()
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/stevearc/oil.nvim",
-  "https://github.com/rose-pine/neovim",
+  "https://github.com/vague2k/vague.nvim",
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/akinsho/bufferline.nvim",
 })
 
 -- Colorscheme
-vim.cmd.colorscheme("rose-pine")
-
+require("vague").setup({ transperant = true })
+vim.cmd.colorscheme("vague")
 
 -- Lualine
 require("lualine").setup({
 sections= { lualine_c = { { "filename", symbols = { modified = " ●", readonly = " ", unnamed = "[No Name]" }, }, }, }
 })
+ 
+-- Bufferline
+require("bufferline").setup()
 
 -- Oil
 require("oil").setup({
@@ -40,9 +44,22 @@ require("oil").setup({
 vim.keymap.set("n", "e", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Fzf
--- require("fzf-lua")
--- vim.keymap.set("n", "<leader>ff", fzf.files, {})
--- vim.keymap.set("n", "<leader>fr", fzf.oldfiles, {})
--- vim.keymap.set("n", "<leader>fg", fzf.live_grep, {})
--- vim.keymap.set("n", "<leader>fb", fzf.buffers, {})
--- vim.keymap.set("n", "<leader>fh", fzf.help_tags, {})
+require("fzf-lua").setup({
+	"default",
+	keymap = {
+		fzf = {
+			["ctrl-j"] = "down",
+			["ctrl-k"] = "up",
+			["down"] = "down",
+			["up"] = "up",
+			["right"] = "accept",
+			["ctrl-l"] = "accept",
+		},
+	},
+})
+vim.keymap.set('n', '<leader>ff', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<leader>fr', '<cmd>FzfLua oldfiles<cr>')
+vim.keymap.set('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>')
+vim.keymap.set('n', '<leader>fb', '<cmd>FzfLua buffers<cr>')
+vim.keymap.set('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>')
+

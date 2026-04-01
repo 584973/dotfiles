@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "bufferline.nvim": {
+      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
     "fzf-lua": {
       "rev": "c9e7b7bfbd01f949164988ee1684035468e1995c",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -23,6 +27,10 @@
     "oil.nvim": {
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "vague.nvim": {
+      "rev": "8c4643f8a5106dbc492918f86ff6b5c81111ce9a",
+      "src": "https://github.com/vague2k/vague.nvim"
     }
   }
 }
