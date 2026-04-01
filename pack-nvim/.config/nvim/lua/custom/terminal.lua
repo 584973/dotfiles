@@ -43,14 +43,18 @@ end
 
 local function open()
 	if is_valid_win(state.win) then
-		vim.api.nvim_set_current_win(state.win)
-		vim.cmd("startinsert")
+		vim.api.nvim_win_hide(state.win)
+		state.win = nil
 		return
 	end
 
 	if not is_valid_buf(state.buf) or not term_running() then
 		state.buf = vim.api.nvim_create_buf(false, true)
 		vim.bo[state.buf].bufhidden = "hide"
+		vim.keymap.set("t", "<Esc>", function()
+			vim.api.nvim_win_hide(state.win)
+			state.win = nil
+		end, { buffer = state.buf })
 		open_window(state.buf)
 		vim.api.nvim_buf_call(state.buf, function()
 			state.job = vim.fn.termopen(vim.o.shell, {
