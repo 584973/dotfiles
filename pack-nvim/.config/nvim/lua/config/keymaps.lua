@@ -18,6 +18,9 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
 
+-- Lazygit
+vim.keymap.set("n", "<leader>lg", ":LazyGit<cr>", { silent = true })
+
 -- Move lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })

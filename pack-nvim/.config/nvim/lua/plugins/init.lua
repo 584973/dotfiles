@@ -7,6 +7,7 @@ vim.pack.add({
 	"https://github.com/akinsho/bufferline.nvim",
 	"https://github.com/stevearc/conform.nvim",
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.1" },
+	"https://github.com/kdheepak/lazygit.nvim",
 })
 
 require("plugins.ui")
