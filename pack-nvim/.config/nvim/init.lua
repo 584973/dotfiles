@@ -14,7 +14,6 @@ require("config.keymaps")
 require("custom.terminal")
 require("custom.session")
 require("custom.tmux-nav")
-require("custom.marks").setup()
 
 require("plugins")
 require("lsp")
