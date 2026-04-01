@@ -12,6 +12,6 @@ vim.pack.add({
 })
 
 require("plugins.ui")
-require("plugins.fzf")
+require("plugins.fuzzy")
 require("plugins.formatting")
 require("plugins.completion")
