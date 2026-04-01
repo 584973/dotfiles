@@ -19,21 +19,20 @@ require("custom.marks").setup()
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/stevearc/oil.nvim",
-  "https://github.com/vague2k/vague.nvim",
+  "https://github.com/rose-pine/neovim",
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/akinsho/bufferline.nvim",
 })
 
 -- Colorscheme
-require("vague").setup({ transperant = true })
-vim.cmd.colorscheme("vague")
+vim.cmd.colorscheme("rose-pine")
 
 -- Lualine
 require("lualine").setup({
 sections= { lualine_c = { { "filename", symbols = { modified = " ●", readonly = " ", unnamed = "[No Name]" }, }, }, }
 })
- 
+
 -- Bufferline
 require("bufferline").setup()
 
@@ -62,4 +61,3 @@ vim.keymap.set('n', '<leader>fr', '<cmd>FzfLua oldfiles<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>')
 vim.keymap.set('n', '<leader>fb', '<cmd>FzfLua buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>')
-
