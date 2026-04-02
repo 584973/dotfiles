@@ -47,6 +47,7 @@ Tip: Run `stow -D <module>` to remove symlinks and `stow -R <module>` to restow 
 Each top-level folder mirrors where files should live under `$HOME`. Stow only what you use.
 
 - `nvim/.config/nvim` — Neovim 0.9+ with lazy.nvim; plugins auto-install on first launch.
+- `pack-nvim/.config/nvim` — Neovim 0.12+ using the native package manager (`vim.pack`); minimal alternative to the lazy.nvim config.
 - `tmux/.tmux.conf` — tmux configuration. Install TPM to enable plugins:
   ```sh
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -121,9 +122,27 @@ scp -r nvim/.config/nvim user@host:~/.config/
 
 ## Neovim Notes
 
-- Requires Neovim 0.9+.
-- Plugin manager: [lazy.nvim](https://github.com/folke/lazy.nvim) bootstraps automatically (see `nvim/.config/nvim/init.lua`).
-- Plugins and settings live in `nvim/.config/nvim/lua/`.
+Two Neovim configs are available:
+
+**`nvim`** — Neovim 0.9+, uses [lazy.nvim](https://github.com/folke/lazy.nvim) which bootstraps automatically on first launch.
+
+**`pack-nvim`** — Neovim 0.12+ only, uses the native `vim.pack` package manager. More minimal, no third-party plugin manager required.
+
+### Switching from `nvim` to `pack-nvim`
+
+If you already have `nvim` stowed, unstow it first, then stow `pack-nvim`:
+
+```sh
+stow -D nvim
+stow pack-nvim
+```
+
+To go back:
+
+```sh
+stow -D pack-nvim
+stow nvim
+```
 
 ---
 
