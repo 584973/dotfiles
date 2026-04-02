@@ -1,5 +1,4 @@
 return {
-	-- Language servers
 	{
 		"williamboman/mason.nvim",
 		config = function()
@@ -63,51 +62,6 @@ return {
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {})
-		end,
-	},
-	-- Formatting
-	{
-		"stevearc/conform.nvim",
-		opts = {
-			format_on_save = false,
-
-			formatters_by_ft = {
-				go = { "goimports", "gofumpt" },
-				python = { "isort", "black" },
-				typescript = { "prettier" },
-				javascript = { "prettier" },
-				java = { "google-java-format" },
-				lua = { "stylua" },
-				kotlin = { "ktlint" },
-			},
-		},
-		keys = {
-			{
-				"<leader>gf",
-				function()
-					require("conform").format({ async = true, lsp_fallback = true })
-				end,
-				desc = "Format buffer",
-			},
-		},
-	},
-	-- Linting
-	{
-		"mfussenegger/nvim-lint",
-		config = function()
-			local lint = require("lint")
-
-			lint.linters_by_ft = {
-				python = { "flake8" },
-				go = { "golangcilint" },
-			}
-
-			-- Auto-lint on save
-			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-				callback = function()
-					lint.try_lint()
-				end,
-			})
 		end,
 	},
 }

@@ -1,13 +1,9 @@
 return {
 	{
-		"vague2k/vague.nvim",
-		lazy = false,
-		priority = 1000,
-		enabled = true,
-
+		"rose-pine/neovim",
 		config = function()
-			require("vague").setup({ transparent = true })
-			vim.cmd.colorscheme("vague")
+			require("rose-pine").setup({ styles = { transparency = true } })
+			vim.cmd.colorscheme("rose-pine")
 		end,
 	},
 	{
@@ -90,28 +86,8 @@ return {
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "VeryLazy", -- or "BufReadPre" if you want it early
 		config = function()
-			require("bufferline").setup({
-				options = {
-					mode = "buffers", -- or "tabs"
-					numbers = "none",
-					close_command = "bdelete! %d",
-					right_mouse_command = "bdelete! %d",
-					diagnostics = "nvim_lsp",
-					show_buffer_close_icons = true,
-					show_close_icon = false,
-					separator_style = "thin",
-					offsets = {
-						{
-							filetype = "neo-tree",
-							text = "File Explorer",
-							highlight = "Directory",
-							text_align = "left",
-						},
-					},
-				},
-			})
+			require("bufferline").setup()
 		end,
 	},
 	{
