@@ -86,16 +86,37 @@ If symlinks look wrong, ensure you run `stow` from the repo root and that the mo
 
 ## Adopting Existing Configs
 
-You can move existing files into this repo and convert them to Stow-managed symlinks:
+Use `--adopt` to pull your existing config files into this repo and replace them with symlinks in one step.
+
+**Step-by-step:**
 
 ```sh
-# From the repo root, after placing files into the correct module paths
-stow --adopt .
+# 1. Create the matching path inside the module
+mkdir -p ~/dotfiles/nvim/.config/nvim
+
+# 2. Copy (or move) your existing file into place
+cp ~/.config/nvim/init.lua ~/dotfiles/nvim/.config/nvim/init.lua
+
+# 3. From the repo root, adopt: stow moves the file into the repo
+#    and replaces the original with a symlink
+cd ~/dotfiles
+stow --adopt nvim
+
+# 4. Review what changed, then commit
+git diff
+git add -p
+git commit -m "(nvim) adopt existing init.lua"
 ```
 
-Notes:
-- `--adopt` moves your files into the repo and replaces them with symlinks. Review with git and commit afterwards.
-- Keep paths identical to where they live under `$HOME`.
+> **Warning:** `--adopt` overwrites files already in the repo with whatever is on disk.
+> Run `git diff` after adopting so you can spot and revert any unintended changes.
+
+**Adopting everything at once** (use with care):
+
+```sh
+stow --adopt .
+git diff        # review before committing
+```
 
 ---
 
@@ -148,9 +169,35 @@ stow nvim
 
 ## Troubleshooting
 
-- Stow target: run `stow` from the repo root so it targets `$HOME`.
-- Conflicts: if a file already exists, preview with `-n` and use `--adopt` or back up/remove the file before stowing.
-- Broken links: `stow -D <module>` then `stow <module>` to recreate.
+**Wrong stow target** — always run `stow` from the repo root so it resolves `$HOME` correctly:
+```sh
+cd ~/dotfiles
+stow nvim
+```
+
+**Conflict: file already exists** — stow refuses to overwrite real files. Either adopt it (see above), back it up, or remove it first:
+```sh
+mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.bak
+stow nvim
+```
+
+**Broken symlinks** — if a symlink points nowhere (e.g. after moving the repo), restow to recreate:
+```sh
+stow -D nvim    # remove all symlinks for this module
+stow nvim       # lay them down again
+```
+
+**Find all broken symlinks** under `$HOME`:
+```sh
+find ~ -maxdepth 5 -xtype l 2>/dev/null
+```
+
+**Full reset for a module** — remove symlinks, wipe the module's target directory, and start clean:
+```sh
+stow -D nvim
+rm -rf ~/.config/nvim
+stow nvim
+```
 
 ---
 
