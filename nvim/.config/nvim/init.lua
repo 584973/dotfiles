@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -11,14 +13,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {}
+vim.diagnostic.enable()
 
-require("config.options")
-require("config.keymaps")
-require("custom.marks").setup()
-require("custom.yank_blink").setup()
-require("custom.terminal")
-require("custom.test-runner")
-require("custom.tmux")
-require("custom.session")
+vim.diagnostic.config({
+	virtual_text = true,
+	underline = true,
+	float = {
+		border = "rounded",
+		source = true,
+	},
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+require("config")
+require("custom")
 require("lazy").setup("plugins")

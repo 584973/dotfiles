@@ -1,4 +1,3 @@
--- Floating terminal utilities (no plugin required)
 local M = {}
 
 local state = {
@@ -24,27 +23,22 @@ local function term_running()
 end
 
 local function float_config()
-	local columns = vim.o.columns
-	local lines = vim.o.lines
 	local width = math.floor(vim.o.columns * 0.8)
 	local height = math.floor(vim.o.lines * 0.8)
-	local row = math.floor((lines - height) / 2)
-	local col = math.floor((columns - width) / 2)
 	return {
 		relative = "editor",
 		style = "minimal",
 		border = "rounded",
 		width = width,
 		height = height,
-		row = row,
-		col = col,
+		row = math.floor((vim.o.lines - height) / 2),
+		col = math.floor((vim.o.columns - width) / 2),
 		zindex = 50,
 	}
 end
 
 local function open_window(buf)
 	state.win = vim.api.nvim_open_win(buf, true, float_config())
-	vim.wo[state.win].winblend = 0
 	vim.wo[state.win].number = false
 	vim.wo[state.win].relativenumber = false
 	vim.wo[state.win].cursorline = false
@@ -52,14 +46,18 @@ end
 
 function M.open()
 	if is_valid_win(state.win) then
-		vim.api.nvim_set_current_win(state.win)
-		vim.cmd("startinsert")
+		vim.api.nvim_win_hide(state.win)
+		state.win = nil
 		return
 	end
 
 	if not is_valid_buf(state.buf) or not term_running() then
 		state.buf = vim.api.nvim_create_buf(false, true)
 		vim.bo[state.buf].bufhidden = "hide"
+		vim.keymap.set("t", "<Esc>", function()
+			vim.api.nvim_win_hide(state.win)
+			state.win = nil
+		end, { buffer = state.buf })
 		open_window(state.buf)
 		vim.api.nvim_buf_call(state.buf, function()
 			state.job = vim.fn.termopen(vim.o.shell, {

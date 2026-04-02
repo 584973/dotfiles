@@ -11,8 +11,6 @@ return {
 					fzf = {
 						["ctrl-j"] = "down",
 						["ctrl-k"] = "up",
-						["down"] = "down",
-						["up"] = "up",
 						["right"] = "accept",
 						["ctrl-l"] = "accept",
 					},
@@ -27,6 +25,7 @@ return {
 			vim.keymap.set("n", "<leader>fg", fzf.live_grep, {})
 			vim.keymap.set("n", "<leader>fb", fzf.buffers, {})
 			vim.keymap.set("n", "<leader>fh", fzf.help_tags, {})
+			vim.keymap.set("n", "<leader>fm", fzf.marks, {})
 		end,
 	},
 }
