@@ -1,4 +1,6 @@
-require("fzf-lua").setup({
+local fzf = require("fzf-lua")
+
+fzf.setup({
 	"default",
 	keymap = {
 		fzf = {
@@ -9,6 +11,8 @@ require("fzf-lua").setup({
 		},
 	},
 })
+
+fzf.register_ui_select()
 
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>")
 vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua oldfiles<cr>")
