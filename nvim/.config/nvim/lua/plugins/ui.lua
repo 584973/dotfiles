@@ -11,6 +11,18 @@ return {
 		end,
 	},
 	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup({
+				view_options = { show_hidden = true },
+				win_options = {
+					winbar = "%{v:lua.require('oil').get_current_dir()}",
+				},
+			})
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		end,
+	},
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {

@@ -81,6 +81,10 @@ function M.new()
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.bo[buf].bufhidden = "wipe"
 	open_window(buf)
+	vim.keymap.set("t", "<Esc>", function()
+		vim.api.nvim_win_hide(state.win)
+		state.win = nil
+	end, { buffer = buf })
 	vim.api.nvim_buf_call(buf, function()
 		vim.fn.termopen(vim.o.shell)
 	end)

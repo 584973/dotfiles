@@ -17,9 +17,6 @@ vim.opt.listchars = {
 
 vim.opt.undofile = true
 
--- File explorer (netrw fallback)
-vim.keymap.set("n", "-", ":Ex<CR>", { desc = "Open netrw explorer" })
-
 -- Save and quit
 vim.keymap.set("n", "<leader>q", ":q<cr>")
 vim.keymap.set("n", "<leader>w", ":w<cr>")
