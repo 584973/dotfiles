@@ -9,6 +9,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.1" },
 	"https://github.com/kdheepak/lazygit.nvim",
 	"https://github.com/rafamadriz/friendly-snippets",
+	"https://github.com/nvim-tree/nvim-web-devicons",
 })
 
 require("plugins.ui")
