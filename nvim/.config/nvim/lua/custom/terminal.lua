@@ -111,7 +111,7 @@ function M.popup_terminal(cmd)
 	vim.cmd("startinsert")
 end
 
-vim.keymap.set("n", "<leader>tt", M.new, { desc = "Terminal: new float" })
+vim.keymap.set("n", "<leader>tt", M.open, { desc = "Toggle terminal" })
 
 -- Resize float when the editor size changes
 vim.api.nvim_create_autocmd("VimResized", {
