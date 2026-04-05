@@ -4,6 +4,9 @@ nnoremap <leader>e :Explore<CR>
 nnoremap <leader>t :terminal<CR>
 nnoremap <leader>v :Vexplore<CR>
 nnoremap <leader>s :Sexplore<CR>
+vnoremap <leader>y "+y
+nnoremap <leader>yy "+yy
+
 nnoremap <leader>n :bnext<CR>
 nnoremap <leader>p :bprevious<CR>
 nnoremap <leader>l :ls<CR>:b
