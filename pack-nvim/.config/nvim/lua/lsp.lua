@@ -1,4 +1,4 @@
-vim.lsp.enable({ "lua_ls", "gopls", "pyright", "ts_ls" })
+vim.lsp.enable({ "lua_ls", "gopls", "pyright", "ts_ls", "html" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
