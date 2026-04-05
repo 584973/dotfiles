@@ -5,6 +5,7 @@ vim.diagnostic.config({
 	signs = true,
 	underline = true,
 	update_in_insert = false,
+  float = { border = "rounded"}
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
