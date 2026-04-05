@@ -1,19 +1,4 @@
-vim.lsp.config("angularls", {
-	cmd = { "ngserver", "--stdio", "--tsProbeLocations", "", "--ngProbeLocations", "" },
-	filetypes = { "html", "typescript", "htmlangular" },
-	root_markers = { "angular.json" },
-	on_new_config = function(new_config, new_root_dir)
-		local node_modules = new_root_dir .. "/node_modules"
-		new_config.cmd = {
-			"ngserver",
-			"--stdio",
-			"--tsProbeLocations", node_modules,
-			"--ngProbeLocations", node_modules,
-		}
-	end,
-})
-
-vim.lsp.enable({ "lua_ls", "gopls", "pyright", "ts_ls", "angularls" })
+vim.lsp.enable({ "lua_ls", "gopls", "pyright", "ts_ls" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})

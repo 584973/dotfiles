@@ -4,6 +4,7 @@ require("conform").setup({
 		go = { "gofmt" },
 		python = { "black" },
 		javascript = { "prettier" },
+		typescript = { "prettier" },
 	},
 	format_on_save = false,
 })

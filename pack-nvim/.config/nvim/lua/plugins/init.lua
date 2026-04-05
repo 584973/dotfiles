@@ -10,9 +10,11 @@ vim.pack.add({
 	"https://github.com/kdheepak/lazygit.nvim",
 	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/mfussenegger/nvim-lint",
 })
 
 require("plugins.ui")
 require("plugins.fuzzy")
 require("plugins.formatting")
 require("plugins.completion")
+require("plugins.linting")
