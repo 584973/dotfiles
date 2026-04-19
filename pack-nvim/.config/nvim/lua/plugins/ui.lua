@@ -1,6 +1,6 @@
 -- Colorscheme
-require("rose-pine").setup({ styles = { transparency = true } })
-vim.cmd.colorscheme("rose-pine")
+require("tokyonight").setup({ transparent = true })
+vim.cmd.colorscheme("tokyonight")
 
 -- Tabs
 require("bufferline").setup()

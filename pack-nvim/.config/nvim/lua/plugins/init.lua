@@ -1,7 +1,6 @@
 vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/stevearc/oil.nvim",
-	"https://github.com/rose-pine/neovim",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/akinsho/bufferline.nvim",
@@ -11,6 +10,7 @@ vim.pack.add({
 	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/mfussenegger/nvim-lint",
+  "https://github.com/folke/tokyonight.nvim"
 })
 
 require("plugins.ui")
