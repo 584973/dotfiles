@@ -45,3 +45,6 @@ pi/.pi/agent/logs/
 !pi/.pi/agent/extensions/pi-permission-system/
 !pi/.pi/agent/extensions/pi-permission-system/config.json
 
+# Allow custom protected paths extension
+!pi/.pi/agent/extensions/protected-paths.ts
+
