@@ -12,5 +12,9 @@
       "mcp_status": "allow",
       "mcp_list": "allow"
     },
+    "bash": {
+      "ls": "allow",
+      "ls *": "allow"
+    }
   }
 }
