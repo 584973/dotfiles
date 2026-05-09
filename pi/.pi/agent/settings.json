@@ -3,6 +3,7 @@
   "defaultProvider": "opencode-go",
   "defaultModel": "kimi-k2.6",
   "defaultThinkingLevel": "medium",
+  "quietStartup": true,
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",
