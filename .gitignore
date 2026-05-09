@@ -34,3 +34,10 @@ erl_crash.dump
 .nvimspector/
 .cache/nvim/
 
+# Pi runtime and sensitive files
+pi/.pi/agent/auth.json
+pi/.pi/agent/sessions/
+pi/.pi/agent/bin/
+pi/.pi/agent/extensions/
+pi/.pi/agent/logs/
+

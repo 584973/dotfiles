@@ -1,0 +1,7 @@
+# Pi runtime and sensitive files — never commit these
+.pi/agent/auth.json
+.pi/agent/sessions/
+.pi/agent/bin/
+.pi/agent/extensions/
+.pi/agent/logs/
+.pi/agent/*.log
