@@ -4,6 +4,12 @@
   "defaultModel": "kimi-k2.6",
   "defaultThinkingLevel": "medium",
   "quietStartup": true,
+  "qol": {
+    "showSessionNameWindow": false,
+    "sessionAutoRename": {
+      "enabled": false
+    }
+  },
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",
