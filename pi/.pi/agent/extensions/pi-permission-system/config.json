@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/gotgenes/pi-permission-system/main/schemas/permissions.schema.json",
+  "permissionReviewLog": true,
+  "permission": {
+    "*": "ask",
+    "ls": "allow",
+    "find": "allow",
+    "read": "allow",
+    "grep": "allow",
+    "mcp": {
+      "*": "ask",
+      "mcp_status": "allow",
+      "mcp_list": "allow"
+    },
+  }
+}

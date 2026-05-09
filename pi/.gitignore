@@ -2,6 +2,10 @@
 .pi/agent/auth.json
 .pi/agent/sessions/
 .pi/agent/bin/
-.pi/agent/extensions/
+.pi/agent/extensions/*
 .pi/agent/logs/
 .pi/agent/*.log
+
+# Allow the pi-permission-system user config (tracked policy)
+!.pi/agent/extensions/pi-permission-system/
+!.pi/agent/extensions/pi-permission-system/config.json

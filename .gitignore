@@ -38,6 +38,10 @@ erl_crash.dump
 pi/.pi/agent/auth.json
 pi/.pi/agent/sessions/
 pi/.pi/agent/bin/
-pi/.pi/agent/extensions/
+pi/.pi/agent/extensions/*
 pi/.pi/agent/logs/
+
+# Allow the pi-permission-system user config (tracked policy)
+!pi/.pi/agent/extensions/pi-permission-system/
+!pi/.pi/agent/extensions/pi-permission-system/config.json
 
