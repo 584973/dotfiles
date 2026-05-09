@@ -14,7 +14,6 @@
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@gotgenes/pi-permission-system",
-    "npm:@diegopetrucci/pi-extensions",
     "npm:@vanillagreen/pi-qol",
     "npm:@tmustier/pi-usage-extension",
     "npm:@juicesharp/rpiv-todo"
