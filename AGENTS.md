@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 - Top-level folders map directly to `$HOME`; stow only the pieces you need.
-- Cross-platform: `nvim/.config/nvim` (lazy.nvim), `pack-nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminals: `kitty/.config/kitty`, `ghostty/.config/ghostty`.
+- Cross-platform: `nvim/.config/nvim` (lazy.nvim), `pack-nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminals: `kitty/.config/kitty`, `ghostty/.config/ghostty`; agent: `pi/.pi/agent/settings.json`.
 - Platform targets: `archlinux/.config/{hypr,waybar,rofi}` for Hyprland/Wayland; `macos/.config/{aerospace,borders}` for macOS; wallpapers in `backgrounds/.config/backgrounds`.
 - Bootstrap install scripts live in `scripts/` (e.g., `install-macos.sh`, `install-arch.sh`, `install-lsp-macos.sh`).
 - Keep trees matching real install paths so `stow <module>` places files correctly.
@@ -35,3 +35,4 @@
 ## Security & Configuration Tips
 - Do not commit machine-specific secrets, hostnames, or SSH configs; prefer environment variables or local excludes.
 - Keep private overrides in non-tracked files (e.g., `~/.config/<tool>/local.*`) and document opt-in flags instead of hardcoding.
+- For the `pi` module: `auth.json` (API keys), `sessions/`, `bin/`, `extensions/`, and `logs/` are all gitignored. Always verify with `git status` before committing pi changes.

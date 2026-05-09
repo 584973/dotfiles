@@ -68,6 +68,8 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
 - Editors
   - `ideavim/.ideavimrc` — JetBrains IdeaVim configuration.
   - `vim/.vimrc` — Plain Vim configuration.
+- Pi Agent
+  - `pi/.pi/agent/settings.json` — Pi coding agent preferences (packages, default model, provider, thinking level). Does **not** include API keys or session data.
 
 ---
 
@@ -166,6 +168,35 @@ stow nvim
 ```
 
 ---
+
+## Pi Agent
+
+The `pi/` module tracks your agent preferences but **not** sensitive runtime files (see `.gitignore`).
+
+### First-time setup on a new machine
+
+1. Install the `pi` CLI (however you originally installed it — e.g. Homebrew, npm, or manual install).
+2. Stow the config:
+   ```sh
+   stow pi
+   ```
+3. Create your local auth file with your API key:
+   ```sh
+   mkdir -p ~/.pi/agent
+   nvim ~/.pi/agent/auth.json
+   ```
+   Example `auth.json`:
+   ```json
+   {
+     "your-provider": {
+       "type": "api_key",
+       "key": "your-key-here"
+     }
+   }
+   ```
+4. Launch pi — packages from `settings.json` should auto-install on first run.
+
+> **Security note:** `auth.json`, `sessions/`, `bin/`, `extensions/`, and `logs/` are all ignored. Never commit API keys.
 
 ## Troubleshooting
 
