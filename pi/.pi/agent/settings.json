@@ -3,7 +3,7 @@
   "defaultProvider": "opencode-go",
   "defaultModel": "kimi-k2.6",
   "defaultThinkingLevel": "medium",
-  "quietStartup": true,
+  "quietStartup": false,
   "theme": "vivid",
   "packages": [
     "npm:pi-subagents",
