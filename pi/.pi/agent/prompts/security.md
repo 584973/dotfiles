@@ -2,7 +2,12 @@
 description: Deep security review of code changes
 argument-hint: "[file or diff]"
 ---
-Perform a security-focused review of the provided code. If no code is provided, run `git diff` first to see current changes.
+Perform a security-focused review of the provided code.
+
+**Before running `git diff` or reading any files:**
+- If no code is provided, **ask the user** whether to run `git diff` or specify which files to review.
+- Do **not** auto-run `git diff`, `git show`, or read files without explicit user confirmation.
+- This prevents accidental exposure of secrets, credentials, or sensitive changes in the review output.
 
 Focus strictly on security:
 
