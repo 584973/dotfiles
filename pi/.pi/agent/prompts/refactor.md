@@ -2,7 +2,11 @@
 description: Refactor code to improve clarity, performance, or structure
 argument-hint: "<file or function> [goal]"
 ---
-Refactor the provided code to improve it. If a goal is specified (e.g., "reduce nesting", "improve performance", "make testable"), prioritize that.
+Refactor the following: $@
+
+If nothing is specified above, ask the user what code they would like refactored.
+
+If a goal is specified (e.g., "reduce nesting", "improve performance", "make testable"), prioritize that.
 
 General principles:
 - Prefer clarity over cleverness

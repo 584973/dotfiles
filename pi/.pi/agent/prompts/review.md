@@ -2,7 +2,9 @@
 description: Review code for bugs, security issues, and style problems
 argument-hint: "[file or diff]"
 ---
-Review the provided code. If no code is provided, run `git diff` first to see current changes. Focus on:
+Review the following code: $@
+
+If no code is provided, run `git diff` first to see current changes. Focus on:
 
 1. **Bugs & Logic Errors** — off-by-one errors, null dereferences, race conditions, incorrect assumptions
 2. **Security** — injection vulnerabilities, unsafe deserialization, missing auth checks, secrets exposure

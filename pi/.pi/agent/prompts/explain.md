@@ -2,7 +2,11 @@
 description: Explain how the given code or concept works
 argument-hint: "<code snippet, file, or concept>"
 ---
-Explain how the given code or concept works. Assume I am an experienced developer but may be unfamiliar with this specific codebase, language feature, or algorithm.
+Explain the following: $@
+
+If nothing is specified above, ask the user what they would like explained.
+
+Assume I am an experienced developer but may be unfamiliar with this specific codebase, language feature, or algorithm.
 
 Structure your explanation:
 1. **High-level purpose** — what does this do and why does it exist?

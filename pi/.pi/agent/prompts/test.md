@@ -2,7 +2,9 @@
 description: Write or improve tests for the given code
 argument-hint: "<file or function>"
 ---
-Write comprehensive tests for the provided code. If no file is provided, ask the user which file to test.
+Write tests for the following: $@
+
+If nothing is specified above, ask the user what code they would like tests for.
 
 Guidelines:
 - Test both happy paths and edge cases (nulls, empty inputs, boundary values, errors)

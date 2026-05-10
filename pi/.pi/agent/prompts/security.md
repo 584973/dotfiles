@@ -2,7 +2,7 @@
 description: Deep security review of code changes
 argument-hint: "[file or diff]"
 ---
-Perform a security-focused review of the provided code.
+Perform a security-focused review of the following code: $@
 
 **Before running `git diff` or reading any files:**
 - If no code is provided, **ask the user** whether to run `git diff` or specify which files to review.
