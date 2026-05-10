@@ -20,7 +20,8 @@
       "git log *": "allow",
       "npm list *": "allow",
       "which *": "allow",
-      "command -v *": "allow"
+      "command -v *": "allow",
+      "*": "ask"
     }
   }
 }
