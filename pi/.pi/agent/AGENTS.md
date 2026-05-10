@@ -149,6 +149,17 @@ Subagents are async — spawn multiple and they run concurrently.
 
 ---
 
+## Web Tools
+
+`web_search` and `fetch_content` from `pi-web-access` are available. Use them for:
+- Looking up docs, API references, changelogs, and library internals
+- Fetching GitHub repos, web pages, and YouTube transcripts
+- Researching errors, unfamiliar tech stacks, or external context
+
+Prefer `web_search` for broad questions and `fetch_content` when you need the full content of a specific URL. For deep codebase investigation, prefer subagent `researcher` (which has file access).
+
+---
+
 ## Commits
 
 When the user asks you to commit, or when using the `/commit` prompt template:

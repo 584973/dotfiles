@@ -1,10 +1,11 @@
 {
   "lastChangelogVersion": "0.74.0",
   "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.6",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "deepseek-v4-pro",
+  "defaultThinkingLevel": "high",
   "quietStartup": false,
   "theme": "vivid",
+  "hideThinkingBlock": true,
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",
