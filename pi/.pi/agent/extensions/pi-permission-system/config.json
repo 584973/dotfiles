@@ -14,7 +14,13 @@
     },
     "bash": {
       "ls": "allow",
-      "ls *": "allow"
+      "ls *": "allow",
+      "git status": "allow",
+      "git diff": "allow",
+      "git log *": "allow",
+      "npm list *": "allow",
+      "which *": "allow",
+      "command -v *": "allow"
     }
   }
 }
