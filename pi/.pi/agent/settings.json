@@ -4,6 +4,7 @@
   "defaultModel": "kimi-k2.6",
   "defaultThinkingLevel": "medium",
   "quietStartup": true,
+  "theme": "vivid",
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",
