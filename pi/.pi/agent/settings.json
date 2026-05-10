@@ -7,7 +7,6 @@
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",
-    "npm:@gotgenes/pi-permission-system",
-    "npm:pi-powerline-footer"
+    "npm:@gotgenes/pi-permission-system"
   ]
 }
