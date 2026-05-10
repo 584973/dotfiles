@@ -9,6 +9,7 @@
 # Allow the pi-permission-system user config (tracked policy)
 !.pi/agent/extensions/pi-permission-system/
 !.pi/agent/extensions/pi-permission-system/config.json
+.pi/agent/extensions/pi-permission-system/logs/
 
 # Allow custom protected paths extension
 !.pi/agent/extensions/protected-paths.ts
