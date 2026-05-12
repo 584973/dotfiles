@@ -28,6 +28,7 @@ export default function (pi: ExtensionAPI) {
     ".aws",
     ".docker",
     ".git",
+    "settings.xml",
   ]);
 
   // Extensions to block (e.g. file.key, file.pem)
@@ -74,7 +75,7 @@ export default function (pi: ExtensionAPI) {
       if (ctx.hasUI) {
         ctx.ui.notify(
           `Blocked ${event.toolName} on protected path: ${path}`,
-          "warning"
+          "warning",
         );
       }
       return {
