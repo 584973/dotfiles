@@ -36,7 +36,7 @@ type CodexRateLimitsResponse = {
 };
 
 function formatTime(epochSeconds: number | null | undefined) {
-  if (!epochSeconds) return "unknown";
+  if (epochSeconds == null) return "unknown";
   const date = new Date(epochSeconds * 1000);
   if (Number.isNaN(date.getTime())) return "unknown";
   return date.toLocaleString();
@@ -46,7 +46,7 @@ function formatDurationUntil(
   epochSeconds: number | null | undefined,
   nowSeconds: number,
 ) {
-  if (!epochSeconds) return "unknown";
+  if (epochSeconds == null) return "unknown";
   const seconds = Math.max(0, Math.round(epochSeconds - nowSeconds));
   const days = Math.floor(seconds / 86_400);
   const hours = Math.floor((seconds % 86_400) / 3_600);
@@ -98,11 +98,11 @@ async function fetchCodexRateLimits(signal?: AbortSignal) {
     });
 
     child.stderr.on("data", (chunk) => {
-      stderr += chunk.toString();
+      if (stderr.length < 1_000_000) stderr += chunk.toString();
     });
 
     child.stdout.on("data", (chunk) => {
-      output += chunk.toString();
+      if (output.length < 1_000_000) output += chunk.toString();
       const lines = output.split("\n");
       output = lines.pop() ?? "";
 
