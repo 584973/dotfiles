@@ -43,6 +43,7 @@ This symlinks `pi/.pi/agent/` to `~/.pi/agent/`.
 ### Extensions
 
 - **`protected-paths.ts`** — Custom extension for path protection
+- **`chatgpt-models.ts`** — `/usage` command for ChatGPT/Codex subscription limits
 - **`pi-permission-system/config.json`** — Permission system config (tracked)
 
 ### Installed Packages
@@ -54,16 +55,12 @@ Managed via `pi install` and listed in `settings.json`:
 | `pi-subagents` | Scout, worker, reviewer, oracle, planner, researcher, context-builder |
 | `pi-web-access` | Web search, URL fetching, GitHub content extraction |
 | `@gotgenes/pi-permission-system` | Permission gates for destructive operations |
-| `@diegopetrucci/pi-extensions` | Utility extensions |
-| `@vanillagreen/pi-qol` | Quality-of-life improvements |
-| `@tmustier/pi-usage-extension` | Usage tracking |
-| `@juicesharp/rpiv-todo` | Todo integration |
 
 ### Settings
 
-- **Default model:** `kimi-k2.6` via `opencode-go`
-- **Default thinking level:** `medium`
-- **Quiet startup:** enabled
+- **Default model:** `deepseek-v4-pro` via `opencode-go`
+- **Default thinking level:** `high`
+- **Quiet startup:** disabled
 
 ## Updating
 

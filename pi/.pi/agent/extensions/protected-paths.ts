@@ -1,8 +1,9 @@
 /**
  * Protected Paths Extension
  *
- * Blocks read, write, and edit operations on sensitive credential files.
- * Prevents the agent from accidentally accessing secrets.
+ * Hard-blocks read, write, and edit tool operations on sensitive credential
+ * files. Does NOT intercept bash commands — the permission system handles
+ * those with ask gates instead.
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";

@@ -42,9 +42,12 @@ function formatTime(epochSeconds: number | null | undefined) {
   return date.toLocaleString();
 }
 
-function formatDurationUntil(epochSeconds: number | null | undefined) {
+function formatDurationUntil(
+  epochSeconds: number | null | undefined,
+  nowSeconds: number,
+) {
   if (!epochSeconds) return "unknown";
-  const seconds = Math.max(0, Math.round(epochSeconds - Date.now() / 1000));
+  const seconds = Math.max(0, Math.round(epochSeconds - nowSeconds));
   const days = Math.floor(seconds / 86_400);
   const hours = Math.floor((seconds % 86_400) / 3_600);
   const minutes = Math.floor((seconds % 3_600) / 60);
@@ -153,26 +156,30 @@ async function fetchCodexRateLimits(signal?: AbortSignal) {
   });
 }
 
-function formatRateLimitWindow(label: string, window: RateLimitWindow | null) {
+function formatRateLimitWindow(
+  label: string,
+  window: RateLimitWindow | null,
+  nowSeconds: number,
+) {
   if (!window) return `${label}: unavailable`;
 
   const used = Math.max(0, Math.min(100, window.usedPercent));
   const remaining = Math.max(0, 100 - used);
   const reset = window.resetsAt
-    ? `, resets in ${formatDurationUntil(window.resetsAt)} at ${formatTime(window.resetsAt)}`
+    ? `, resets in ${formatDurationUntil(window.resetsAt, nowSeconds)} at ${formatTime(window.resetsAt)}`
     : "";
 
   return `${label}: ${remaining.toFixed(0)}% left (${used.toFixed(0)}% used${reset})`;
 }
 
-function usageReport(response: CodexRateLimitsResponse) {
+function usageReport(response: CodexRateLimitsResponse, nowSeconds: number) {
   const limits = response.rateLimitsByLimitId?.codex ?? response.rateLimits;
   const lines = [
     "ChatGPT/Codex subscription usage",
     "OpenAI reports subscription usage as limit percentages, not remaining token counts.",
     `Plan: ${limits.planType ?? "unknown"}`,
-    formatRateLimitWindow("5h limit", limits.primary),
-    formatRateLimitWindow("Weekly limit", limits.secondary),
+    formatRateLimitWindow("5h limit", limits.primary, nowSeconds),
+    formatRateLimitWindow("Weekly limit", limits.secondary, nowSeconds),
   ];
 
   if (limits.rateLimitReachedType) {
@@ -206,7 +213,8 @@ export default function (pi: ExtensionAPI) {
 
     try {
       const rateLimits = await fetchCodexRateLimits(ctx.signal);
-      sendReport(pi, usageReport(rateLimits));
+      const nowSeconds = Date.now() / 1000;
+      sendReport(pi, usageReport(rateLimits, nowSeconds));
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       sendReport(
