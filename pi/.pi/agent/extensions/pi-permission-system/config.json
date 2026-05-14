@@ -3,6 +3,15 @@
   "permissionReviewLog": true,
   "permission": {
     "*": "ask",
+    "path": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "~/.ssh/*": "deny",
+      "*/auth.json": "deny"
+    },
+    "external_directory": "ask",
     "ls": "allow",
     "find": "allow",
     "read": "allow",

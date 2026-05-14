@@ -1,11 +1,11 @@
 {
   "lastChangelogVersion": "0.74.0",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "high",
   "quietStartup": false,
   "theme": "vivid",
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",

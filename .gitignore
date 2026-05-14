@@ -45,6 +45,7 @@ pi/.pi/agent/logs/
 !pi/.pi/agent/extensions/pi-permission-system/
 !pi/.pi/agent/extensions/pi-permission-system/config.json
 
-# Allow custom protected paths extension
+# Allow custom pi extensions
 !pi/.pi/agent/extensions/protected-paths.ts
+!pi/.pi/agent/extensions/chatgpt-models.ts
 
