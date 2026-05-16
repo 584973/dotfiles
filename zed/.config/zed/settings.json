@@ -1,0 +1,24 @@
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "relative_line_numbers": "enabled",
+  "base_keymap": "JetBrains",
+  "tab_size": 2,
+  "format_on_save": "off",
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_diagnostics": "all"
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  }
+}
