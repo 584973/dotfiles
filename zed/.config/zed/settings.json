@@ -20,5 +20,35 @@
     "mode": "system",
     "light": "Ayu Light",
     "dark": "Ayu Dark"
+  },
+  "theme_overrides": {
+    "Ayu Dark": {
+      "vim.normal.background": "#5ac1fe",
+      "vim.normal.foreground": "#0d1016",
+      "vim.insert.background": "#aad84c",
+      "vim.insert.foreground": "#0d1016",
+      "vim.visual.background": "#d2a6fe",
+      "vim.visual.foreground": "#0d1016",
+      "vim.visual_line.background": "#d2a6fe",
+      "vim.visual_line.foreground": "#0d1016",
+      "vim.visual_block.background": "#d2a6fe",
+      "vim.visual_block.foreground": "#0d1016",
+      "vim.replace.background": "#ef7177",
+      "vim.replace.foreground": "#0d1016"
+    },
+    "Ayu Light": {
+      "vim.normal.background": "#3b9ee5",
+      "vim.normal.foreground": "#fcfcfc",
+      "vim.insert.background": "#85b304",
+      "vim.insert.foreground": "#fcfcfc",
+      "vim.visual.background": "#a37acc",
+      "vim.visual.foreground": "#fcfcfc",
+      "vim.visual_line.background": "#a37acc",
+      "vim.visual_line.foreground": "#fcfcfc",
+      "vim.visual_block.background": "#a37acc",
+      "vim.visual_block.foreground": "#fcfcfc",
+      "vim.replace.background": "#ef7271",
+      "vim.replace.foreground": "#fcfcfc"
+    }
   }
 }
