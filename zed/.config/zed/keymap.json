@@ -1,26 +1,5 @@
 [
   {
-    "context": "Workspace",
-    "bindings": {
-      "space w": "workspace::Save",
-      "space q": "pane::CloseActiveItem",
-      "space n": "pane::ActivateNextItem",
-      "space p": "pane::ActivatePreviousItem",
-      "space x": "pane::CloseActiveItem",
-      "space z": "workspace::CloseAllDocks",
-      "space f f": "file_finder::Toggle",
-      "space f r": ["projects::OpenRecent", { "create_new_window": false }],
-      "space f g": "pane::DeploySearch",
-      "space f b": "tab_switcher::Toggle",
-      "space f h": "command_palette::Toggle",
-      "space t": "terminal_panel::ToggleFocus",
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight",
-    },
-  },
-  {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space w": "workspace::Save",
