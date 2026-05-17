@@ -3,6 +3,7 @@
   "permissionReviewLog": true,
   "permission": {
     "*": "ask",
+    "ask_user_question": "allow",
     "path": {
       "*": "allow",
       "*.env": "deny",

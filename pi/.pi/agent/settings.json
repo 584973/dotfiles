@@ -1,14 +1,15 @@
 {
   "lastChangelogVersion": "0.75.0",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-pro",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "medium",
   "quietStartup": false,
   "theme": "vivid",
   "hideThinkingBlock": false,
   "packages": [
     "npm:pi-subagents",
     "npm:pi-web-access",
-    "npm:@gotgenes/pi-permission-system"
+    "npm:@gotgenes/pi-permission-system",
+    "npm:@juicesharp/rpiv-ask-user-question"
   ]
 }
