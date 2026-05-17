@@ -61,7 +61,31 @@
       "*<*": "ask",
       "*$(*": "ask",
       "*`*": "ask",
-      "*\n*": "ask"
+      "*\n*": "ask",
+      "rm *": "ask",
+      "rm -r *": "ask",
+      "rm -R *": "ask",
+      "rm -rf *": "ask",
+      "rm -fr *": "ask",
+      "rm --recursive *": "ask",
+      "* rm *": "ask",
+      "* rm -r *": "ask",
+      "* rm -R *": "ask",
+      "* rm -rf *": "ask",
+      "* rm -fr *": "ask",
+      "* rm --recursive *": "ask",
+      "dd *": "ask",
+      "* dd *": "ask",
+      "mkfs *": "ask",
+      "mkfs.* *": "ask",
+      "* mkfs *": "ask",
+      "* mkfs.* *": "ask",
+      "* > /dev/sd*": "ask",
+      "*>/dev/sd*": "ask",
+      "* > /dev/nvme*": "ask",
+      "*>/dev/nvme*": "ask",
+      "* > /dev/mmcblk*": "ask",
+      "*>/dev/mmcblk*": "ask"
     }
   }
 }
