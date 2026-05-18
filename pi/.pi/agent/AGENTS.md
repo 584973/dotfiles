@@ -34,6 +34,9 @@ Build the cleanest solution for the present. No fallback code "just in case," no
 ### Read Before Editing
 Never propose changes to code you haven't read. Understand existing patterns first, then edit. For large files (>100KB), use `head`, `tail`, `grep`, or `wc -l` instead of `read`.
 
+### Never Read Secret Files
+Do not read credential-bearing files unless the user explicitly asks and understands the risk. Treat files like `.npmrc`, `.env*`, `.netrc`, `.pypirc`, SSH keys, cloud credentials, package-manager auth configs, and GitHub CLI auth files as off-limits. Use redacted checks or metadata-only commands instead.
+
 ### Try Before Asking
 When you're about to ask whether a tool or dependency exists — just try it.
 

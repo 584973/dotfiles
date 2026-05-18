@@ -1,9 +1,9 @@
 /**
  * Protected Paths Extension
  *
- * Hard-blocks read, write, and edit tool operations on sensitive credential
- * files. Does NOT intercept bash commands — the permission system handles
- * those with ask gates instead.
+ * Hard-blocks read, write, edit, grep, and bash operations that target
+ * sensitive credential files. This prevents accidental token exposure through
+ * direct file reads or shell commands like `cat ~/.npmrc`.
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -14,6 +14,10 @@ export default function (pi: ExtensionAPI) {
     ".env",
     ".envrc",
     ".netrc",
+    ".npmrc",
+    ".yarnrc",
+    ".pnpmrc",
+    ".pypirc",
     ".pgpass",
     ".my.cnf",
     "auth.json",
@@ -32,6 +36,19 @@ export default function (pi: ExtensionAPI) {
     "settings.xml",
   ]);
 
+  const protectedPathPatterns = [
+    /(^|\/)\.config\/gh\/hosts\.ya?ml$/i,
+    /(^|\/)\.cargo\/credentials(\.toml)?$/i,
+    /(^|\/)\.gem\/credentials$/i,
+    /(^|\/)\.kube\/config$/i,
+  ];
+
+  const sensitiveNpmConfigCommands = [
+    /(^|[;&|\n])\s*npm\s+(config|c)\s+(ls|list)(\s|$)/i,
+    /(^|[;&|\n])\s*npm\s+(config|c)\s+get\s+.*(_auth|authToken|token)/i,
+    /(^|[;&|\n])\s*npm\s+get\s+.*(_auth|authToken|token)/i,
+  ];
+
   // Extensions to block (e.g. file.key, file.pem)
   const blockedExtensions = new Set([
     ".key",
@@ -43,19 +60,15 @@ export default function (pi: ExtensionAPI) {
     ".der",
   ]);
 
-  pi.on("tool_call", async (event, ctx) => {
-    if (
-      event.toolName !== "read" &&
-      event.toolName !== "write" &&
-      event.toolName !== "edit"
-    ) {
-      return undefined;
+  function isProtectedPath(path: string): boolean {
+    const normalizedPath = path.replace(/\\/g, "/");
+    const segments = normalizedPath.split("/");
+
+    if (protectedPathPatterns.some((pattern) => pattern.test(normalizedPath))) {
+      return true;
     }
 
-    const path = (event.input.path as string) ?? "";
-    const segments = path.split(/[\\/]/);
-
-    const isProtected = segments.some((seg) => {
+    return segments.some((seg) => {
       const lowerSeg = seg.toLowerCase();
 
       // Exact name match
@@ -71,8 +84,43 @@ export default function (pi: ExtensionAPI) {
 
       return false;
     });
+  }
 
-    if (isProtected) {
+  pi.on("tool_call", async (event, ctx) => {
+    if (event.toolName === "bash") {
+      const command = (event.input.command as string) ?? "";
+      const referencesProtectedPath = command
+        .split(/[\s'"`]+/)
+        .some((part) => isProtectedPath(part));
+      const readsSensitiveNpmConfig = sensitiveNpmConfigCommands.some((pattern) =>
+        pattern.test(command),
+      );
+
+      if (referencesProtectedPath || readsSensitiveNpmConfig) {
+        if (ctx.hasUI) {
+          ctx.ui.notify("Blocked bash command targeting protected credentials", "warning");
+        }
+        return {
+          block: true,
+          reason: "Command targets protected credential material.",
+        };
+      }
+
+      return undefined;
+    }
+
+    if (
+      event.toolName !== "read" &&
+      event.toolName !== "write" &&
+      event.toolName !== "edit" &&
+      event.toolName !== "grep"
+    ) {
+      return undefined;
+    }
+
+    const path = (event.input.path as string) ?? "";
+
+    if (path && isProtectedPath(path)) {
       if (ctx.hasUI) {
         ctx.ui.notify(
           `Blocked ${event.toolName} on protected path: ${path}`,
