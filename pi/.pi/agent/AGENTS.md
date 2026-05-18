@@ -37,6 +37,8 @@ Never propose changes to code you haven't read. Understand existing patterns fir
 ### Never Read Secret Files
 Do not read credential-bearing files unless the user explicitly asks and understands the risk. Treat files like `.npmrc`, `.env*`, `.netrc`, `.pypirc`, SSH keys, cloud credentials, package-manager auth configs, and GitHub CLI auth files as off-limits. Use redacted checks or metadata-only commands instead.
 
+If you accidentally read or expose possible credentials or sensitive data, immediately tell the user what kind of material may have been exposed, where it came from, and recommend rotation/remediation. Do not repeat the secret value.
+
 ### Try Before Asking
 When you're about to ask whether a tool or dependency exists — just try it.
 
