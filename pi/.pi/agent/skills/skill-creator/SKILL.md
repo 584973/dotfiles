@@ -1,17 +1,30 @@
 ---
 name: skill-creator
-description: Create new agent skills following the Agent Skills specification. Use when asked to "create a skill", "add a new skill", "write a skill", "make a skill", "build a skill", or scaffold a new skill with SKILL.md. Guides through requirements, planning, writing, registration, and verification.
+description: Create or update agent skills following the Agent Skills specification. Use when asked to "create a skill", "add a new skill", "write a skill", "make a skill", "build a skill", "update a skill", "modify a skill", "improve an existing skill", or scaffold SKILL.md. Guides requirements, planning, writing, registration, validation, and focused updates.
 ---
 
-# Create a New Skill
+# Create or Update a Skill
 
-Guide the user through creating a new agent skill following the [Agent Skills specification](https://agentskills.io/specification). Follow each step in order.
+Guide the user through creating or updating an agent skill following the [Agent Skills specification](https://agentskills.io/specification). Follow each step in order.
+
+## Step 0: Decide Create vs Update
+
+Determine whether the request is for a new skill or an existing skill update.
+
+For an existing skill update:
+1. Locate and read the target `SKILL.md` before editing.
+2. Preserve the skill's core purpose, frontmatter shape, supporting files, and local style.
+3. Make the smallest focused change that satisfies the evidence.
+4. Keep trigger phrases in the description and operational guidance in the body.
+5. Re-run validation after editing.
+
+For a new skill, continue through the creation workflow below.
 
 ## Step 1: Understand the Skill
 
-Gather requirements before writing anything.
+Gather requirements before writing anything. If the user already provided enough concrete detail, proceed without asking.
 
-**Ask the user:**
+**Ask the user when details are missing:**
 1. What should this skill do? (one sentence)
 2. When should an agent use it? (trigger phrases users would say)
 3. What tools does the skill need? (Read, Grep, Glob, Bash, Task, WebFetch, etc.)
@@ -22,7 +35,7 @@ Gather requirements before writing anything.
 - 1-64 characters; must not start or end with `-`; no consecutive hyphens (`--`)
 - Descriptive and unique among existing skills
 - Prefer action-oriented names: `processing-pdfs`, `fix-issue`, `code-review`
-- Check the target skills directory to avoid name collisions
+- Check the target skills directory to avoid name collisions; if the skill already exists, switch to the update workflow
 
 **Choose a complexity tier:**
 

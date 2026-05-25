@@ -1,18 +1,17 @@
 ---
 name: self-improve
-description: End-of-session retrospective that identifies improvements to agent config, tests, docs, and code. Use when asked to "self-improve", "reflect on session", "what can we improve", "session retrospective", "end of session review". Creates actionable todos from findings.
-disable-model-invocation: true
+description: End-of-session retrospective that identifies improvements to agent config, skills, tests, docs, and code. Use when the session is ending after substantial work, when workflow friction or user corrections reveal improvement opportunities, or when asked to "self-improve", "reflect on session", "what can we improve", "session retrospective", or "end of session review". Proposes and executes approved improvements.
 ---
 
 # Self-Improve
 
-Reflect on the current session, identify concrete improvements, present them for approval, then create todos and execute.
+Reflect on the current session automatically when appropriate, identify concrete improvements, present them for approval, then execute approved changes.
 
 ## Step 1: Gather Context
 
 Use what's already in the conversation — tool outputs, errors, subagent summaries, dev server logs, test results. You're in the session, so you have the context.
 
-Only use the `session-reader` skill if you need to review a subagent's session that isn't summarized in the current conversation.
+Only use a session-reading skill if one is available and you need to review a subagent's session that isn't summarized in the current conversation. Otherwise, rely on the current conversation and summarized subagent output.
 
 ## Step 2: Analyze Improvement Areas
 
@@ -27,7 +26,7 @@ Examine each area below. Skip areas with no findings — only report what's acti
 | **Documentation** | Are READMEs, inline docs, or references out of date after changes made this session? |
 | **Scripts** | Did any scripts fail, produce wrong output, or need manual workarounds? |
 | **Extensions & MCP** | Were MCP servers or extensions used that could be better configured? Were tools missing that would have helped? |
-| **Skills** | Did any skill produce suboptimal results? Are trigger descriptions accurate? Would a new skill help? |
+| **Skills** | Did any skill produce suboptimal results? Are trigger descriptions accurate? Would a new skill help? If the finding is reusable across sessions, route it through `improve-pi-skills`. |
 | **Code quality** | Did the session reveal patterns worth refactoring, error handling gaps, or repeated boilerplate? |
 | **Workflow** | Were there unnecessary back-and-forth cycles, wasted API calls, or inefficient tool usage patterns? |
 
@@ -64,19 +63,19 @@ After the table, ask:
 
 For each approved suggestion:
 
-1. Create a todo with the `todo` tool:
-   - **title**: Short actionable summary
-   - **tags**: `["self-improve", "<scope>"]` where scope is `global` or `project`
-   - **body**: Full context — what to change, why, which files
+If an approved suggestion creates or updates Pi skills, prompts, or global Pi instructions, load and follow `improve-pi-skills` first so the change uses the Hermes-style safety gate and validation workflow.
 
-2. Work through each todo:
-   - Claim it
+1. Track the approved work:
+   - If a todo tool is available, create a todo with title, tags, and full context.
+   - If no todo tool is available, maintain a short checklist in the response.
+
+2. Work through each approved item:
    - Make the changes
    - Verify the change works (run tests, validate config, etc.)
-   - Commit using the `commit` skill if changes touch version-controlled files
-   - Mark the todo as done
+   - Commit using the `commit` skill if the user asked for a commit
+   - Mark the item done in the todo tool or response checklist
 
-3. After completing all todos, print a summary:
+3. After completing all items, print a summary:
 
 ```
 ## Completed Improvements
