@@ -18,11 +18,48 @@ import re
 import sys
 from pathlib import Path
 
-import yaml
+try:
+    import yaml
+except ModuleNotFoundError:  # Allow direct python3 execution when uv/PyYAML is unavailable.
+    yaml = None
 
 MAX_NAME_LENGTH = 64
 MAX_DESCRIPTION_LENGTH = 1024
 MAX_SKILL_LINES = 500
+
+
+def parse_frontmatter(frontmatter_text: str) -> dict[str, object]:
+    """Parse simple skill frontmatter, using PyYAML when available."""
+    if yaml is not None:
+        parsed = yaml.safe_load(frontmatter_text)
+        if not isinstance(parsed, dict):
+            raise ValueError("Frontmatter must be a YAML mapping")
+        return parsed
+
+    parsed: dict[str, object] = {}
+    for line in frontmatter_text.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if line[:1].isspace():
+            raise ValueError(
+                "Complex YAML frontmatter requires PyYAML. "
+                "Install uv or PyYAML, or use simple key: value fields."
+            )
+        if ":" not in line:
+            raise ValueError(f"Invalid frontmatter line: {line}")
+        key, value = line.split(":", 1)
+        key = key.strip()
+        value = value.strip()
+        if not key:
+            raise ValueError(f"Invalid empty frontmatter key in line: {line}")
+        if value.lower() == "true":
+            parsed[key] = True
+        elif value.lower() == "false":
+            parsed[key] = False
+        else:
+            parsed[key] = value.strip('"\'')
+    return parsed
 
 
 def validate_skill(skill_path: Path) -> tuple[bool, list[str], list[str]]:
@@ -51,11 +88,8 @@ def validate_skill(skill_path: Path) -> tuple[bool, list[str], list[str]]:
     # Parse frontmatter
     frontmatter_text = match.group(1)
     try:
-        frontmatter = yaml.safe_load(frontmatter_text)
-        if not isinstance(frontmatter, dict):
-            errors.append("Frontmatter must be a YAML mapping")
-            return False, errors, warnings
-    except yaml.YAMLError as e:
+        frontmatter = parse_frontmatter(frontmatter_text)
+    except Exception as e:
         errors.append(f"Invalid YAML in frontmatter: {e}")
         return False, errors, warnings
 

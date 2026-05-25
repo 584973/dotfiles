@@ -237,7 +237,13 @@ Include a LICENSE file in the skill directory when vendoring content with specif
 Run the validation script to catch issues early:
 
 ```bash
-uv run scripts/quick_validate.py <path/to/skill-directory>
+uv run scripts/quick_validate.py path/to/skill-directory
+```
+
+If `uv` is unavailable, run the script directly with Python. The validator has a stdlib fallback for simple skill frontmatter:
+
+```bash
+python3 scripts/quick_validate.py path/to/skill-directory
 ```
 
 The script checks frontmatter format, required fields, naming rules, and common mistakes. Fix any errors and re-run until validation passes.
@@ -291,7 +297,7 @@ Run through this checklist before finishing:
 - [ ] Documented in SKILL.md
 
 ### Validation
-- [ ] `uv run scripts/quick_validate.py` passes
+- [ ] `uv run scripts/quick_validate.py` passes, or `python3 scripts/quick_validate.py` passes when `uv` is unavailable
 - [ ] Tested with a real usage scenario
 
 Report any issues found and fix them before completing.

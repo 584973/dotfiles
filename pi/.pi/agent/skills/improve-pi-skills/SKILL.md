@@ -79,7 +79,8 @@ Run the relevant checks from the repository root when available:
 ```bash
 validator=pi/.pi/agent/skills/skill-creator
 skill=improve-pi-skills
-uv run "$validator"/"scripts"/quick_validate.py "pi/.pi/agent/skills/$skill"
+uv run "$validator"/"scripts"/quick_validate.py "pi/.pi/agent/skills/$skill" || \
+  python3 "$validator"/"scripts"/quick_validate.py "pi/.pi/agent/skills/$skill"
 git diff --check -- pi/.pi/agent/AGENTS.md pi/.pi/agent/skills pi/.pi/agent/prompts
 stow -nvt ~ pi
 ```
