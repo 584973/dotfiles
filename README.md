@@ -19,7 +19,7 @@ brew install stow neovim tmux kitty ghostty iterm2 aerospace borders
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux kitty ghostty hyprland hyprlock hypridle hyprpaper waybar rofi
+sudo pacman -S --needed stow neovim tmux kitty ghostty hyprland hyprlock hypridle waybar rofi
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 
@@ -63,8 +63,6 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
   - `archlinux/.config/hypr` — Hyprland, Hyprlock, Hypridle, Hyprpaper.
   - `archlinux/.config/waybar` — Waybar config + Catppuccin theme.
   - `archlinux/.config/rofi` — Rofi launcher.
-- Backgrounds
-  - `backgrounds/.config/backgrounds` — Wallpapers used by Hyprpaper.
 - Editors
   - `ideavim/.ideavimrc` — JetBrains IdeaVim configuration.
   - `vim/.vimrc` — Plain Vim configuration.
@@ -243,7 +241,7 @@ brew install iterm2 tmux borders neovim aerospace ghostty kitty
 Arch Linux (pacman):
 
 ```sh
-sudo pacman -S tmux neovim hyprland hyprlock hypridle waybar kitty ghostty hyprpaper rofi
+sudo pacman -S tmux neovim hyprland hyprlock hypridle waybar kitty ghostty rofi
 ```
 
 Some Hyprland or community packages may be available via `yay`.

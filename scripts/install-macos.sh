@@ -37,7 +37,7 @@ echo "==> Installing Homebrew casks..."
 brew install --cask "${CASKS[@]}"
 
 # ── Stow modules ──────────────────────────────────────────────────────────────
-MODULES=(macos nvim tmux kitty ghostty backgrounds)
+MODULES=(macos nvim tmux kitty ghostty)
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES"

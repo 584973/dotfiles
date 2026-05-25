@@ -7,7 +7,7 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # ── Packages ──────────────────────────────────────────────────────────────────
 PACKAGES=(
   # Hyprland & Wayland
-  hyprland hyprlock hypridle hyprpaper xdg-desktop-portal-hyprland
+  hyprland hyprlock hypridle xdg-desktop-portal-hyprland
   # Bar, notifications, launcher
   waybar swaync rofi
   # Terminals
@@ -33,7 +33,7 @@ echo "==> Installing packages..."
 sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 
 # ── Stow modules ──────────────────────────────────────────────────────────────
-MODULES=(archlinux nvim tmux kitty ghostty backgrounds)
+MODULES=(archlinux nvim tmux kitty ghostty)
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES"
