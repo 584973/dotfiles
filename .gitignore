@@ -38,6 +38,12 @@ erl_crash.dump
 .nvimspector/
 .cache/nvim/
 
+# Zed runtime-generated files
+zed/.config/zed/prompts/
+zed/.config/zed/themes/
+zed/.config/zed/conversations/
+zed/.config/zed/contexts/
+
 # Pi runtime and sensitive files
 pi/.pi/agent/auth.json
 pi/.pi/agent/sessions/
