@@ -1,6 +1,6 @@
 # Dotfiles
 
-Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Ghostty, Hyprland + Waybar/Rofi, and more. Theme: Catppuccin. Requires a Nerd Font.
+Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Ghostty, Hyprland + Waybar/Rofi, and more. Requires a Nerd Font.
 
 ---
 
@@ -13,7 +13,7 @@ macOS (Homebrew):
 ```sh
 # Install Homebrew if needed (see https://brew.sh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install stow neovim tmux ghostty iterm2 aerospace borders
+brew install stow neovim tmux ghostty aerospace borders
 ```
 
 Arch Linux:
@@ -135,7 +135,8 @@ scp -r nvim/.config/nvim user@host:~/.config/
 
 ## Theme & Fonts
 
-- Theme: [Catppuccin](https://github.com/catppuccin/catppuccin) across terminals, Waybar, and Neovim.
+- Ghostty and Waybar use [Catppuccin Mocha](https://github.com/catppuccin/catppuccin).
+- Primary Neovim (`nvim/`) uses tokyonight; legacy Neovim (`nvim-legacy/`) uses Rose Pine.
 - Fonts: Install a Nerd Font and set it in your terminal for icons and glyphs.
 
 ---
@@ -147,6 +148,8 @@ Two Neovim configs are available:
 **`nvim`** — primary config for Neovim 0.12+, using the native `vim.pack` package manager.
 
 **`nvim-legacy`** — fallback config for older distros, using [lazy.nvim](https://github.com/folke/lazy.nvim).
+
+Use `nvim-legacy` on systems where Neovim 0.12+ is not available from the distro or package manager.
 
 ### Switching to `nvim-legacy`
 
@@ -234,7 +237,7 @@ stow nvim
 macOS (Homebrew):
 
 ```sh
-brew install iterm2 tmux borders neovim aerospace ghostty
+brew install tmux borders neovim aerospace ghostty
 ```
 
 Arch Linux (pacman):
