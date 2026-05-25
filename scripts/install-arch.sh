@@ -46,10 +46,10 @@ for module in "${MODULES[@]}"; do
   fi
 done
 
-# ── Neovim plugins ────────────────────────────────────────────────────────────
+# ── Neovim sanity check ───────────────────────────────────────────────────────
 if command -v nvim &>/dev/null; then
-  echo "==> Syncing Neovim plugins..."
-  nvim --headless "+Lazy sync" +qa 2>/dev/null || true
+  echo "==> Checking Neovim config..."
+  nvim --headless "+checkhealth" +qa 2>/dev/null || true
 fi
 
 # ── Pictures directory ────────────────────────────────────────────────────────

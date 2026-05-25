@@ -36,14 +36,8 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		if is_excluded() then
 			return
 		end
-		local f = session_file()
-		local dir = vim.fn.fnamemodify(f, ":h")
+		local dir = vim.fn.fnamemodify(session_file(), ":h")
 		vim.fn.mkdir(dir, "p")
-		vim.cmd("mksession! " .. vim.fn.fnameescape(f))
-		local lines = vim.fn.readfile(f)
-		local filtered = vim.tbl_filter(function(line)
-			return not line:match("^%$argadd oil://")
-		end, lines)
-		vim.fn.writefile(filtered, f)
+		vim.cmd("mksession! " .. vim.fn.fnameescape(session_file()))
 	end,
 })

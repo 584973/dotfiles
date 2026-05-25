@@ -1,9 +1,7 @@
-local M = {}
-
 local state = {
-	buf = nil, -- terminal buffer
-	win = nil, -- floating window id
-	job = nil, -- terminal job id
+	buf = nil,
+	win = nil,
+	job = nil,
 }
 
 local function is_valid_win(win)
@@ -18,8 +16,7 @@ local function term_running()
 	if not state.job then
 		return false
 	end
-	local res = vim.fn.jobwait({ state.job }, 0)[1]
-	return res == -1
+	return vim.fn.jobwait({ state.job }, 0)[1] == -1
 end
 
 local function float_config()
@@ -44,7 +41,7 @@ local function open_window(buf)
 	vim.wo[state.win].cursorline = false
 end
 
-function M.open()
+local function open()
 	if is_valid_win(state.win) then
 		vim.api.nvim_win_hide(state.win)
 		state.win = nil
@@ -77,43 +74,8 @@ function M.open()
 	vim.cmd("startinsert")
 end
 
-function M.new()
-	local buf = vim.api.nvim_create_buf(false, true)
-	vim.bo[buf].bufhidden = "wipe"
-	open_window(buf)
-	vim.keymap.set("t", "<Esc>", function()
-		vim.api.nvim_win_hide(state.win)
-		state.win = nil
-	end, { buffer = buf })
-	vim.api.nvim_buf_call(buf, function()
-		vim.fn.termopen(vim.o.shell)
-	end)
-	vim.cmd("startinsert")
-end
+vim.keymap.set("n", "<leader>tt", open, { desc = "Toggle terminal" })
 
-function M.popup_terminal(cmd)
-	local buf = vim.api.nvim_create_buf(false, true)
-
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-
-	vim.api.nvim_open_win(buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
-		col = (vim.o.columns - width) / 2,
-		row = (vim.o.lines - height) / 2,
-		style = "minimal",
-		border = "rounded",
-	})
-
-	vim.fn.termopen(cmd)
-	vim.cmd("startinsert")
-end
-
-vim.keymap.set("n", "<leader>tt", M.open, { desc = "Toggle terminal" })
-
--- Resize float when the editor size changes
 vim.api.nvim_create_autocmd("VimResized", {
 	callback = function()
 		if is_valid_win(state.win) then
@@ -121,5 +83,3 @@ vim.api.nvim_create_autocmd("VimResized", {
 		end
 	end,
 })
-
-return M

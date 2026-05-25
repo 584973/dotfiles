@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 - Top-level folders map directly to `$HOME`; stow only the pieces you need.
-- Cross-platform: `nvim/.config/nvim` (lazy.nvim), `pack-nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminal: `ghostty/.config/ghostty`; agent: `pi/.pi/agent/settings.json`.
+- Cross-platform: `nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `nvim-legacy/.config/nvim` (lazy.nvim fallback for older distros), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminal: `ghostty/.config/ghostty`; agent: `pi/.pi/agent/settings.json`.
 - Platform targets: `archlinux/.config/{hypr,waybar,rofi}` for Hyprland/Wayland; `macos/.config/{aerospace,borders}` for macOS.
 - Bootstrap install scripts live in `scripts/` (e.g., `install-macos.sh`, `install-arch.sh`, `install-lsp-macos.sh`).
 - Keep trees matching real install paths so `stow <module>` places files correctly.
@@ -10,14 +10,14 @@
 ## Build, Test, and Development Commands
 - Preview stow actions: `stow -nvt ~ nvim tmux` (dry-run into `$HOME`).
 - Apply configs: `stow -vt ~ <module>`; undo with `stow -D <module>`; restow after edits via `stow -R <module>`.
-- Neovim (`nvim/`): `nvim --headless "+Lazy sync" +qa` to install/sync plugins; `nvim --headless "+checkhealth" +qa` to sanity-check.
-- Neovim (`pack-nvim/`): uses native `vim.pack` — no separate sync step; run `nvim --headless "+checkhealth" +qa` to verify.
+- Neovim (`nvim/`): uses native `vim.pack` — no separate sync step; run `nvim --headless "+checkhealth" +qa` to verify.
+- Neovim (`nvim-legacy/`): `nvim --headless "+Lazy sync" +qa` to install/sync plugins; `nvim --headless "+checkhealth" +qa` to sanity-check.
 - Tmux: `tmux source-file ~/.tmux.conf` after changes; TPM users press prefix + I to reinstall plugins.
 
 ## Coding Style & Naming Conventions
 - Keep paths and filenames lowercase to match upstream app expectations; avoid renaming existing module roots.
 - Neovim Lua follows 2-space indentation (`shiftwidth=2`, `expandtab=true`); prefer small helper modules under `nvim/.config/nvim/lua/`.
-- Active themes: Rose Pine (`nvim/`), tokyonight (`pack-nvim/`), Catppuccin Mocha (Ghostty, Waybar); match the relevant module's established theme and keybinding patterns; avoid per-machine tweaks baked into tracked files.
+- Active themes: tokyonight (`nvim/`), Rose Pine (`nvim-legacy/`), Catppuccin Mocha (Ghostty, Waybar); match the relevant module's established theme and keybinding patterns; avoid per-machine tweaks baked into tracked files.
 - Prefer declarative settings over ad-hoc shell hooks; add comments only where behavior is non-obvious.
 
 ## Testing Guidelines
@@ -27,7 +27,7 @@
 - Name temporary test configs clearly (e.g., `waybar-test.jsonc`) and remove when done.
 
 ## Commit & Pull Request Guidelines
-- Follow the existing Git style: `(scope) short imperative summary`, using module or platform scopes like `(nvim)`, `(pack-nvim)`, `(tmux)`, `(archlinux/waybar)`, `(macos/aerospace)`.
+- Follow the existing Git style: `(scope) short imperative summary`, using module or platform scopes like `(nvim)`, `(nvim-legacy)`, `(tmux)`, `(archlinux/waybar)`, `(macos/aerospace)`.
 - Keep commits focused per module; avoid bundling macOS, Arch, and editor changes together unless tightly coupled.
 - PRs should state what changed, how to apply (`stow` commands), and how it was verified (commands run, platforms tested). Include screenshots/GIFs for UI or theme tweaks (Waybar, terminal, Neovim UI).
 - Link related issues or upstream references when modifying third-party defaults or plugin settings.
