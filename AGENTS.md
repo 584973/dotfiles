@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 - Top-level folders map directly to `$HOME`; stow only the pieces you need.
-- Cross-platform: `nvim/.config/nvim` (lazy.nvim), `pack-nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminals: `kitty/.config/kitty`, `ghostty/.config/ghostty`; agent: `pi/.pi/agent/settings.json`.
+- Cross-platform: `nvim/.config/nvim` (lazy.nvim), `pack-nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminal: `ghostty/.config/ghostty`; agent: `pi/.pi/agent/settings.json`.
 - Platform targets: `archlinux/.config/{hypr,waybar,rofi}` for Hyprland/Wayland; `macos/.config/{aerospace,borders}` for macOS.
 - Bootstrap install scripts live in `scripts/` (e.g., `install-macos.sh`, `install-arch.sh`, `install-lsp-macos.sh`).
 - Keep trees matching real install paths so `stow <module>` places files correctly.

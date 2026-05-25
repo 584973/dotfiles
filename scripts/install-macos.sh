@@ -21,7 +21,6 @@ FORMULAE=(
 CASKS=(
   aerospace
   borders
-  kitty
   ghostty
   firefox
   obsidian
@@ -37,7 +36,7 @@ echo "==> Installing Homebrew casks..."
 brew install --cask "${CASKS[@]}"
 
 # ── Stow modules ──────────────────────────────────────────────────────────────
-MODULES=(macos nvim tmux kitty ghostty)
+MODULES=(macos nvim tmux ghostty)
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES"

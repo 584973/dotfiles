@@ -10,8 +10,8 @@ PACKAGES=(
   hyprland hyprlock hypridle xdg-desktop-portal-hyprland
   # Bar, notifications, launcher
   waybar swaync rofi
-  # Terminals
-  kitty
+  # Terminal
+  ghostty
   # Browser / apps
   firefox obsidian nemo
   # Bluetooth & network
@@ -33,7 +33,7 @@ echo "==> Installing packages..."
 sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 
 # ── Stow modules ──────────────────────────────────────────────────────────────
-MODULES=(archlinux nvim tmux kitty ghostty)
+MODULES=(archlinux nvim tmux ghostty)
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES"

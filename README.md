@@ -1,6 +1,6 @@
 # Dotfiles
 
-Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Kitty/Ghostty, Hyprland + Waybar/Rofi, and more. Theme: Catppuccin. Requires a Nerd Font.
+Opinionated dotfiles managed with GNU Stow. Covers macOS and Arch Linux with configs for Neovim, tmux, Ghostty, Hyprland + Waybar/Rofi, and more. Theme: Catppuccin. Requires a Nerd Font.
 
 ---
 
@@ -13,13 +13,13 @@ macOS (Homebrew):
 ```sh
 # Install Homebrew if needed (see https://brew.sh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install stow neovim tmux kitty ghostty iterm2 aerospace borders
+brew install stow neovim tmux ghostty iterm2 aerospace borders
 ```
 
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux kitty ghostty hyprland hyprlock hypridle waybar rofi
+sudo pacman -S --needed stow neovim tmux ghostty hyprland hyprlock hypridle waybar rofi
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 
@@ -53,14 +53,13 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   # Then press prefix + I inside tmux to install plugins
   ```
-- Terminals
-  - `kitty/.config/kitty` — Kitty config.
+- Terminal
   - `ghostty/.config/ghostty` — Ghostty config.
 - macOS
   - `macos/.config/aerospace` — Aerospace tiling window manager.
   - `macos/.config/borders` — Window borders.
 - Arch Linux / Wayland
-  - `archlinux/.config/hypr` — Hyprland, Hyprlock, Hypridle, Hyprpaper.
+  - `archlinux/.config/hypr` — Hyprland, Hyprlock, and Hypridle.
   - `archlinux/.config/waybar` — Waybar config + Catppuccin theme.
   - `archlinux/.config/rofi` — Rofi launcher.
 - Editors
@@ -235,13 +234,13 @@ stow nvim
 macOS (Homebrew):
 
 ```sh
-brew install iterm2 tmux borders neovim aerospace ghostty kitty
+brew install iterm2 tmux borders neovim aerospace ghostty
 ```
 
 Arch Linux (pacman):
 
 ```sh
-sudo pacman -S tmux neovim hyprland hyprlock hypridle waybar kitty ghostty rofi
+sudo pacman -S tmux neovim hyprland hyprlock hypridle waybar ghostty rofi
 ```
 
 Some Hyprland or community packages may be available via `yay`.
