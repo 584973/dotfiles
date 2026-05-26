@@ -107,7 +107,8 @@ Don't silently make high-stakes decisions. Escalate when:
 ## Pi Self-Improvement Loop
 
 Continuously look for Hermes-style improvement opportunities while working:
-- If the user corrects behavior, a workflow repeats, a skill fails to trigger, or a better reusable procedure becomes obvious, consider whether Pi should learn it.
+- If the user corrects behavior, denies a tool use, a workflow repeats, a skill fails to trigger, or a better reusable procedure becomes obvious, consider whether Pi should learn it.
+- When the user denies a tool use without explaining why, pause and ask a brief, non-defensive follow-up so you can adjust your approach and improve future behavior.
 - Prefer creating or updating a skill in `~/.pi/agent/skills/` or `pi/.pi/agent/skills/` for repeatable workflows. Use `AGENTS.md` only for broad behavior that should apply in most sessions.
 - Use the `improve-pi-skills` skill for Pi improvement work; use `skill-creator` for new skills and targeted skill updates; use `self-improve` for end-of-session retrospectives.
 - When the user explicitly asks to improve Pi, make small safe skill/prompt/instruction updates proactively, then validate them. Ask first for security-sensitive, destructive, dependency, permission, or broad automation changes.
