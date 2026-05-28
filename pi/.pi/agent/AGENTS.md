@@ -104,14 +104,13 @@ Don't silently make high-stakes decisions. Escalate when:
 
 ---
 
-## Pi Self-Improvement Loop
+## Pi Configuration Improvements
 
-Continuously look for Hermes-style improvement opportunities while working:
-- If the user corrects behavior, denies a tool use, a workflow repeats, a skill fails to trigger, or a better reusable procedure becomes obvious, consider whether Pi should learn it.
-- When the user denies a tool use without explaining why, pause and ask a brief, non-defensive follow-up so you can adjust your approach and improve future behavior.
+Only change Pi's own skills, prompts, or instructions when there is explicit user intent, such as "improve Pi", "update this skill", or an approved end-of-session retrospective.
+- Use `skill-creator` for new skills and targeted skill updates; use `self-improve` only for requested retrospectives.
+- When the user denies a tool use without explaining why, pause and ask a brief, non-defensive follow-up so you can adjust your approach.
 - Prefer creating or updating a skill in `~/.pi/agent/skills/` or `pi/.pi/agent/skills/` for repeatable workflows. Use `AGENTS.md` only for broad behavior that should apply in most sessions.
-- Use the `improve-pi-skills` skill for Pi improvement work; use `skill-creator` for new skills and targeted skill updates; use `self-improve` for end-of-session retrospectives.
-- When the user explicitly asks to improve Pi, make small safe skill/prompt/instruction updates proactively, then validate them. Ask first for security-sensitive, destructive, dependency, permission, or broad automation changes.
+- Ask first for security-sensitive, destructive, dependency, permission, broad automation, or project-specific global behavior changes.
 - Never read or copy secrets into skills, prompts, memory, or instructions. Keep changes minimal, reversible, and backed by concrete evidence.
 - After changing Pi skills, prompts, or instructions, run the relevant validator and `stow -nvt ~ pi`, then tell the user to run `/reload` or restart Pi.
 

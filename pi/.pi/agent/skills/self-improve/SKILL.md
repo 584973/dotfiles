@@ -1,11 +1,11 @@
 ---
 name: self-improve
-description: End-of-session retrospective that identifies improvements to agent config, skills, tests, docs, and code. Use when the session is ending after substantial work, when workflow friction or user corrections reveal improvement opportunities, or when asked to "self-improve", "reflect on session", "what can we improve", "session retrospective", or "end of session review". Proposes and executes approved improvements.
+description: Manual end-of-session retrospective that identifies improvements to agent config, skills, tests, docs, and code. Use when explicitly asked to "self-improve", "reflect on session", "what can we improve", "session retrospective", or "end of session review". Proposes and executes approved improvements.
 ---
 
 # Self-Improve
 
-Reflect on the current session automatically when appropriate, identify concrete improvements, present them for approval, then execute approved changes.
+Reflect on the current session when explicitly requested, identify concrete improvements, present them for approval, then execute approved changes.
 
 ## Step 1: Gather Context
 
@@ -26,7 +26,7 @@ Examine each area below. Skip areas with no findings — only report what's acti
 | **Documentation** | Are READMEs, inline docs, or references out of date after changes made this session? |
 | **Scripts** | Did any scripts fail, produce wrong output, or need manual workarounds? |
 | **Extensions & MCP** | Were MCP servers or extensions used that could be better configured? Were tools missing that would have helped? |
-| **Skills** | Did any skill produce suboptimal results? Are trigger descriptions accurate? Would a new skill help? If the finding is reusable across sessions, route it through `improve-pi-skills`. |
+| **Skills** | Did any skill produce suboptimal results? Are trigger descriptions accurate? Would a new skill help? |
 | **Code quality** | Did the session reveal patterns worth refactoring, error handling gaps, or repeated boilerplate? |
 | **Workflow** | Were there unnecessary back-and-forth cycles, wasted API calls, or inefficient tool usage patterns? |
 
@@ -62,8 +62,6 @@ After the table, ask:
 ## Step 5: Create Todos and Execute
 
 For each approved suggestion:
-
-If an approved suggestion creates or updates Pi skills, prompts, or global Pi instructions, load and follow `improve-pi-skills` first so the change uses the Hermes-style safety gate and validation workflow.
 
 1. Track the approved work:
    - If a todo tool is available, create a todo with title, tags, and full context.
