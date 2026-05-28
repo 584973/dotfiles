@@ -34,6 +34,9 @@ Build the cleanest solution for the present. No fallback code "just in case," no
 ### Read Before Editing
 Never propose changes to code you haven't read. Understand existing patterns first, then edit. For large files (>100KB), use `head`, `tail`, `grep`, or `wc -l` instead of `read`.
 
+### Stay Within the Active Repository
+When working in Java/Kotlin projects, prefer files inside the current repository first: `build.gradle*`, `settings.gradle*`, `pom.xml`, `gradle/libs.versions.toml`, and source/test files. Do not inspect dependency caches like `~/.m2/`, `~/.gradle/caches/`, or IDE indexes unless the user explicitly asks or the task is specifically about dependency resolution. If external dependency source is needed, prefer official docs, source repositories, or package metadata over local caches.
+
 ### Never Read Secret Files
 Do not read credential-bearing files unless the user explicitly asks and understands the risk. Treat files like `.npmrc`, `.env*`, `.netrc`, `.pypirc`, SSH keys, cloud credentials, package-manager auth configs, and GitHub CLI auth files as off-limits. Use redacted checks or metadata-only commands instead.
 
