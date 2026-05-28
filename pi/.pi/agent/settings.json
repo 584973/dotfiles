@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.75.3",
+  "lastChangelogVersion": "0.75.4",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "low",
+  "defaultThinkingLevel": "medium",
   "quietStartup": false,
   "theme": "vivid",
   "hideThinkingBlock": false,
@@ -10,6 +10,7 @@
     "npm:pi-subagents",
     "npm:@gotgenes/pi-permission-system",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:context-mode"
   ]
 }
