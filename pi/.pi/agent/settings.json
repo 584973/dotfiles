@@ -2,15 +2,19 @@
   "lastChangelogVersion": "0.80.2",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "high",
-  "quietStartup": false,
-  "theme": "vivid",
+  "defaultThinkingLevel": "medium",
+  "quietStartup": true,
   "hideThinkingBlock": false,
   "packages": [
     "npm:pi-subagents",
     "npm:@gotgenes/pi-permission-system",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-web-access",
-    "npm:context-mode"
-  ]
+    "npm:context-mode",
+    "npm:pi-powerline-footer"
+  ],
+  "theme": "vivid",
+  "enableInstallTelemetry": false,
+  "collapseChangelog": true,
+  "powerline": "default"
 }
