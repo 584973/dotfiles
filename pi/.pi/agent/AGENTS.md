@@ -183,7 +183,7 @@ Prefer `web_search` for broad questions and `fetch_content` when you need the fu
 ## Commits
 
 When the user asks you to commit, or when using the `/commit` prompt template:
-- Follow the project's existing commit convention (check `git log --oneline -10` to infer the style)
+- Follow explicit project commit rules first (AGENTS.md, CLAUDE.md, etc.); if missing, default to conventional commits without inspecting git history
 - Default to conventional commits: `type(scope): description`
 - Keep subject under 72 characters, imperative mood ("add" not "added")
 - Include a body only if it adds meaningful context
