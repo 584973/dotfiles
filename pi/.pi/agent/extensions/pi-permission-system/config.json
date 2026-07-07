@@ -4,6 +4,8 @@
   "permission": {
     "*": "ask",
     "ask_user_question": "allow",
+    "skill": "allow",
+    "subagent": "allow",
     "path": {
       "*": "allow",
       ".env": "deny",
@@ -100,6 +102,8 @@
     "ls": "allow",
     "find": "allow",
     "read": "allow",
+    "write": "allow",
+    "edit": "allow",
     "grep": "allow",
     "mcp": {
       "*": "ask",

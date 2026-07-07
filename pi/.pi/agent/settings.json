@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "0.80.2",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "medium",
-  "quietStartup": true,
+  "lastChangelogVersion": "0.80.3",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-pro",
+  "defaultThinkingLevel": "high",
+  "quietStartup": false,
   "hideThinkingBlock": false,
   "packages": [
     "npm:pi-subagents",
@@ -11,7 +11,8 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-web-access",
     "npm:context-mode",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:pi-hermes-memory"
   ],
   "theme": "vivid",
   "enableInstallTelemetry": false,
