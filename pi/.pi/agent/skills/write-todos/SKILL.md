@@ -5,7 +5,7 @@ description: Write clear, actionable todos that workers can execute without losi
 
 # Write Todos
 
-Write todos that a worker agent can execute without access to the planning conversation. Every todo must be **self-contained** — a worker reading only the todo and the plan artifact must produce the correct result.
+Write todos that a worker agent can execute without access to the planning conversation. Every todo must be **self-contained** — a worker reading the todo, referenced artifacts, and existing code must be able to produce the correct result.
 
 ## Why This Matters
 
@@ -16,7 +16,7 @@ Workers implement exactly what's described. If a todo contains a code sketch usi
 Every todo body follows this structure:
 
 ```markdown
-**Plan:** `plans/YYYY-MM-DD-<name>.md`
+**Plan:** `plans/YYYY-MM-DD-<name>.md` (include only when a plan artifact exists)
 
 ## What
 [One paragraph: what this todo produces and why it matters]
@@ -33,8 +33,8 @@ Every todo body follows this structure:
 ## Expected Outcome
 [Concrete description of what the finished code looks like]
 
-### Example
-[Short code snippet showing the expected shape — imports, key patterns, structure]
+### Example (when implementation shape is material)
+[Short code snippet or concrete input/output example]
 
 ## Acceptance Criteria
 - [ ] [Specific, verifiable criterion]
@@ -54,9 +54,9 @@ If the plan says "use Effect v4 for all services," every service todo must repea
 | "Add WebSocket support" | "Add WebSocket support using the `ws` package. Do NOT use `socket.io`." |
 | "Create the component" | "Create the component using React 19 + Tailwind v4 utility classes. No CSS modules, no styled-components." |
 
-### 2. Examples Show The Real Shape
+### 2. Examples Show The Real Shape When Needed
 
-Include a short code snippet showing the expected import style, patterns, and structure. This is the single most effective way to prevent drift.
+Include a short code snippet when import style, architecture, or implementation pattern is material. For documentation, research, configuration, or straightforward maintenance todos, use a concrete expected outcome or input/output example instead of forcing irrelevant code.
 
 ```markdown
 ### Example
@@ -77,7 +77,7 @@ const EventBusLive = Layer.effect(EventBus, Effect.gen(function* () {
 \```
 ```
 
-Without examples, workers default to the most common pattern they know — which is usually plain TypeScript classes.
+Without concrete guidance, workers may default to a familiar but incorrect pattern. Use the smallest example that removes the real ambiguity.
 
 ### 3. Anti-Patterns Are Named
 
@@ -92,9 +92,9 @@ If there's a wrong way that looks right, call it out:
 
 ### 4. Each Todo Is Self-Contained
 
-A worker reads: (1) the todo body, (2) the plan artifact, (3) existing code. That's it. They don't read other todos. So:
+A worker reads: (1) the todo body, (2) referenced artifacts, and (3) existing code. They do not rely on other todos or the planning conversation. So:
 
-- Reference the plan path in every todo
+- Reference the plan path when a plan artifact exists
 - List all files to create or modify
 - Note which existing files to read for context
 - Include any conventions discovered during planning
@@ -125,11 +125,11 @@ Every criterion should be checkable by running a command or reading the output:
 
 ## Checklist Before Creating Todos
 
-Before calling `todo(action: "create")`, verify:
+Use an available todo/work-item tool when one exists; otherwise output a numbered Markdown checklist. Before creating or presenting todos, verify:
 
-- [ ] Every architectural decision from the plan appears as an explicit constraint in at least one todo
-- [ ] Every todo has a code example showing expected shape (imports, patterns, structure)
-- [ ] No todo relies on context only available in the planning conversation
-- [ ] Anti-patterns are named in relevant todos ("do NOT use X")
+- [ ] Every relevant architectural decision appears as an explicit constraint
+- [ ] Examples are included only where they clarify implementation shape or expected behavior
+- [ ] No todo relies on context available only in the planning conversation
+- [ ] Realistic anti-patterns are named in relevant todos ("do NOT use X")
 - [ ] Todos are numbered and dependencies noted
-- [ ] Acceptance criteria are verifiable commands, not subjective judgments
+- [ ] Acceptance criteria are verifiable commands or observable outcomes

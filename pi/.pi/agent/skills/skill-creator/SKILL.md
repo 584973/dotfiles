@@ -27,7 +27,7 @@ Gather requirements before writing anything. If the user already provided enough
 **Ask the user when details are missing:**
 1. What should this skill do? (one sentence)
 2. When should an agent use it? (trigger phrases users would say)
-3. What tools does the skill need? (Read, Grep, Glob, Bash, Task, WebFetch, etc.)
+3. What tools does the skill need? Use current Pi names such as `read`, `grep`, `find`, and `bash`; treat extension-provided tools as runtime-dependent.
 4. Where should the skill live? (which plugin or directory)
 
 **Determine the skill name:**
@@ -90,12 +90,13 @@ description: <what it does>. Use when <trigger phrases>. <key capabilities>.
 - `description` — up to 1024 chars, no angle brackets (`<` or `>`); include trigger keywords that help agents match user intent
 
 **Optional fields:**
-- `allowed-tools` — comma-separated list (e.g., `Read, Grep, Glob, Bash`); omit to allow all tools
+- `allowed-tools` — space-delimited list of pre-approved tools (experimental); omit to allow normal tool selection
+- `disable-model-invocation` — set to `true` to hide the skill from Pi's system prompt and require explicit `/skill:name` invocation
 - `license` — license name or path (add when vendoring external content)
 - `metadata` — arbitrary key-value mapping for additional metadata
 - `compatibility` — environment requirements (max 500 chars); most skills don't need this
 
-For Claude Code-specific fields (`argument-hint`, `disable-model-invocation`, `context`, etc.), read `references/claude-code-extensions.md`.
+For fields supported only by Claude Code, such as `argument-hint` and `context`, read `references/claude-code-extensions.md` and add them only when the skill targets Claude Code too.
 
 ### Description Guidelines
 
@@ -255,12 +256,12 @@ skills-ref validate <path/to/skill-directory>
 
 ## Step 7: Register the Skill
 
-Registration steps vary by repository. Check the repository's `CLAUDE.md` or `README.md` for specific instructions.
+Pi discovers valid skills automatically from `~/.pi/agent/skills/`, `~/.agents/skills/`, project `.pi/skills/`, project `.agents/skills/`, configured skill paths, and package manifests.
 
 1. **Verify directory-name match** — confirm the directory name matches the `name` field in SKILL.md frontmatter exactly
-2. **Update documentation** — add the skill to any skills index or table in README.md
-3. **Update permissions** — if the repo has `.claude/settings.json`, add `Skill(<plugin>:<name>)` to the `permissions.allow` array
-4. **Check CLAUDE.md** — read the repository's `CLAUDE.md` for any additional registration steps specific to that project
+2. **Verify discovery location** — place the skill in a documented Pi location or add its path to the relevant Pi settings/package manifest
+3. **Follow repository instructions** — update an existing skills index or registration file only when the repository requires it
+4. **Handle other agents conditionally** — update `.claude/settings.json` or other tool-specific configuration only when the skill also targets that tool and its repository instructions require registration
 
 ## Step 8: Verify
 
@@ -285,9 +286,10 @@ Run through this checklist before finishing:
 
 ### Registration
 - [ ] Directory name matches frontmatter `name`
-- [ ] Skill added to repo documentation (README or equivalent)
-- [ ] Permissions updated (if applicable)
-- [ ] Any repo-specific registration steps completed (check CLAUDE.md)
+- [ ] Skill is in a documented discovery location or configured path
+- [ ] Existing repo documentation or indexes updated when required
+- [ ] Tool-specific permissions updated only when applicable
+- [ ] Repository-specific registration steps completed
 
 ### Scripts (if applicable)
 - [ ] Uses `uv run scripts/...`

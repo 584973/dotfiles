@@ -102,31 +102,41 @@ Scan the codebase for things that look **shady, fishy, or dangerous**. This isn'
 
 ### What to Scan
 
-Run these checks and report anything suspicious:
+Run these checks and report anything suspicious. Never open or scan known credential files. Use filename-only, tracked-file checks and exclude `.env*`, auth files, package-manager credentials, private keys, cloud credentials, and similar paths from content searches.
 
 **Hardcoded Secrets & Credentials**
 ```bash
-# Look for hardcoded secrets, API keys, tokens, passwords
-rg -i --hidden -g '!{.git,node_modules,dist,build,.next,vendor,*.lock}' \
-  '(api[_-]?key|secret|token|password|credential|auth)\s*[:=]\s*["\x27][^"\x27]{8,}' \
-  --type-not binary -l 2>/dev/null | head -20
+# Search tracked source while excluding files that may contain credentials.
+# Report filenames only; never print matching values.
+git grep -IlE \
+  "(api[_-]?key|secret|token|password|credential|auth)[[:space:]]*[:=][[:space:]]*['\"][^'\"]{8,}" \
+  -- . \
+  ':!*.lock' ':!.env' ':!.env.*' ':!.npmrc' ':!.netrc' ':!.pypirc' \
+  ':!**/.env' ':!**/.env.*' ':!**/.npmrc' ':!**/.netrc' ':!**/.pypirc' \
+  ':!.ssh/**' ':!**/.ssh/**' ':!.aws/**' ':!**/.aws/**' \
+  ':!.config/gcloud/**' ':!**/.config/gcloud/**' \
+  ':!**/id_rsa*' ':!**/id_ed25519*' ':!**/id_ecdsa*' ':!**/id_dsa*' \
+  ':!*.pem' ':!*.key' ':!*.p12' ':!*.pfx' ':!*.jks' ':!*.keystore' \
+  ':!**/auth.json' ':!**/credentials*' 2>/dev/null | head -20
 
-# .env files committed to repo (should be gitignored)
-git ls-files --cached | grep -iE '\.env($|\.)' 2>/dev/null
+# Detect tracked sensitive filenames without reading their contents.
+git ls-files --cached | grep -iE '(^|/)(\.env($|\.)|\.npmrc$|\.netrc$|\.pypirc$|auth\.json$|credentials)|\.(pem|key|p12|pfx|jks|keystore)$' 2>/dev/null
 ```
 
 **Insecure Code Patterns**
 ```bash
 # eval(), exec(), dangerouslySetInnerHTML, innerHTML assignments, shell injection vectors
-rg --hidden -g '!{.git,node_modules,dist,build,.next,vendor,*.lock}' \
+rg --hidden \
+  -g '!{.git,node_modules,dist,build,.next,vendor,.aws/**,**/.aws/**,.ssh/**,**/.ssh/**,.config/gcloud/**,**/.config/gcloud/**,**/id_rsa*,**/id_ed25519*,**/id_ecdsa*,**/id_dsa*,*.lock,.env*,.npmrc,.netrc,.pypirc,auth.json,credentials*,*.pem,*.key,*.p12,*.pfx,*.jks,*.keystore}' \
   -e '\beval\s*\(' -e '\bexec\s*\(' -e 'dangerouslySetInnerHTML' \
   -e '\.innerHTML\s*=' -e 'child_process' -e '\$\(.*\$\{' \
-  --type-not binary -l 2>/dev/null | head -20
+  -l 2>/dev/null | head -20
 
 # Unparameterized SQL (string concatenation in queries)
-rg --hidden -g '!{.git,node_modules,dist,build,.next,vendor,*.lock}' \
+rg --hidden \
+  -g '!{.git,node_modules,dist,build,.next,vendor,.aws/**,**/.aws/**,.ssh/**,**/.ssh/**,.config/gcloud/**,**/.config/gcloud/**,**/id_rsa*,**/id_ed25519*,**/id_ecdsa*,**/id_dsa*,*.lock,.env*,.npmrc,.netrc,.pypirc,auth.json,credentials*,*.pem,*.key,*.p12,*.pfx,*.jks,*.keystore}' \
   -e 'query\s*\(\s*[`"'"'"'].*\$\{' -e 'execute\s*\(\s*[`"'"'"'].*\+' \
-  --type-not binary -l 2>/dev/null | head -20
+  -l 2>/dev/null | head -20
 ```
 
 **Suspicious Dependencies**
@@ -145,16 +155,18 @@ rg --hidden -g '!{.git,node_modules,dist,build,.next,vendor,*.lock}' \
 **Overly Permissive Configurations**
 ```bash
 # CORS wildcards, disabled security headers, permissive CSP
-rg --hidden -g '!{.git,node_modules,dist,build,.next,vendor,*.lock}' \
+rg --hidden \
+  -g '!{.git,node_modules,dist,build,.next,vendor,.aws/**,**/.aws/**,.ssh/**,**/.ssh/**,.config/gcloud/**,**/.config/gcloud/**,**/id_rsa*,**/id_ed25519*,**/id_ecdsa*,**/id_dsa*,*.lock,.env*,.npmrc,.netrc,.pypirc,auth.json,credentials*,*.pem,*.key,*.p12,*.pfx,*.jks,*.keystore}' \
   -e "origin:\s*['\"]?\*" -e 'Access-Control-Allow-Origin.*\*' \
   -e "cors.*true" -e 'unsafe-inline' -e 'unsafe-eval' \
-  --type-not binary -l 2>/dev/null | head -10
+  -l 2>/dev/null | head -10
 
 # Disabled TLS verification, insecure flags
-rg --hidden -g '!{.git,node_modules,dist,build,.next,vendor,*.lock}' \
+rg --hidden \
+  -g '!{.git,node_modules,dist,build,.next,vendor,.aws/**,**/.aws/**,.ssh/**,**/.ssh/**,.config/gcloud/**,**/.config/gcloud/**,**/id_rsa*,**/id_ed25519*,**/id_ecdsa*,**/id_dsa*,*.lock,.env*,.npmrc,.netrc,.pypirc,auth.json,credentials*,*.pem,*.key,*.p12,*.pfx,*.jks,*.keystore}' \
   -e 'NODE_TLS_REJECT_UNAUTHORIZED.*0' -e 'rejectUnauthorized.*false' \
   -e 'verify.*false' -e 'insecure.*true' \
-  --type-not binary -l 2>/dev/null | head -10
+  -l 2>/dev/null | head -10
 ```
 
 **File Permissions & Sensitive Files**

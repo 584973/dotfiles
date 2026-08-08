@@ -35,4 +35,4 @@
 ## Security & Configuration Tips
 - Do not commit machine-specific secrets, hostnames, or SSH configs; prefer environment variables or local excludes.
 - Keep private overrides in non-tracked files (e.g., `~/.config/<tool>/local.*`) and document opt-in flags instead of hardcoding.
-- For the `pi` module: `auth.json` (API keys), `sessions/`, `bin/`, `extensions/`, and `logs/` are all gitignored. Always verify with `git status` before committing pi changes.
+- For the `pi` module: `auth.json` (API keys), `sessions/`, `bin/`, extension runtime files, and `logs/` are gitignored. The permission-system policy under `extensions/pi-permission-system/` is intentionally tracked. Run `stow -nvt ~ pi` and verify `git status` before committing Pi changes.

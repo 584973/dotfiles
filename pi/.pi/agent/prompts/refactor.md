@@ -16,4 +16,4 @@ General principles:
 - Remove dead code, unused imports, and obsolete comments
 - Keep public APIs stable unless breakage is explicitly requested
 
-Before changing anything, briefly explain the plan. Then show the refactored code with minimal diff-style comments (e.g., `// extracted helper`) where the change is non-obvious.
+Inspect the relevant code and briefly state the plan. Unless the user explicitly asks for a proposal only, edit the repository, run the relevant tests or checks, and summarize the changed files and validation. Add code comments only when the resulting behavior is otherwise non-obvious.

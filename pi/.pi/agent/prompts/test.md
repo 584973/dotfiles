@@ -14,4 +14,4 @@ Guidelines:
 - Mock external dependencies (network, file system, time) when appropriate
 - Aim for coverage of critical branches, not just line coverage
 
-Output the test code. If the project already has tests for this code, suggest improvements or additional cases instead of duplicating them.
+Inspect the existing tests first. Unless the user explicitly asks for a proposal only, add or improve tests in the repository and run the narrowest relevant test command. Do not duplicate coverage that already exists; report the changed files and validation result.
