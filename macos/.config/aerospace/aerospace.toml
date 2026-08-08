@@ -1,4 +1,9 @@
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
+config-version = 2
+
+# Keep the named workspaces persistent, preserving config-version 1 behavior.
+persistent-workspaces = ["Terminal", "Browser", "Editor", "Slack", "Office", "General", "Music"]
+
 after-login-command = []
 
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
@@ -101,12 +106,12 @@ alt-shift-equal = 'resize smart +50'
 # alt-w = 'workspace W'
 # alt-e = 'workspace E'
 # alt-t = 'workspace T'
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2' 
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
+alt-1 = 'workspace Terminal'
+alt-2 = 'workspace Browser'
+alt-3 = 'workspace Editor'
+alt-4 = 'workspace Slack'
+alt-5 = 'workspace Office'
+alt-6 = 'workspace General'
 alt-m = 'workspace Music'
 # alt-s = 'workspace Slack'
 
@@ -115,12 +120,12 @@ alt-m = 'workspace Music'
 # alt-shift-w = 'move-node-to-workspace W'
 # alt-shift-e = 'move-node-to-workspace E'
 # alt-shift-t = 'move-node-to-workspace T'
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-1 = 'move-node-to-workspace Terminal'
+alt-shift-2 = 'move-node-to-workspace Browser'
+alt-shift-3 = 'move-node-to-workspace Editor'
+alt-shift-4 = 'move-node-to-workspace Slack'
+alt-shift-5 = 'move-node-to-workspace Office'
+alt-shift-6 = 'move-node-to-workspace General'
 alt-shift-m = 'move-node-to-workspace Music'
 # alt-shift-s = 'move-node-to-workspace Slack'
 
@@ -152,19 +157,19 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace Office'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace Office'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian' 
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace Slack'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap' 
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace Slack'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
@@ -172,16 +177,16 @@ run = 'move-node-to-workspace Music'
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace General'
 
 [[on-window-detected]]
 if.app-id = 'com.cisco.secureclient.gui'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace General'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace General'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace General'

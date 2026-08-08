@@ -45,6 +45,7 @@ zed/.config/zed/conversations/
 zed/.config/zed/contexts/
 
 # Pi runtime and sensitive files
+.pi-subagents/
 pi/.pi/agent/auth.json
 pi/.pi/agent/sessions/
 pi/.pi/agent/bin/
