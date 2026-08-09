@@ -110,6 +110,11 @@
     "write": "allow",
     "edit": "allow",
     "grep": "allow",
+    "ctx_search": "allow",
+    "ctx_index": "allow",
+    "ctx_fetch_and_index": "allow",
+    "ctx_stats": "allow",
+    "ctx_doctor": "allow",
     "mcp": {
       "*": "ask",
       "mcp_status": "allow",
