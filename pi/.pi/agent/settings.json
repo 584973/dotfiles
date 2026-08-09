@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "github-copilot",
+  "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-luna",
   "defaultThinkingLevel": "high",
   "quietStartup": false,
@@ -10,11 +10,9 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-web-access",
     "npm:context-mode",
-    "npm:pi-powerline-footer",
     "npm:pi-hermes-memory"
   ],
   "theme": "vivid",
   "enableInstallTelemetry": false,
-  "collapseChangelog": true,
-  "powerline": "default"
+  "collapseChangelog": true
 }
