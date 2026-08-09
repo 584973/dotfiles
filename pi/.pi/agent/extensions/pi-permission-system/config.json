@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-permission-system/main/schemas/permissions.schema.json",
   "permissionReviewLog": false,
+  "doublePressToConfirm": true,
   "permission": {
     "*": "ask",
     "ask_user_question": "allow",
@@ -111,8 +112,8 @@
     "edit": "allow",
     "grep": "allow",
     "ctx_search": "allow",
-    "ctx_index": "allow",
-    "ctx_fetch_and_index": "allow",
+    "ctx_index": "ask",
+    "ctx_fetch_and_index": "ask",
     "ctx_stats": "allow",
     "ctx_doctor": "allow",
     "mcp": {
