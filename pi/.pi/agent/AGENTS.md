@@ -51,7 +51,11 @@ Validate changes as you make them. Remove temporary files, debug output, comment
 
 Never read credential-bearing files unless the user explicitly asks and understands the risk. Treat `.env*`, `.npmrc`, `.netrc`, `.pypirc`, SSH keys, cloud credentials, package-manager auth files, and similar material as off-limits. Use metadata-only or redacted checks instead.
 
-If sensitive material is accidentally exposed, immediately identify the kind of material and its source, recommend rotation or remediation, and do not repeat the value.
+If sensitive material is encountered or appears in a file, tool result, command output, or log:
+
+- Immediately warn the user that sensitive material was encountered, naming its type and source without repeating or quoting the value.
+- Stop reading, copying, logging, or transmitting it unless the user explicitly authorizes that specific handling.
+- Recommend appropriate remediation, such as revocation or rotation.
 
 Ask before security-sensitive, destructive, dependency, permission, or broad automation changes unless the user has already explicitly approved that exact scope.
 
