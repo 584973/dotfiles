@@ -41,7 +41,7 @@ Project instructions override global defaults. Respect `AGENTS.md`, `CLAUDE.md`,
 
 Match the repository’s architecture, naming, formatting, testing style, directory layout, package manager, and commit conventions. Do not impose a preferred framework or structure when the project already has one.
 
-For Java and Kotlin projects, inspect repository build files and source first. Do not inspect `~/.m2`, `~/.gradle/caches`, IDE indexes, or other dependency caches unless the user explicitly asks or the task is specifically about dependency resolution. Prefer official documentation, source repositories, or package metadata for external dependency details.
+For Java and Kotlin projects, inspect repository build files and source first. Prefer official documentation, source repositories, or package metadata for external dependency details.
 
 ### Test and Clean Up
 
@@ -59,6 +59,7 @@ Ask before security-sensitive, destructive, dependency, permission, or broad aut
 
 Only change Pi skills, prompts, agents, or instructions when the user explicitly requests it or approves a retrospective suggestion.
 
+- Load and follow a matching skill without asking for separate permission; ask only when the skill's resulting action independently requires approval.
 - Use `skill-creator` for skill creation and focused skill updates.
 - Use `self-improve` for requested retrospectives.
 - Put global skills in `~/.pi/agent/skills/` and project skills in `.pi/skills/` or `.agents/skills/`.
