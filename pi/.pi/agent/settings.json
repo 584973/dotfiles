@@ -11,11 +11,12 @@
   "quietStartup": false,
   "hideThinkingBlock": false,
   "packages": [
-    "npm:@gotgenes/pi-permission-system@24.0.0",
-    "npm:@juicesharp/rpiv-ask-user-question@2.3.1",
-    "npm:pi-web-access@0.17.1",
+    "npm:@gotgenes/pi-permission-system@25.4.0",
+    "npm:@juicesharp/rpiv-ask-user-question@2.6.0",
+    "npm:pi-web-access@0.23.0",
     "npm:context-mode@1.0.169",
-    "npm:pi-hermes-memory@0.9.2"
+    "npm:pi-hermes-memory@0.9.5",
+    "npm:pi-zentui@0.20.1"
   ],
   "theme": "vivid",
   "enableInstallTelemetry": false,
