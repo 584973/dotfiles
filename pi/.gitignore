@@ -10,3 +10,4 @@
 !.pi/agent/extensions/pi-permission-system/
 !.pi/agent/extensions/pi-permission-system/config.json
 .pi/agent/extensions/pi-permission-system/logs/
+.config/pi/web-search-cache/
