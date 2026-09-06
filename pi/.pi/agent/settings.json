@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.85.1",
   "defaultProvider": "opencode-go",
   "defaultModel": "glm-5.3-flash",
   "defaultThinkingLevel": "high",
@@ -14,11 +14,11 @@
   "quietStartup": false,
   "hideThinkingBlock": false,
   "packages": [
-    "npm:@gotgenes/pi-permission-system@25.4.0",
-    "npm:@juicesharp/rpiv-ask-user-question@2.6.0",
-    "npm:pi-web-access@0.23.0",
+    "npm:@gotgenes/pi-permission-system@31.1.1",
+    "npm:@juicesharp/rpiv-ask-user-question@2.9.0",
+    "npm:pi-web-access@0.28.0",
     "npm:context-mode@1.0.169",
-    "npm:pi-zentui@0.20.1"
+    "npm:pi-zentui@0.22.3"
   ],
   "theme": "vivid",
   "enableInstallTelemetry": false,
