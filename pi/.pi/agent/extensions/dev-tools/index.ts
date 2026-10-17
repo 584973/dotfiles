@@ -18,6 +18,7 @@
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { registerGithubTools } from "./github.ts";
 import { registerGitTools } from "./git.ts";
 import { registerMavenTools } from "./maven.ts";
 import { registerTestTools } from "./tests.ts";
@@ -25,5 +26,6 @@ import { registerTestTools } from "./tests.ts";
 export default function devToolsExtension(pi: ExtensionAPI): void {
 	registerMavenTools(pi);
 	registerGitTools(pi);
+	registerGithubTools(pi);
 	registerTestTools(pi);
 }
