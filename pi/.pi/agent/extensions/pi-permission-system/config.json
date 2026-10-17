@@ -7,6 +7,12 @@
     "ask_user_question": "allow",
     "skill": "allow",
     "subagent": "allow",
+    "mvn_build": "allow",
+    "git_status": "allow",
+    "git_diff": "allow",
+    "git_log": "allow",
+    "git_commit": "allow",
+    "run_tests": "allow",
     "path": {
       "*": "allow",
       "/dev/sd*": "ask",
