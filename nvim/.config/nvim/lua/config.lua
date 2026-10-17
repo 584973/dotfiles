@@ -22,10 +22,6 @@ vim.keymap.set("i", "{", "{}<Left>")
 vim.keymap.set("i", '"', '""<Left>')
 vim.keymap.set("i", "'", "''<Left>")
 
--- Save and quit
-vim.keymap.set("n", "<leader>w", ":w<cr>")
-vim.keymap.set("n", "<leader>q", ":q<cr>")
-
 -- Save to clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>yy", '"+yy')
