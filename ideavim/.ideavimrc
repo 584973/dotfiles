@@ -81,14 +81,3 @@ map <leader>rl <Action>(RestoreDefaultLayout)
 
 nmap s <Action>(flash.search)
 xmap s <Action>(flash.search)
-
-nmap <leader><C-t> :action SetHarpoon2<cr>
-nmap <leader><C-n> :action SetHarpoon3<cr>
-nmap <leader><C-s> :action SetHarpoon4<cr>
-
-nmap <C-t> :action GotoHarpoon2<cr>
-nmap <C-n> :action GotoHarpoon3<cr>
-nmap <C-s> :action GotoHarpoon4<cr>
-
-nmap <C-e> :action ShowHarpoon<cr>
-nmap <C-a> :action AddToHarpoon<cr>
