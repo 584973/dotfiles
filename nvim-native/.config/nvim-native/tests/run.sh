@@ -20,3 +20,8 @@ printf '%s\n' 'error("Third-party package was loaded")' > "$plugin/dummy.lua"
 
 cd -- "$root"
 nvim --headless -i NONE -c "lua dofile('tests/smoke.lua')"
+nvim --headless -i NONE -c "lua dofile('tests/languages.lua')"
+if [[ "${NATIVE_LSP_INTEGRATION:-0}" == 1 ]]; then
+  GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off \
+    nvim --headless -i NONE -c "lua dofile('tests/language-integration.lua')"
+fi

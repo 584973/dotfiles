@@ -40,9 +40,13 @@ with `stow -D nvim-native`.
 - `search.lua`: file finding, text search, recent files, help, and marks.
 - `terminal.lua`: floating shell.
 - `tmux-nav.lua`: split and tmux pane navigation.
+- `lsp.lua`: enable available servers and attach buffer-local LSP mappings.
+- `completion.lua`: native LSP completion and snippet navigation.
+- `diagnostics.lua`: diagnostic display and navigation.
+- `formatting.lua`: manual external formatting, with native LSP fallback.
 
-Each feature keeps its settings and mappings together; there is no separate
-`custom/` directory.
+Server definitions live in native `lsp/<server>.lua` files. Each feature keeps
+its settings and mappings together; there is no separate `custom/` directory.
 
 ## What's kept
 
@@ -72,10 +76,56 @@ opens a result; `:cnext`, `:cprev`, and `:cclose` navigate or close the list.
 In netrw, Enter opens an entry, `-` goes up, `%` creates a file, `d` creates a
 directory, `R` renames, and `D` deletes (see `:help netrw-quickmap`).
 
+## Native language tooling
+
+Language tooling uses Neovim's built-in LSP client without `nvim-lspconfig`, a
+plugin manager, or automatic installation. Servers are enabled at startup only when
+their executable is on `PATH` **on the machine running Neovim**.
+
+| Language | Server executable | Preferred formatter |
+| --- | --- | --- |
+| Lua | `lua-language-server` | `stylua` |
+| Go | `gopls` | `gofmt` |
+| Python | `pyright-langserver --stdio`, `ruff server` | `black` |
+| JavaScript / TypeScript, including JSX / TSX | `typescript-language-server --stdio` | `prettier` |
+| HTML | `vscode-html-language-server --stdio` | `prettier` |
+
+LuaLS recognizes Neovim's `vim` global and uses LuaJIT settings. Root markers are
+configured per server; single-file operation is allowed when no project root
+is found. Missing servers and formatters do not prevent editing.
+
+### Keys
+
+- `gd`: definition; `K`: hover (Neovim's built-in mapping).
+- `Space gr`: references; `Space rn`: rename; `Space ca`: code actions.
+- `Space de`: diagnostic float; `Space dn` / `Space dp`: next / previous diagnostic.
+- `Space gf`: format the current buffer. Use the preferred formatter if present,
+  otherwise an attached LSP that supports formatting. Nothing formats on save.
+- Ctrl-x Ctrl-o: request LSP completion. Server trigger characters also open the
+  menu automatically; this is not completion on every typed character.
+- Ctrl-n / Ctrl-p: select a completion; Enter accepts a selected item, otherwise
+  inserts a newline. Ctrl-y also accepts; Ctrl-e dismisses the menu.
+- Tab / Shift-Tab: move through active native snippet placeholders. Outside a
+  snippet, those keys retain their normal behavior. No snippet collection is
+  downloaded. Ctrl-space is left alone for tmux.
+- Native Ctrl-n / Ctrl-p word completion and Ctrl-x Ctrl-f path completion remain
+  available without a language server.
+
+Formatting runs asynchronously against buffer contents. Failed processes or
+results arriving after further edits do not replace the buffer. External tools
+must be installed separately; projects may also need their normal dependencies
+and configuration. Formatters have a ten-second timeout.
+
+Diagnostics come from the language servers, including Ruff's Python linting and
+code actions. The old standalone `luacheck`, `golangci-lint`, and `eslint_d` hooks
+are **not** recreated: there is no separate lint-on-save framework, ESLint linting,
+or Go linting beyond what gopls provides. Use `:checkhealth vim.lsp` to inspect
+server configuration and availability.
+
 ## Deliberate differences
 
-- No LSP, diagnostics setup, language completion, snippets, linting, or formatting.
-  Neovim's ordinary built-in syntax and editing commands remain available.
+- Language tooling uses installed external programs, but no third-party Neovim
+  plugins. Neovim's ordinary built-in syntax and editing commands remain available.
 - Search is rooted at the current working directory (`:pwd`), not an inferred
   project root. File matching and text search skip `.git`, `node_modules`, and
   `.venv` contents. Native globbing does not include hidden files; use netrw or
@@ -98,5 +148,18 @@ bash nvim-native/.config/nvim-native/tests/run.sh
 ```
 
 This uses temporary XDG directories and checks startup, package isolation, fuzzy
-file completion, search and ignore behavior, netrw, bar rendering, and floating
-terminal reuse. It does not change tmux panes.
+file completion, search and ignore behavior, netrw, bar rendering, floating
+terminal reuse, language-server guards, completion/snippet mappings, and safe
+formatter application and fallback. It does not change tmux panes or require
+language tools to be installed.
+
+To additionally exercise installed language servers and formatters against
+temporary projects:
+
+```sh
+NATIVE_LSP_INTEGRATION=1 bash nvim-native/.config/nvim-native/tests/run.sh
+```
+
+The integration tests skip missing executables and do not install anything.
+They check server attachment, Lua hover/completion, Python/TypeScript diagnostics,
+and real formatting. Go toolchain and module downloads are disabled for the test.

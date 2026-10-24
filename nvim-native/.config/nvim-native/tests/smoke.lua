@@ -5,7 +5,7 @@ local jobs = {}
 local ok, err = xpcall(function()
   assert(vim.v.errmsg == "", vim.v.errmsg)
   assert(package.loaded["plugins"] == nil)
-  assert(package.loaded["lsp"] == nil)
+  assert(package.loaded["lsp"] ~= nil)
   assert(vim.o.packpath == vim.env.VIMRUNTIME)
   for _, path in ipairs(vim.api.nvim_list_runtime_paths()) do
     assert(not path:find("/pack/", 1, true) or vim.startswith(path, vim.env.VIMRUNTIME .. "/"), path)
