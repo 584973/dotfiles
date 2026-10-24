@@ -26,14 +26,14 @@ PACKAGES=(
   # Fonts / theme deps
   ttf-jetbrains-mono-nerd
   # Utilities
-  stow git
+  stow git eza
 )
 
 echo "==> Installing packages..."
 sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 
 # ── Stow modules ──────────────────────────────────────────────────────────────
-MODULES=(archlinux nvim tmux ghostty)
+MODULES=(archlinux nvim tmux ghostty shell)
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES"

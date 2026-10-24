@@ -16,6 +16,7 @@ FORMULAE=(
   git
   neovim
   tmux
+  eza
 )
 
 CASKS=(
@@ -36,7 +37,7 @@ echo "==> Installing Homebrew casks..."
 brew install --cask "${CASKS[@]}"
 
 # ── Stow modules ──────────────────────────────────────────────────────────────
-MODULES=(macos nvim tmux ghostty)
+MODULES=(macos nvim tmux ghostty shell)
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES"

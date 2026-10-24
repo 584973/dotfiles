@@ -13,13 +13,13 @@ macOS (Homebrew):
 ```sh
 # Install Homebrew if needed (see https://brew.sh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install stow neovim tmux ghostty aerospace borders
+brew install stow neovim tmux ghostty aerospace borders eza
 ```
 
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux ghostty hyprland hyprlock hypridle waybar rofi
+sudo pacman -S --needed stow neovim tmux ghostty hyprland hyprlock hypridle waybar rofi eza
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 
@@ -53,6 +53,7 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   # Then press prefix + I inside tmux to install plugins
   ```
+- `shell/.config/shell/aliases` — Optional eza aliases matching Omarchy’s `ls` setup. Stow `shell`, then add `source ~/.config/shell/aliases` to your existing `~/.zshrc`. The bootstrap scripts install eza; for manual setup, use `brew install eza` on macOS or `sudo pacman -S eza` on Arch.
 - Terminal
   - `ghostty/.config/ghostty` — Ghostty config.
 - macOS

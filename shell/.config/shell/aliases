@@ -1,0 +1,62 @@
+alias n="nvim"
+alias nalias="nvim .zshrc"
+
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lsa='ls -a'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -a'
+fi
+
+repo() {
+  url=$(git remote get-url origin 2>/dev/null) || {
+    echo "Not a git repo"
+    return 1
+  }
+  url=$(echo "$url" | sed -E 's#git@github.com:#https://github.com/#; s#\.git$##')
+  if command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$url" >/dev/null 2>&1
+  else
+    open "$url" >/dev/null 2>&1
+  fi
+}
+
+repo-pr() {
+  url=$(git remote get-url origin 2>/dev/null) || { echo "Not a git repo"; return 1; }
+
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || { echo "Could not determine branch"; return 1; }
+  [ "$branch" = "HEAD" ] && { echo "Detached HEAD; checkout a branch first"; return 1; }
+
+  # Determine default branch from origin/HEAD (falls back to main)
+  base=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##')
+  base=${base:-main}
+
+  # Convert SSH → HTTPS and strip .git
+  url=$(echo "$url" | sed -E 's#git@github.com:#https://github.com/#; s#\.git$##')
+
+  # GitHub PR creation URL (base...head)
+  # This assumes your branch is on the same repo (origin).
+  url="$url/compare/$base...$branch?expand=1"
+
+  if command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$url" >/dev/null 2>&1
+  else
+    open "$url" >/dev/null 2>&1
+  fi
+}
+
+pr() {
+  # Make sure we're in a git repo
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+    echo "Not a git repo"
+    return 1
+  }
+
+  # This opens the PR for the current branch if it exists
+  if gh pr view --web >/dev/null 2>&1; then
+    return 0
+  fi
+
+  echo "No PR found for this branch"
+  return 1
+}
