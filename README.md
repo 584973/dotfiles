@@ -46,8 +46,7 @@ Tip: Run `stow -D <module>` to remove symlinks and `stow -R <module>` to restow 
 
 Each top-level folder mirrors where files should live under `$HOME`. Stow only what you use.
 
-- `nvim/.config/nvim` — Primary Neovim 0.12+ config using the native package manager (`vim.pack`).
-- `nvim-legacy/.config/nvim` — Legacy Neovim config for older distros, using lazy.nvim.
+- `nvim/.config/nvim` — Neovim 0.12+ config using the native package manager (`vim.pack`).
 - `tmux/.tmux.conf` — tmux configuration. Install TPM to enable plugins:
   ```sh
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -137,36 +136,14 @@ scp -r nvim/.config/nvim user@host:~/.config/
 ## Theme & Fonts
 
 - Ghostty and Waybar use [Catppuccin Mocha](https://github.com/catppuccin/catppuccin).
-- Primary Neovim (`nvim/`) uses tokyonight; legacy Neovim (`nvim-legacy/`) uses Rose Pine.
+- Neovim (`nvim/`) uses tokyonight.
 - Fonts: Install a Nerd Font and set it in your terminal for icons and glyphs.
 
 ---
 
 ## Neovim Notes
 
-Two Neovim configs are available:
-
-**`nvim`** — primary config for Neovim 0.12+, using the native `vim.pack` package manager.
-
-**`nvim-legacy`** — fallback config for older distros, using [lazy.nvim](https://github.com/folke/lazy.nvim).
-
-Use `nvim-legacy` on systems where Neovim 0.12+ is not available from the distro or package manager.
-
-### Switching to `nvim-legacy`
-
-If you already have the primary `nvim` module stowed, unstow it first, then stow `nvim-legacy`:
-
-```sh
-stow -D nvim
-stow nvim-legacy
-```
-
-To go back to the primary config:
-
-```sh
-stow -D nvim-legacy
-stow nvim
-```
+The `nvim` module requires Neovim 0.12+ and uses the native `vim.pack` package manager; there is no separate plugin-sync step.
 
 ---
 
