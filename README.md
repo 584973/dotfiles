@@ -19,7 +19,7 @@ brew install stow neovim tmux ghostty aerospace borders eza
 Arch Linux:
 
 ```sh
-sudo pacman -S --needed stow neovim tmux ghostty hyprland hyprlock hypridle waybar rofi eza
+sudo pacman -S --needed stow neovim tmux ghostty zsh hyprland hyprlock hypridle waybar rofi eza
 # Some Hyprland extras might require yay: https://github.com/Jguer/yay
 ```
 

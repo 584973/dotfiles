@@ -10,8 +10,8 @@ PACKAGES=(
   hyprland hyprlock hypridle xdg-desktop-portal-hyprland
   # Bar, notifications, launcher
   waybar swaync rofi
-  # Terminal
-  ghostty
+  # Terminal and shell
+  ghostty zsh
   # Browser / apps
   firefox obsidian nemo
   # Bluetooth & network
