@@ -3,6 +3,7 @@
 ## Project Structure & Module Organization
 - Top-level folders map directly to `$HOME`; stow only the pieces you need.
 - Cross-platform: `nvim/.config/nvim` (native vim.pack, Neovim 0.12+), `tmux/.tmux.conf`, `ideavim/.ideavimrc`, `vim/.vimrc`; terminal: `ghostty/.config/ghostty`; agent: `pi/.pi/agent/settings.json`.
+- Cross-platform shell: `shell/.config/shell/aliases` (aliases only) and `shell/.config/shell/shortcuts.sh` (`repo`/`pr`/`repo-pr` gh shortcuts, shared by zsh, bash and Pi's bash tool — put new shell functions there, not in `aliases`).
 - Platform targets: `archlinux/.config/{hypr,waybar,rofi}` for Hyprland/Wayland; `macos/.config/{aerospace,borders}` for macOS.
 - Bootstrap install scripts live in `scripts/` (e.g., `install-macos.sh`, `install-arch.sh`, `install-lsp-macos.sh`).
 - Keep trees matching real install paths so `stow <module>` places files correctly.

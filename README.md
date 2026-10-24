@@ -53,6 +53,7 @@ Each top-level folder mirrors where files should live under `$HOME`. Stow only w
   # Then press prefix + I inside tmux to install plugins
   ```
 - `shell/.config/shell/aliases` — Optional eza aliases matching Omarchy’s `ls` setup. Stow `shell`, then add `source ~/.config/shell/aliases` to your existing `~/.zshrc`. The bootstrap scripts install eza; for manual setup, use `brew install eza` on macOS or `sudo pacman -S eza` on Arch.
+- `shell/.config/shell/shortcuts.sh` — GitHub shortcuts built on the `gh` CLI: `repo` (open the repo, file, issue or PR), `pr` (open the PR for the current branch) and `repo-pr` (open the GitHub page to create a PR). Also stowed with `shell`; source it from `~/.zshrc` and/or `~/.bashrc`. On Linux the browser is opened detached, so the terminal is not blocked and `Ctrl-C` does not close it.
 - Terminal
   - `ghostty/.config/ghostty` — Ghostty config.
 - macOS
