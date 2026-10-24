@@ -1,0 +1,28 @@
+{
+  "icons": {
+    "mode": "nerd"
+  },
+  "colorSources": {
+    "editor": "theme",
+    "userMessages": "theme"
+  },
+  "components": {
+    "editor": {
+      "enabled": true,
+      "style": "opencode",
+      "colors": {
+        "border": "border"
+      }
+    },
+    "footer": {
+      "style": "starship"
+    },
+    "userMessages": {
+      "enabled": true,
+      "style": "framed",
+      "colors": {
+        "border": "border"
+      }
+    }
+  }
+}
