@@ -14,11 +14,11 @@
   "quietStartup": false,
   "hideThinkingBlock": false,
   "packages": [
-    "npm:@gotgenes/pi-permission-system@31.1.1",
-    "npm:@juicesharp/rpiv-ask-user-question@2.12.0",
-    "npm:pi-web-access@0.37.0",
-    "npm:pi-zentui@0.22.3",
-    "npm:pi-subagents@0.76.1"
+    "npm:@gotgenes/pi-permission-system@40.3.0",
+    "npm:@juicesharp/rpiv-ask-user-question@2.13.9",
+    "npm:pi-web-access@0.42.0",
+    "npm:pi-zentui@0.31.1",
+    "npm:pi-subagents@0.79.0"
   ],
   "theme": "vivid",
   "enableInstallTelemetry": false,
