@@ -138,8 +138,7 @@
     "external_directory": {
       "*": "ask",
       "~/.agents/skills/*": "allow",
-      "~/.pi/agent/skills/*": "allow",
-      "~/.pi/agent/npm/node_modules/context-mode/skills/*": "allow"
+      "~/.pi/agent/skills/*": "allow"
     },
     "ls": "allow",
     "find": "allow",
@@ -147,14 +146,9 @@
     "write": "allow",
     "edit": "allow",
     "grep": "allow",
-    "ctx_search": "allow",
     "memory": "allow",
     "memory_search": "allow",
     "session_search": "allow",
-    "ctx_index": "ask",
-    "ctx_fetch_and_index": "ask",
-    "ctx_stats": "allow",
-    "ctx_doctor": "allow",
     "mcp": {
       "*": "ask",
       "mcp_status": "allow",
