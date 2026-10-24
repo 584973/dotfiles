@@ -20,9 +20,9 @@ local ok, err = xpcall(function()
   vim.fn.writefile({ "space" }, directory .. "/space name.txt")
   vim.cmd.cd(vim.fn.fnameescape(directory))
 
-  local native = require("native")
-  assert(vim.deep_equal(native.find("smpl", true), { "nested/sample.txt" }))
-  assert(#native.find("ignored", true) == 0)
+  local search = require("search")
+  assert(vim.deep_equal(search.find("smpl", true), { "nested/sample.txt" }))
+  assert(#search.find("ignored", true) == 0)
   assert(vim.deep_equal(vim.fn.getcompletion("find smpl", "cmdline"), { "nested/sample.txt" }))
   vim.cmd.find("smpl")
   assert(vim.api.nvim_buf_get_name(0) == directory .. "/nested/sample.txt")
@@ -33,20 +33,20 @@ local ok, err = xpcall(function()
   local notices = {}
   vim.ui.input = function(_, callback) callback(pattern) end
   vim.notify = function(message) notices[#notices + 1] = message end
-  native.grep()
+  search.grep()
   assert(#vim.fn.getqflist() == 2)
   assert(vim.bo.buftype == "quickfix")
   vim.cmd.cclose()
   pattern = "a/b | c"
-  native.grep()
+  search.grep()
   assert(#vim.fn.getqflist() == 1)
   vim.cmd.cclose()
   pattern = "no-such-pattern"
-  native.grep()
+  search.grep()
   assert(#notices == 1 and notices[1]:find("E480", 1, true), vim.inspect(notices))
   assert(#vim.fn.getqflist() == 0)
   pattern = nil
-  native.grep()
+  search.grep()
   vim.ui.input = input
   vim.notify = notify
 

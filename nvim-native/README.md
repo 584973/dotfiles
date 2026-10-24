@@ -27,6 +27,23 @@ NVIM_APPNAME=nvim-native nvim
 Plain `nvim` still uses your original configuration. Undo the separate install
 with `stow -D nvim-native`.
 
+## Code organization
+
+`init.lua` loads feature-focused modules directly from `lua/`:
+
+- `options.lua`: general editor settings.
+- `editing.lua`: pairs, clipboard, line movement, and yank highlighting.
+- `colorscheme.lua`: Catppuccin and transparency.
+- `buffers.lua`: buffer mappings and the buffer tabline.
+- `statusline.lua`: global statusline.
+- `explorer.lua`: netrw settings and directory browsing.
+- `search.lua`: file finding, text search, recent files, help, and marks.
+- `terminal.lua`: floating shell.
+- `tmux-nav.lua`: split and tmux pane navigation.
+
+Each feature keeps its settings and mappings together; there is no separate
+`custom/` directory.
+
 ## What's kept
 
 - Existing indentation, relative numbers, cursor line, whitespace markers,
