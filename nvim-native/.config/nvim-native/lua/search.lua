@@ -5,12 +5,20 @@ vim.opt.wildoptions:append("fuzzy")
 vim.opt.wildignore:append({ "*/.git/*", "*/node_modules/*", "*/.venv/*" })
 vim.opt.findfunc = "v:lua.require'search'.find"
 
+local excluded = { [".git"] = true, node_modules = true, [".venv"] = true }
+local function include(path)
+  return not excluded[vim.fs.basename(path)]
+end
+
 -- Use native fuzzy matching with :find's native completion menu.
 function M.find(pattern, _)
-  local files = vim.fn.glob("**/*", false, true)
-  files = vim.tbl_filter(function(file)
-    return vim.fn.filereadable(file) == 1
-  end, files)
+  local files = {}
+  for file in vim.fs.dir(".", { depth = math.huge, skip = include }) do
+    if include(file) and vim.fn.filereadable(file) == 1 then
+      files[#files + 1] = file
+    end
+  end
+  table.sort(files)
   return pattern == "" and files or vim.fn.matchfuzzy(files, pattern)
 end
 

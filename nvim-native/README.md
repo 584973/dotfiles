@@ -38,6 +38,7 @@ with `stow -D nvim-native`.
 - `statusline.lua`: global statusline.
 - `explorer.lua`: netrw settings and directory browsing.
 - `search.lua`: file finding, text search, recent files, help, and marks.
+- `dashboard.lua`: start screen with recent files and create/find actions.
 - `terminal.lua`: floating shell.
 - `tmux-nav.lua`: split and tmux pane navigation.
 - `lsp.lua`: enable available servers and attach buffer-local LSP mappings.
@@ -56,6 +57,18 @@ its settings and mappings together; there is no separate `custom/` directory.
 - `Space tt`: persistent floating shell; Escape hides it.
 - Ctrl-h/j/k/l: navigate splits, then tmux panes at the edges.
 - Yank highlighting and a transparent terminal background.
+
+## Start screen
+
+Start without file arguments to see a centered dashboard in the current directory.
+It shows up to five recently opened files under that directory, including subdirectories.
+Use `j` / `k` or the arrow keys to select a file or action, then press Enter.
+The `1`–`5` shortcuts open files directly; `n` prompts for a new filename and `f`
+starts native `:find` completion. Type a query, then press Tab to see matches.
+The screen uses the configured Catppuccin colors and adds no plugins.
+
+File arguments, piped input, and existing buffer content are left unchanged.
+The native config has its own recent-file history, separate from plain `nvim`.
 
 ## Native replacements
 
@@ -128,8 +141,8 @@ server configuration and availability.
   plugins. Neovim's ordinary built-in syntax and editing commands remain available.
 - Search is rooted at the current working directory (`:pwd`), not an inferred
   project root. File matching and text search skip `.git`, `node_modules`, and
-  `.venv` contents. Native globbing does not include hidden files; use netrw or
-  `:edit` for those. Search does not read `.gitignore`.
+  `.venv` contents. File finding includes dotfiles and hidden directories;
+  text search still skips them. Search does not read `.gitignore`.
 - Text search runs when submitted, not live, and uses Vim regex rather than
   ripgrep syntax. It can be slower on large directory trees.
 - netrw is not Oil: directory listings are not editable buffers. Recent files,
@@ -148,8 +161,9 @@ bash nvim-native/.config/nvim-native/tests/run.sh
 ```
 
 This uses temporary XDG directories and checks startup, package isolation, fuzzy
-file completion, search and ignore behavior, netrw, bar rendering, floating
-terminal reuse, language-server guards, completion/snippet mappings, and safe
+file completion, search and ignore behavior, dashboard navigation and actions,
+netrw, bar rendering, floating terminal reuse, language-server guards,
+completion/snippet mappings, and safe
 formatter application and fallback. It does not change tmux panes or require
 language tools to be installed.
 

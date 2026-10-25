@@ -18,6 +18,14 @@ local ok, err = xpcall(function()
   vim.fn.writefile({ "needle ignored" }, directory .. "/node_modules/ignored.txt")
   vim.fn.writefile({ "needle ignored" }, directory .. "/.git/ignored.txt")
   vim.fn.writefile({ "space" }, directory .. "/space name.txt")
+  vim.fn.writefile({ "hidden root fixture" }, directory .. "/.hidden-root.txt")
+  vim.fn.mkdir(directory .. "/.config/nested/.inner", "p")
+  vim.fn.writefile({ "hidden directory fixture" }, directory .. "/.config/nested/.inner/hidden-deep.txt")
+  vim.fn.writefile({ "nested dotfile fixture" }, directory .. "/nested/.hidden-nested.txt")
+  for _, path in ipairs({ ".venv", ".config/.git", "nested/node_modules", ".config/.venv" }) do
+    vim.fn.mkdir(directory .. "/" .. path, "p")
+    vim.fn.writefile({ "excluded fixture" }, directory .. "/" .. path .. "/ignored.txt")
+  end
   vim.cmd.cd(vim.fn.fnameescape(directory))
 
   local search = require("search")
@@ -26,6 +34,14 @@ local ok, err = xpcall(function()
   assert(vim.deep_equal(vim.fn.getcompletion("find smpl", "cmdline"), { "nested/sample.txt" }))
   vim.cmd.find("smpl")
   assert(vim.api.nvim_buf_get_name(0) == directory .. "/nested/sample.txt")
+
+  assert(vim.deep_equal(search.find("hidden-root", true), { ".hidden-root.txt" }))
+  assert(vim.deep_equal(search.find("hidden-deep", true), { ".config/nested/.inner/hidden-deep.txt" }))
+  assert(vim.deep_equal(search.find("hidden-nested", true), { "nested/.hidden-nested.txt" }))
+  assert(vim.tbl_contains(search.find("", true), ".hidden-root.txt"))
+  assert(vim.deep_equal(vim.fn.getcompletion("find hidden-root", "cmdline"), { ".hidden-root.txt" }))
+  vim.cmd.find("hidden-root")
+  assert(vim.api.nvim_buf_get_name(0) == directory .. "/.hidden-root.txt")
 
   local input = vim.ui.input
   local notify = vim.notify

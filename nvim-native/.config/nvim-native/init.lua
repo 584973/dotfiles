@@ -11,6 +11,7 @@ require("statusline")
 
 require("explorer")
 require("search")
+require("dashboard")
 require("terminal")
 require("tmux-nav")
 require("completion")
