@@ -66,6 +66,7 @@ local function render(buf, win, cwd, files, prefix)
   row({})
   row({ { "  [n]  ", "Special" }, { "Create file", "Normal" } }, false, "n")
   row({ { "  [f]  ", "Special" }, { "Find file", "Normal" } }, false, "f")
+  row({ { "  [q]  ", "Special" }, { "Quit", "Normal" } }, false, "q")
   row({})
   row({ { "↑/↓ or j/k to move · Enter to select", "Comment" } }, true)
 
@@ -205,6 +206,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
     action("f", function()
       vim.api.nvim_feedkeys(":find ", "n", false)
     end, "Find file")
+    action("q", function()
+      vim.cmd.quitall()
+    end, "Quit Neovim")
 
     for _, key in ipairs({ "j", "<Down>" }) do
       vim.keymap.set("n", key, function()

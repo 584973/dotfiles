@@ -20,7 +20,7 @@ printf '%s\n' 'error("Third-party package was loaded")' > "$plugin/dummy.lua"
 
 cd -- "$root"
 nvim --headless -i NONE -c "lua dofile('tests/smoke.lua')"
-for scenario in layout empty create cancel find argument modified named stdin open{1..5} shortcut{1..5}; do
+for scenario in layout empty create cancel find quit quit-enter quit-unsaved argument modified named stdin open{1..5} shortcut{1..5}; do
   NATIVE_DASHBOARD_CASE="$scenario" nvim --headless -i NONE -c "lua dofile('tests/dashboard.lua')"
 done
 nvim --headless -i NONE -c "lua dofile('tests/languages.lua')"

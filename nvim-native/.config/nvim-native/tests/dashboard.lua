@@ -1,6 +1,6 @@
 local directory = vim.fn.tempname()
 local cwd = vim.fn.getcwd()
-local input, feedkeys = vim.ui.input, vim.api.nvim_feedkeys
+local input, feedkeys, quitall = vim.ui.input, vim.api.nvim_feedkeys, vim.cmd.quitall
 local case = assert(vim.env.NATIVE_DASHBOARD_CASE)
 
 local ok, err = xpcall(function()
@@ -82,6 +82,7 @@ local ok, err = xpcall(function()
       true
     )
   )
+  assert(lines:find("[q]  Quit", 1, true))
   assert(not lines:find("outside.txt", 1, true))
   assert(not lines:find("missing.txt", 1, true))
   assert(not lines:find("sixth.txt", 1, true))
@@ -109,6 +110,8 @@ local ok, err = xpcall(function()
     press("j")
     selected("f")
     press("j")
+    selected("q")
+    press("j")
     selected("n")
     return
   end
@@ -119,11 +122,15 @@ local ok, err = xpcall(function()
 
   if case == "layout" then
     press("k")
+    selected("q")
+    press("<Up>")
     selected("f")
     press("<Up>")
     selected("n")
     press("j")
     selected("f")
+    press("<Down>")
+    selected("q")
     press("<Down>")
     selected("1")
     for i, columns in ipairs({ 120, 40, 20, 80 }) do
@@ -176,10 +183,34 @@ local ok, err = xpcall(function()
       called = called + 1
     end
     press("k")
+    selected("q")
+    press("k")
     selected("f")
     press("<CR>")
     press("f")
     assert(called == 2)
+  elseif case == "quit" or case == "quit-enter" then
+    local called = false
+    vim.cmd.quitall = function(...)
+      assert(select("#", ...) == 0, "quit must not force-discard changes")
+      called = true
+    end
+    if case == "quit-enter" then
+      press("<Up>")
+      selected("q")
+      press("<CR>")
+    else
+      press("q")
+    end
+    assert(called)
+  elseif case == "quit-unsaved" then
+    local unsaved = vim.api.nvim_create_buf(true, false)
+    vim.api.nvim_buf_set_lines(unsaved, 0, -1, false, { "unsaved text" })
+    local quit_ok, quit_err = pcall(press, "q")
+    assert(not quit_ok and tostring(quit_err):find("E37:", 1, true), tostring(quit_err))
+    assert(vim.bo[unsaved].modified)
+    assert(vim.api.nvim_get_current_buf() == buf)
+    vim.v.errmsg = ""
   else
     error("unknown test case: " .. case)
   end
@@ -187,7 +218,7 @@ local ok, err = xpcall(function()
   assert(vim.v.errmsg == "", vim.v.errmsg)
 end, debug.traceback)
 
-vim.ui.input, vim.api.nvim_feedkeys = input, feedkeys
+vim.ui.input, vim.api.nvim_feedkeys, vim.cmd.quitall = input, feedkeys, quitall
 vim.cmd.cd(cwd)
 vim.fn.delete(directory, "rf")
 if not ok then

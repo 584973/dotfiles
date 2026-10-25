@@ -65,6 +65,7 @@ It shows up to five recently opened files under that directory, including subdir
 Use `j` / `k` or the arrow keys to select a file or action, then press Enter.
 The `1`–`5` shortcuts open files directly; `n` prompts for a new filename and `f`
 starts native `:find` completion. Type a query, then press Tab to see matches.
+Press `q` or select Quit to exit Neovim without discarding unsaved changes.
 The screen uses the configured Catppuccin colors and adds no plugins.
 
 File arguments, piped input, and existing buffer content are left unchanged.
