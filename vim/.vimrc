@@ -25,6 +25,8 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set scrolloff=8
+set splitbelow
+set splitright
 
 syntax on
 colorscheme default
