@@ -88,6 +88,10 @@ Use Tab / Shift-Tab or Ctrl-n / Ctrl-p in completion menus. In quickfix, Enter
 opens a result; `:cnext`, `:cprev`, and `:cclose` navigate or close the list.
 In netrw, Enter opens an entry, `-` goes up, `%` creates a file, `d` creates a
 directory, `R` renames, and `D` deletes (see `:help netrw-quickmap`).
+Use `o` to open a file in a split below, or `v` to open it in a split to the right.
+The explorer shows a custom, theme-colored command guide above the file list,
+including create, rename, delete, split, and hidden-file commands. The guide is
+not selectable and does not change netrw's file entries. Press `F1` for full help.
 
 ## Native language tooling
 

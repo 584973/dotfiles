@@ -70,6 +70,64 @@ local ok, err = xpcall(function()
   vim.fn.maparg("e", "n", false, true).callback()
   assert(vim.bo.filetype == "netrw")
   assert(vim.b.netrw_curdir == directory)
+  local explorer = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+  assert(not explorer:find("Quick Help:", 1, true))
+  assert(not explorer:find("EXPLORE", 1, true))
+  local namespace = vim.api.nvim_get_namespaces()["explorer-hints"]
+  local function check_guide()
+    local marks = vim.api.nvim_buf_get_extmarks(0, namespace, 0, -1, { details = true })
+    assert(#marks == 1 and marks[1][2] == 0 and marks[1][3] == 0)
+    local details = marks[1][4]
+    assert(details.virt_lines_above and details.virt_lines_leftcol)
+    assert(vim.wait(200, function()
+      return vim.fn.winsaveview().topfill == #details.virt_lines
+    end), "explorer guide is outside the viewport")
+    local lines = {}
+    for _, chunks in ipairs(details.virt_lines) do
+      local text = {}
+      for _, chunk in ipairs(chunks) do
+        text[#text + 1] = chunk[1]
+      end
+      lines[#lines + 1] = table.concat(text)
+    end
+    local guide = table.concat(lines, "\n")
+    for _, hint in ipairs({
+      "EXPLORE", "Enter Open", "- Parent", "% New file", "d New folder",
+      "R Rename", "D Delete", "o Split down", "v Split right", "gh Hidden", "F1 Help",
+    }) do
+      assert(guide:find(hint, 1, true), "missing explorer hint: " .. hint)
+    end
+    assert(vim.fn.maparg("<F1>", "n"):find("netrw-quickhelp", 1, true))
+  end
+  check_guide()
+  vim.cmd.Explore(vim.fn.fnameescape(directory .. "/nested"))
+  assert(vim.b.netrw_curdir == directory .. "/nested")
+  check_guide()
+  vim.cmd.Explore(vim.fn.fnameescape(directory))
+  check_guide()
+  local entry = vim.fn.search("^space name.txt$", "nw")
+  assert(entry > 0)
+  local browser = vim.api.nvim_get_current_win()
+  for _, key in ipairs({ "o", "v" }) do
+    vim.api.nvim_win_set_cursor(browser, { entry, 0 })
+    vim.api.nvim_feedkeys(key, "xt", false)
+    local split = vim.api.nvim_get_current_win()
+    assert(split ~= browser)
+    assert(vim.api.nvim_buf_get_name(0) == directory .. "/space name.txt")
+    local opened = vim.api.nvim_win_get_position(split)
+    local original = vim.api.nvim_win_get_position(browser)
+    if key == "o" then
+      assert(opened[1] > original[1] and opened[2] == original[2], "split did not open below")
+    else
+      assert(opened[2] > original[2] and opened[1] == original[1], "split did not open to the right")
+    end
+    vim.api.nvim_win_close(split, false)
+    vim.api.nvim_set_current_win(browser)
+  end
+  vim.api.nvim_win_set_cursor(0, { entry, 0 })
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "xt", false)
+  assert(vim.api.nvim_buf_get_name(0) == directory .. "/space name.txt")
+  assert(#vim.api.nvim_buf_get_extmarks(0, namespace, 0, -1, {}) == 0)
   vim.cmd.enew()
   vim.api.nvim_buf_set_name(0, directory .. "/100%native.txt")
   vim.api.nvim_buf_set_lines(0, 0, -1, false, { "changed" })
