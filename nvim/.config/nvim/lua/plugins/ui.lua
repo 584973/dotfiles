@@ -20,4 +20,22 @@ require("oil").setup({
 	},
 })
 
-vim.keymap.set("n", "e", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+require("snacks").setup({
+	picker = {
+		enabled = true,
+		sources = {
+			explorer = {
+				hidden = true,
+				auto_close = true,
+				jump = { close = true },
+				layout = { preset = "sidebar", preview = false },
+			},
+		},
+	},
+})
+
+vim.keymap.set("n", "e", function()
+	Snacks.picker.explorer()
+end, { desc = "Open file explorer" })
