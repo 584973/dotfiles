@@ -33,6 +33,8 @@ Escalate only when:
 
 Only change what was requested or clearly required for correctness. Do not add speculative features, compatibility fallbacks, abstractions, comments, or helpers. Prefer the smallest clean solution that fits the existing design.
 
+When addressing review feedback, fix only the specific mechanism the user approved. Present adjacent optimizations or architectural changes separately before implementing them.
+
 For libraries, SDKs, frameworks, and public APIs, treat backward compatibility as a real requirement. For application code, do not add compatibility shims without evidence they are needed.
 
 ## Communication
@@ -67,6 +69,14 @@ Project instructions override global defaults. Respect `AGENTS.md`, `CLAUDE.md`,
 Match the repository’s architecture, naming, formatting, testing style, directory layout, package manager, and commit conventions. Do not impose a preferred framework or structure when the project already has one.
 
 For Java and Kotlin projects, inspect repository build files and source first. Prefer official documentation, source repositories, or package metadata for external dependency details.
+
+### Test and Clean Up
+
+Validate changes as you make them. Remove temporary files, debug output, commented-out code, and hardcoded test values before finishing. Report commands run, relevant results, and any residual risks.
+
+### Preserve Test Coverage
+
+When extending tests, identify what behavior existing tests uniquely cover and preserve valid scenarios instead of repurposing them for new behavior. Prefer adding a separate test for the new case. If a behavior change invalidates an existing assertion, update that test's setup to retain its success-path coverage under the new preconditions, and add a separate regression test for the new behavior. Remove or replace coverage only when the behavior is intentionally retired or equivalent coverage remains; explain that trade-off.
 
 ## Safety
 
