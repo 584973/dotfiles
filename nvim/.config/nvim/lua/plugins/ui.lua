@@ -1,5 +1,8 @@
 -- Colorscheme
-require("tokyonight").setup({ transparent = true })
+require("tokyonight").setup({
+	transparent = true,
+	styles = { floats = "transparent", sidebars = "transparent" },
+})
 vim.cmd.colorscheme("tokyonight")
 
 -- Tabs
