@@ -5,6 +5,7 @@
 #   repo [<file>|<number>|flags]  open the repository (or file/PR/issue) on GitHub
 #   pr   [<number>]               open the pull request for the current branch
 #   repo-pr                       open the current branch on GitHub to create a pull request
+#   mtest <class> [Maven options]  run a test class from the current Maven directory
 #
 # repo passes arguments straight to 'gh browse', so these work too:
 #   repo --actions | --releases | --wiki | --settings | --projects
@@ -41,6 +42,24 @@ _gh_branch() {
     return 1
   fi
   printf '%s\n' "$branch"
+}
+
+mtest() {
+  case "${1-}" in
+    ''|-*)
+      printf '%s\n' 'usage: mtest <class> [Maven options...]' >&2
+      return 2
+      ;;
+  esac
+
+  local test_class runner
+  test_class=$1
+  runner=mvn
+  shift
+  if [ -f ./mvnw ]; then
+    runner=./mvnw
+  fi
+  "$runner" "-Dtest=$test_class" test "$@"
 }
 
 repo() {
