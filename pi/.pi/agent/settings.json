@@ -1,16 +1,8 @@
 {
   "lastChangelogVersion": "1.3.0",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4.1-flash",
-  "defaultThinkingLevel": "high",
-  "enabledModels": [
-    "openai-codex/gpt-6-luna:medium",
-    "openai-codex/gpt-6.1-sol:medium",
-    "openai-codex/gpt-6-astra:medium",
-    "opencode-go/kimi-k3:medium",
-    "opencode-go/kimi-k2.7-code:medium",
-    "opencode-go/deepseek-v4.1-flash:high"
-  ],
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-6-luna",
+  "defaultThinkingLevel": "medium",
   "quietStartup": false,
   "hideThinkingBlock": false,
   "packages": [
