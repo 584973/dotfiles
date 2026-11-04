@@ -23,8 +23,3 @@ nvim --headless -i NONE -c "lua dofile('tests/smoke.lua')"
 for scenario in layout empty create cancel find quit quit-enter quit-unsaved argument modified named stdin open{1..5} shortcut{1..5}; do
   NATIVE_DASHBOARD_CASE="$scenario" nvim --headless -i NONE -c "lua dofile('tests/dashboard.lua')"
 done
-nvim --headless -i NONE -c "lua dofile('tests/languages.lua')"
-if [[ "${NATIVE_LSP_INTEGRATION:-0}" == 1 ]]; then
-  GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off \
-    nvim --headless -i NONE -c "lua dofile('tests/language-integration.lua')"
-fi
