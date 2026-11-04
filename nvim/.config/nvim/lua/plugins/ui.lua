@@ -33,7 +33,11 @@ require("snacks").setup({
 				hidden = true,
 				auto_close = true,
 				jump = { close = true },
-				layout = { preset = "sidebar", preview = false },
+				layout = {
+					preset = "sidebar",
+					preview = false,
+					layout = { width = 0.25, min_width = 30, max_width = 50 },
+				},
 			},
 		},
 	},

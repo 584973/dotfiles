@@ -34,6 +34,9 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
 
+-- Save
+vim.keymap.set("n", "<leader>w", ":w<cr>")
+
 -- Lazygit
 vim.keymap.set("n", "<leader>lg", ":LazyGit<cr>", { silent = true })
 
