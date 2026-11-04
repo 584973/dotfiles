@@ -27,6 +27,22 @@ NVIM_APPNAME=nvim-native nvim
 Plain `nvim` still uses your original configuration. Undo the separate install
 with `stow -D nvim-native`.
 
+## Use as the server's `nvim` config
+
+To install this config on a remote server without copying its tests, run this
+from the dotfiles repository root:
+
+```sh
+rsync -av --exclude='tests/' \
+  nvim-native/.config/nvim-native/ \
+  user@server:~/.config/nvim/
+```
+
+Replace `user@server` with your SSH destination. This installs the config at
+`~/.config/nvim`, so run `nvim` normally on the server. Neovim 0.12+ is required.
+To update it, run the same command again. The tests remain in your local checkout
+and are not copied to the server.
+
 ## Code organization
 
 `init.lua` loads feature-focused modules directly from `lua/`:
@@ -91,8 +107,8 @@ not selectable and does not change netrw's file entries. Press `F1` for full hel
 
 ## Deliberate differences
 
-- Language tooling uses installed external programs, but no third-party Neovim
-  plugins. Neovim's ordinary built-in syntax and editing commands remain available.
+- Neovim's ordinary built-in syntax and editing commands remain available; this
+  config does not set up language servers, diagnostics, completion, or formatting.
 - Search is rooted at the current working directory (`:pwd`), not an inferred
   project root. File matching and text search skip `.git`, `node_modules`, and
   `.venv` contents. File finding includes dotfiles and hidden directories;
