@@ -31,6 +31,7 @@ require("snacks").setup({
 		sources = {
 			explorer = {
 				hidden = true,
+				ignored = true,
 				auto_close = true,
 				jump = { close = true },
 				layout = {
