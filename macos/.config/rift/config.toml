@@ -80,6 +80,10 @@ workspace = "General"
 service = "Alt + Shift"
 
 [keys]
+# Swallow macOS Hide and Hide Others shortcuts, as in the AeroSpace config.
+"Meta + H" = { exec = "/usr/bin/true" }
+"Meta + Alt + H" = { exec = "/usr/bin/true" }
+
 "Alt + H" = { move_focus = "left" }
 "Alt + J" = { move_focus = "down" }
 "Alt + K" = { move_focus = "up" }
