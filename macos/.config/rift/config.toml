@@ -1,0 +1,128 @@
+[settings]
+# Manage every Space by default; AeroSpace does not require per-Space activation.
+default_disable = false
+focus_follows_mouse = true
+mouse_follows_focus = true
+mouse_hides_on_focus = true
+hot_reload = true
+
+[settings.layout]
+mode = "traditional"
+window_insertion_point = "next_to_selection"
+
+[settings.layout.traditional]
+equalize_nodes = true
+
+[settings.layout.gaps.outer]
+top = 5.0
+left = 5.0
+bottom = 5.0
+right = 5.0
+
+[settings.layout.gaps.inner]
+horizontal = 15.0
+vertical = 15.0
+
+[settings.ui.menu_bar]
+enabled = true
+show_empty = false
+mode = "active"
+active_label = "name"
+display_style = "label"
+
+[virtual_workspaces]
+mode = "global"
+enabled = true
+default_workspace_count = 7
+auto_assign_windows = true
+preserve_focus_per_workspace = true
+workspace_auto_back_and_forth = true
+prevent_wrapping = false
+workspace_names = ["Terminal", "Browser", "Editor", "Slack", "Office", "General", "Music"]
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.microsoft.teams2"
+workspace = "Office"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.microsoft.Outlook"
+workspace = "Office"
+
+[[virtual_workspaces.app_rules]]
+app_id = "md.obsidian"
+workspace = "Slack"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.tinyspeck.slackmacgap"
+workspace = "Slack"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.spotify.client"
+workspace = "Music"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.bitwarden.desktop"
+workspace = "General"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.cisco.secureclient.gui"
+workspace = "General"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.hnc.Discord"
+workspace = "General"
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.apple.MobileSMS"
+workspace = "General"
+
+[modifier_combinations]
+service = "Alt + Shift"
+
+[keys]
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+
+"service + H" = { move_node = "left" }
+"service + J" = { move_node = "down" }
+"service + K" = { move_node = "up" }
+"service + L" = { move_node = "right" }
+
+"Alt + Shift + Minus" = { resize_window_shrink = "smart" }
+"Alt + Shift + Equal" = { resize_window_grow = "smart" }
+
+"Alt + Slash" = "toggle_orientation"
+"Alt + Comma" = "toggle_stack"
+"Alt + Shift + F" = "toggle_fullscreen"
+"Alt + Shift + B" = "toggle_window_floating"
+
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+"Alt + 5" = { switch_to_workspace = 4 }
+"Alt + 6" = { switch_to_workspace = 5 }
+"Alt + M" = { switch_to_workspace = 6 }
+
+"service + 1" = { move_window_to_workspace = 0 }
+"service + 2" = { move_window_to_workspace = 1 }
+"service + 3" = { move_window_to_workspace = 2 }
+"service + 4" = { move_window_to_workspace = 3 }
+"service + 5" = { move_window_to_workspace = 4 }
+"service + 6" = { move_window_to_workspace = 5 }
+"service + M" = { move_window_to_workspace = 6 }
+
+"Alt + Tab" = "switch_to_last_workspace"
+"Alt + Shift + Tab" = { move_workspace_to_display = { selector = "right", wrap_around = true } }
+"Alt + Shift + Semicolon" = { binding_mode = "service" }
+
+[binding_modes.service]
+"Escape" = ["reload_config", { binding_mode = "default" }]
+"R" = ["balance", { binding_mode = "default" }]
+"F" = ["toggle_window_floating", { binding_mode = "default" }]
+"H" = [{ join_window = "left" }, { binding_mode = "default" }]
+"J" = [{ join_window = "down" }, { binding_mode = "default" }]
+"K" = [{ join_window = "up" }, { binding_mode = "default" }]
+"L" = [{ join_window = "right" }, { binding_mode = "default" }]
